@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="UserControls.ucExcel_BilancioIndici"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConvNS" 
+             xmlns:uc="clr-namespace:UserControls"
+             mc:Ignorable="d" 
+             SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style TargetType="Image">
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel x:Name="stack" CanVerticallyScroll="True">
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Text="INDICI DI STRUTTURA"></TextBlock>
+                <Grid Grid.Column="1" Grid.Row="1" Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="250"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="INDICI DI STRUTTURA" Grid.Column="0" Grid.Row="0" FontWeight="Bold" FontSize="14" Foreground="White" Background="DarkRed" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="ESERCIZIO ATTUALE" Grid.Column="1" Grid.Row="0" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="White" Background="DarkRed" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="ESERCIZIO PRECEDENTE" Grid.Column="2" Grid.Row="0" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="White" Background="DarkRed" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Margin="0,10,0,0" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="INDICE DI LIQUIDITA' SECCA" FontStyle="Italic" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="att. corr / pass. corr." TextAlignment="Left" TextWrapping="Wrap" Height="16" VerticalAlignment="Top"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Name="txtEA_1"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush" ></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Name="txtEP_1" TextAlignment="Right" Foreground="Black" Background="LavenderBlush" ></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="INDICE DI LIQUIDITA' CORRENTE" FontStyle="Italic" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="liquidità + magazz. / pass. corr." TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Name="txtEA_2"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Name="txtEP_2" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="INDICE DI INDEBITAMENTO" FontStyle="Italic" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Mezzi terzi / mezzi propri" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="8" Name="txtEA_3" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="8" Name="txtEP_3" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed"  Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="INDIPENDENZA FINANZIARIA" FontStyle="Italic" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" Foreground="Black" Background="LavenderBlush" ></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="12" Text="Mezzi propri / mezzi terzi" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="11" Name="txtEA_4"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="11" Name="txtEP_4" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="14" Text="INDICE DI STRUTTURA" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="15" Text="patr. netto /tot. immobilizz." TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="14" Name="txtEA_5" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="14" Name="txtEP_5" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="17" Text="INDICE DI COPERTURA" FontStyle="Italic" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="18" Text="p.netto + deb.m/l / tot. immob." TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="17" Name="txtEA_6" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="17" Name="txtEP_6" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="19" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Text="INDICI DI REDDITIVITA'"></TextBlock>
+                <Grid Grid.Column="1" Grid.Row="1" Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="250"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="INDICI DI REDDITIVITA'" Grid.Column="0" Grid.Row="0" FontWeight="Bold" FontSize="14" Foreground="White" Background="DarkRed" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="ESERCIZIO ATTUALE" Grid.Column="1" Grid.Row="0" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="White" Background="DarkRed" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="ESERCIZIO PRECEDENTE" Grid.Column="2" Grid.Row="0" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="White" Background="DarkRed" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Margin="0,10,0,0" Padding="0"></Border>
+                    <TextBlock Name="labelROI" Grid.Column="0" Grid.Row="2" Text="R.O.I." TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="utile operativo / capitale investito" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Name="txtEA_7" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Name="txtEP_7" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="R.O.E." TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="utile netto / patr. netto" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Name="txtEA_8"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Name="txtEP_8" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="R.O.S." TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="utile operativo / valore della produzione" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="8" Name="txtEA_9"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="8" Name="txtEP_9" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="INDICE TENSIONE FINANZIARIA" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="12" Text="risultato operativo / gestione fin. netta" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="11" Name="txtEA_10"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="11" Name="txtEP_10" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Name="NotaROI" Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="3" Margin="10, 20, 10, 10"  Text="(*) calcolato su totale attività, mancando distinzione passivo circolante" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Text="INDICI DI ROTAZIONE"></TextBlock>
+                <Grid Grid.Column="1" Grid.Row="1" Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MinWidth="250"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                        <ColumnDefinition Width="170"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="INDICI DI ROTAZIONE" Grid.Column="0" Grid.Row="0" FontWeight="Bold" FontSize="14" Foreground="White" Background="DarkRed" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="ESERCIZIO ATTUALE" Grid.Column="1" Grid.Row="0" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="White" Background="DarkRed" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    <TextBlock Text="ESERCIZIO PRECEDENTE" Grid.Column="2" Grid.Row="0" FontWeight="Bold" FontSize="14" TextAlignment="Center" Foreground="White" Background="DarkRed" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+
+
+                    <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Margin="0,10,0,0" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="ROTAZIONE CREDITI (giorni)" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="crediti / vendite x 365" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Name="txtEA_11"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Name="txtEP_11" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="ROTAZ. FORNITORI (giorni)" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="fornitori / acquisti x 365" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="5" Name="txtEA_12"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Name="txtEP_12" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="ROTAZ. MAGAZZINO (giorni)" TextAlignment="Left" TextWrapping="Wrap" FontWeight="Bold" FontStyle="Italic" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="rimanenze / vendite x 365" TextAlignment="Left" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="8" Name="txtEA_13"  TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+                    <TextBlock Grid.Column="2" Grid.Row="8" Name="txtEP_13" TextAlignment="Right" Foreground="Black" Background="LavenderBlush"></TextBlock>
+
+                    <Border Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3" BorderThickness="1" BorderBrush="DarkRed" Padding="0"></Border>
+                </Grid>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

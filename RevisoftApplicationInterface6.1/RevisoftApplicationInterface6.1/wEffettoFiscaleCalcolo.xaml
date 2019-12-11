@@ -1,0 +1,83 @@
+﻿<Window x:Class="RevisoftApplication.wEffettoFiscaleCalcolo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revisoft" Width="450" Height="310" WindowStyle="ToolWindow" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
+    <StackPanel Margin="10">
+        <TextBlock Name="CaptionTextBlock" Text="Calcolo effetto fiscale" Margin="0,0,0,5" HorizontalAlignment="Center" FontWeight="Bold" />
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Importo Rettifica" FontWeight="Bold"></TextBlock>
+                <TextBlock Name="txtImportoRettifica" Margin="10,0,0,0" FontWeight="Bold" TextAlignment="Right" Width="317"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="IRES" Width="229"></TextBlock>
+                <TextBox Name="txtP_IRES" Margin="10,0,0,0" Width="50" TextAlignment="Right" LostFocus="txtP_TextChanged"/>
+                <Button Width="14" Padding="0,-3,0,0" Visibility="Hidden" Click="btnIRESP">
+                    <TextBlock>+</TextBlock>
+                </Button>
+                <Button Width="14" Padding="0,-3,0,0" Click="btnIRESM">
+                    <TextBlock>=</TextBlock>
+                </Button>
+                <TextBox Name="txtV_IRES" Margin="10,0,0,0" Width="97" TextAlignment="Right" TextChanged="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="IRAP" Width="229"></TextBlock>
+                <TextBox Name="txtP_IRAP" Margin="10,0,0,0" TextAlignment="Right" Width="50" LostFocus="txtP_TextChanged"/>
+                <Button Width="14" Padding="0,-3,0,0" Visibility="Hidden" Click="btnIRAPP">
+                    <TextBlock>+</TextBlock>
+                </Button>
+                <Button Width="14" Padding="0,-3,0,0" Click="btnIRAPM">
+                    <TextBlock>=</TextBlock>
+                </Button>
+                <TextBox Name="txtV_IRAP" Margin="10,0,0,0" Width="97" TextAlignment="Right" TextChanged="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBox Name="txt1" Width="229"></TextBox>
+                <TextBox Name="txtP_1" Margin="10,0,0,0" TextAlignment="Right" Width="50" LostFocus="txtP_TextChanged"/>
+                <Button Width="14" Padding="0,-3,0,0" Visibility="Hidden" Click="btn1P">
+                    <TextBlock>+</TextBlock>
+                </Button>
+                <Button Width="14" Padding="0,-3,0,0" Click="btn1M">
+                    <TextBlock>=</TextBlock>
+                </Button>
+                <TextBox Name="txtV_1" Margin="10,0,0,0" Width="97" TextAlignment="Right" TextChanged="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBox Name="txt2" Width="229"></TextBox>
+                <TextBox Name="txtP_2" Margin="10,0,0,0" TextAlignment="Right" Width="50" LostFocus="txtP_TextChanged"/>
+                <Button Width="14" Padding="0,-3,0,0" Visibility="Hidden" Click="btn2P">
+                    <TextBlock>+</TextBlock>
+                </Button>
+                <Button Width="14" Padding="0,-3,0,0" Click="btn2M">
+                    <TextBlock>=</TextBlock>
+                </Button>
+                <TextBox Name="txtV_2" Margin="10,0,0,0" Width="97" TextAlignment="Right" TextChanged="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBox Name="txt3" Width="229"></TextBox>
+                <TextBox Name="txtP_3" Margin="10,0,0,0" TextAlignment="Right" Width="50" LostFocus="txtP_TextChanged"/>
+                <Button Width="14" Padding="0,-3,0,0" Visibility="Hidden" Click="btn3P">
+                    <TextBlock>+</TextBlock>
+                </Button>
+                <Button Width="14" Padding="0,-3,0,0" Click="btn3M">
+                    <TextBlock>=</TextBlock>
+                </Button>
+                <TextBox Name="txtV_3" Margin="10,0,0,0" TextAlignment="Right" Width="97" TextChanged="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBox Name="txt4" Width="315"></TextBox>
+                <TextBox Name="txtV_4" Margin="12,0,0,0" Width="97" TextAlignment="Right" LostFocus="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBox Name="txt5" Width="315"></TextBox>
+                <TextBox Name="txtV_5" Margin="12, 0,0,0" Width="97" TextAlignment="Right" LostFocus="txt_TextChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="TOTALE" Width="179" FontWeight="Bold"></TextBlock>
+                <TextBlock Name="txtV_TOT" Margin="98,0,0,0" TextAlignment="Right" FontWeight="Bold" Width="147"/>
+            </StackPanel>
+            <Button Content="OK" Click="Button_Click" Width="100" Margin="15"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

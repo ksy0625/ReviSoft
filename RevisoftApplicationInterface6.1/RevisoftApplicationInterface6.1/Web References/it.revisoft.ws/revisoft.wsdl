@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.revisoft.it/soap/revisoftWS" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.revisoft.it/soap/revisoftWS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.revisoft.it/soap/revisoftWS">
+      <s:element name="statisticheWS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="statisticheWSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="statisticheWSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="versioniWS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="versioniWSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="versioniWSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="statisticheWSSoapIn">
+    <wsdl:part name="parameters" element="tns:statisticheWS" />
+  </wsdl:message>
+  <wsdl:message name="statisticheWSSoapOut">
+    <wsdl:part name="parameters" element="tns:statisticheWSResponse" />
+  </wsdl:message>
+  <wsdl:message name="versioniWSSoapIn">
+    <wsdl:part name="parameters" element="tns:versioniWS" />
+  </wsdl:message>
+  <wsdl:message name="versioniWSSoapOut">
+    <wsdl:part name="parameters" element="tns:versioniWSResponse" />
+  </wsdl:message>
+  <wsdl:message name="statisticheWSHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="statisticheWSHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="versioniWSHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="versioniWSHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="statisticheWSHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="statisticheWSHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="versioniWSHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="versioniWSHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="revisoftWSSoap">
+    <wsdl:operation name="statisticheWS">
+      <wsdl:input message="tns:statisticheWSSoapIn" />
+      <wsdl:output message="tns:statisticheWSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <wsdl:input message="tns:versioniWSSoapIn" />
+      <wsdl:output message="tns:versioniWSSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="revisoftWSHttpGet">
+    <wsdl:operation name="statisticheWS">
+      <wsdl:input message="tns:statisticheWSHttpGetIn" />
+      <wsdl:output message="tns:statisticheWSHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <wsdl:input message="tns:versioniWSHttpGetIn" />
+      <wsdl:output message="tns:versioniWSHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="revisoftWSHttpPost">
+    <wsdl:operation name="statisticheWS">
+      <wsdl:input message="tns:statisticheWSHttpPostIn" />
+      <wsdl:output message="tns:statisticheWSHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <wsdl:input message="tns:versioniWSHttpPostIn" />
+      <wsdl:output message="tns:versioniWSHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="revisoftWSSoap" type="tns:revisoftWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="statisticheWS">
+      <soap:operation soapAction="http://www.revisoft.it/soap/revisoftWS/statisticheWS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <soap:operation soapAction="http://www.revisoft.it/soap/revisoftWS/versioniWS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="revisoftWSSoap12" type="tns:revisoftWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="statisticheWS">
+      <soap12:operation soapAction="http://www.revisoft.it/soap/revisoftWS/statisticheWS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <soap12:operation soapAction="http://www.revisoft.it/soap/revisoftWS/versioniWS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="revisoftWSHttpGet" type="tns:revisoftWSHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="statisticheWS">
+      <http:operation location="/statisticheWS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <http:operation location="/versioniWS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="revisoftWSHttpPost" type="tns:revisoftWSHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="statisticheWS">
+      <http:operation location="/statisticheWS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="versioniWS">
+      <http:operation location="/versioniWS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="revisoftWS">
+    <wsdl:port name="revisoftWSSoap" binding="tns:revisoftWSSoap">
+      <soap:address location="http://ws.revisoft.it/revisoft.asmx" />
+    </wsdl:port>
+    <wsdl:port name="revisoftWSSoap12" binding="tns:revisoftWSSoap12">
+      <soap12:address location="http://ws.revisoft.it/revisoft.asmx" />
+    </wsdl:port>
+    <wsdl:port name="revisoftWSHttpGet" binding="tns:revisoftWSHttpGet">
+      <http:address location="http://ws.revisoft.it/revisoft.asmx" />
+    </wsdl:port>
+    <wsdl:port name="revisoftWSHttpPost" binding="tns:revisoftWSHttpPost">
+      <http:address location="http://ws.revisoft.it/revisoft.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

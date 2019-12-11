@@ -1,0 +1,57 @@
+﻿<Window x:Class="RevisoftApplication.wSuggerimentiUsoCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - SUGGERIMENTI USO CLIENTI" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Margin="3,0">
+        <Label Content="Area CLIENTI" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <StackPanel Orientation="Vertical" Width="680" Margin="20">
+            <TextBlock Text="Occorre accedere all'area Clienti solo per caricare solo per le seguenti funzioni:"/>
+            <StackPanel Orientation="Horizontal">           
+                <TextBlock Text="Nuovo: " FontWeight="Bold" Margin="0,0,0,0"/>
+                <TextBlock Text="creare un muovo cliente" Margin="0,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Modifica: " FontWeight="Bold" Margin="0,0,0,0"/>
+                <TextBlock Text="modificare i dati caricati del cliente" Margin="0,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Elimina: " FontWeight="Bold" Margin="0,0,0,0"/>
+                <TextBlock Text="modificare i dati caricati del cliente" Margin="0,0,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Esporta: " FontWeight="Bold" Margin="0,0,0,0"/>
+                <TextBlock TextWrapping="Wrap" Width="620" Text="si trasferiscono tutti i dati del cliente sul SATELLITE (pc portatile); i dati del cliente rimarranno in sola lettura sino a che il cliente verrà reimportato." Margin="0,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Width="680" Margin="20, 0, 20, 0">
+            <TextBlock Text="DATI DEL CLIENTE" FontWeight="Bold"/>
+            <TextBlock TextWrapping="Wrap" Width="680" Text="I dati del cliente verranno utilizzati per identificarlo nel corso dell'uso del software e per indicarli automaticamente nelle relazioni, nei verbali ed in altri documenti di output."/>
+            <TextBlock Text="Periodicità dell'esercizio" FontWeight="Bold" TextDecorations="Underline"/>
+            <TextBlock TextWrapping="Wrap" Width="680" Text="Se viene scelta la periodicità annuale, Revisoft utilizza per ogni anno il periodo 1° gennaio – 31 dicembre."/>
+            <TextBlock TextWrapping="Wrap" Width="680" Text="Per gli esercizi a cavallo dovrà essere indicata la data di decorrenza e di conclusione."/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Cambio di periodicità: " FontWeight="Bold" Margin="0,0,0,0"/>
+                <TextBlock TextWrapping="Wrap" Width="560" Text="un'apposita funzione permette di gestire il cambio di periodicità." Margin="0,0,0,0"/>
+            </StackPanel>
+            <TextBlock TextWrapping="Wrap" Width="680" Text="Inevitabilmente per passare da un esercizio solare ad uno a cavallo dovrà crearsi un esercizio intermedio di durata superiore od inferiore ai dodici mesi."/>
+            <TextBlock TextWrapping="Wrap" Width="680" Text="In questi casi dovrà essere utilizzata l'apposita funzione prevista da Revisoft: si dovranno perciò indicare le date di decorrenza e di fine dell'esercizio transitorio nonché la nuova periodicità dell'esercizio."/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,10" Height="Auto" HorizontalAlignment="Center">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Name="buttonChiudi" Margin="10,0,0,0" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+        </StackPanel>
+
+    </StackPanel>
+</Window>

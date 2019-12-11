@@ -1,0 +1,21 @@
+﻿<Window x:Class="RevisoftApplication.WindowAbout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Informazioni" 
+        Height="327" Width="530" 
+        Icon="/RevisoftApplication;component/Images/Spunta2%20-%20Andrea.png" 
+        ResizeMode="NoResize" 
+        Background="WhiteSmoke" 
+        SizeToContent="Manual" WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        WindowStyle="ToolWindow" ShowInTaskbar="False">
+    <Grid Height="288" Width="500" VerticalAlignment="Top" Background="WhiteSmoke">
+        <Image Height="116" HorizontalAlignment="Left" Margin="12,8,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="476" Source="/RevisoftApplication;component/Images/logo2016.png" StretchDirection="Both" />
+        <Label Content="Revisoft Srl" Height="28" HorizontalAlignment="Left" Margin="12,148,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
+        <Label Content="Strada Garibaldi, 1 - 43121 Parma" Height="28" HorizontalAlignment="Left" Margin="12,166,0,0" Name="label2" VerticalAlignment="Top" Width="192" />
+        <Label Content="Mail: info@revisoft.it" Height="28" HorizontalAlignment="Left" Margin="13,218,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="P.IVA 02613980347" Height="28" HorizontalAlignment="Left" Margin="12,183,0,0" Name="label4" VerticalAlignment="Top" Width="192" />
+        <Label Content="Web: www.revisoft.it" Height="28" HorizontalAlignment="Left" Margin="13,202,0,0" Name="label5" VerticalAlignment="Top" />
+        <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="413,258,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <Label Content="Versione: " FontSize="12" Height="28" HorizontalAlignment="Left" Margin="14,236,0,0" Name="label6" VerticalAlignment="Top" />
+    </Grid>
+</Window>

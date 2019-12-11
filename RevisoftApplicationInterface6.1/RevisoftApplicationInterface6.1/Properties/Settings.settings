@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RevisoftApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RevisoftWebSite" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.revisoft.it</Value>
+    </Setting>
+    <Setting Name="RevisoftWebProceduraRevisione" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.revisoft.it/download/LA PROCEDURA DI REVISIONE.pdf</Value>
+    </Setting>
+    <Setting Name="RevisoftApplicationGuide" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\DocRevisoft\GuidaRevisoft\GuidaRevisoft.pdf</Value>
+    </Setting>
+    <Setting Name="RevisoftUrlAttivazione" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.revisoft.it/AreaRiservata.aspx</Value>
+    </Setting>
+    <Setting Name="RevisoftDocRevisione" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.revisoft.it/documenti-revisione</Value>
+    </Setting>
+    <Setting Name="RevisoftDocVigilanza" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://www.revisoft.it/documenti-vigilanza</Value>
+    </Setting>
+    <Setting Name="RevisoftApplication_it_revisoft_ws_revisoftWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://ws.revisoft.it/revisoft.asmx</Value>
+    </Setting>
+    <Setting Name="UseWord" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

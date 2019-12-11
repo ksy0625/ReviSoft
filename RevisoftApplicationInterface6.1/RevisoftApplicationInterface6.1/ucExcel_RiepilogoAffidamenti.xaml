@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="UserControls.ucExcel_RiepilogoAffidamenti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ConvNS"  
+        Width="850" >
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>        
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Percent x:Key="TypePercent"></local:Percent>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray">
+                <StackPanel>
+                    <TextBlock Text="RIEPILOGO AFFIDAMENTI BANCARI" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="0,10,0,10"></TextBlock>
+                </StackPanel>
+            </Border>
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                <Grid Width="Auto" Height="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid Grid.Column="0" Grid.Row="0" Margin="10, 20, 10, 10" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdRiepilogo" Grid.IsSharedSizeScope="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1" BorderBrush="Black" Background="{StaticResource DataGridHeaderBackgroundBrush}">
+                            <TextBlock Text="Tipo Affidamento"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="Black" Background="{StaticResource DataGridHeaderBackgroundBrush}">
+                            <TextBlock Text="ad inizio esercizio"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="Black" Background="{StaticResource DataGridHeaderBackgroundBrush}">
+                            <TextBlock Text="alla data verifica"></TextBlock>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="3" BorderThickness="1" BorderBrush="Black" Background="{StaticResource DataGridHeaderBackgroundBrush}">
+                            <TextBlock Text="utilizzo"></TextBlock>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

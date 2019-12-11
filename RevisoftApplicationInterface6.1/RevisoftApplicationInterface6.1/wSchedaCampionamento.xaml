@@ -1,0 +1,583 @@
+﻿<Window x:Class="RevisoftApplication.wSchedaCampionamento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Campionamento"  
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" WindowStyle="ToolWindow"        
+        SizeToContent="WidthAndHeight"
+        >
+    <StackPanel Background="WhiteSmoke" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,-8" Height="750" Width="1320" MaxHeight="750" MaxWidth="1320" MinHeight="750" MinWidth="1320">
+        <StackPanel Background="WhiteSmoke"  Name="stackPanel1" Height="650" Width="1320" MaxHeight="650" MaxWidth="1320" MinHeight="650" MinWidth="1320">
+            <Label Content="" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+            <StackPanel Name="stpIntervalliMonetari" Visibility="Collapsed">
+                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Fase 4) Intervalli monetari.</TextBlock>
+                <TextBlock  Margin="0,5,0,0">Indicare un numero desiderato di intervalli monetari, all'interno dei valori trovati automaticamente in seguito alla selezione della colonna.</TextBlock>
+                <TextBlock  Margin="0,5,0,5">Per creare ulteriori stratificazioni per intervalli monetari all'interno degli strati identificati con gli attibuti, agire con il comando + nell'apposito spazio sotto cisacuna label.</TextBlock>
+
+                <TabControl Margin="10,0,0,0" Name="tabIntervalliMonetari" SelectionChanged="tabIntervalliMonetari_SelectionChanged" Background="Transparent" BorderBrush="Transparent">
+                </TabControl>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="10,0,20,0">
+                    <ScrollViewer Height="500" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"  HorizontalAlignment="Stretch" >
+                        <StackPanel Name="stpIntervalliMonetari2" HorizontalAlignment="Left" Margin="10">
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>            
+            </StackPanel>
+            <StackPanel Name="stpMotivazione" Visibility="Collapsed">
+                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Fase 5) Scelta Campionaria e motivazione.</TextBlock>
+                <StackPanel Name="materialita1" Orientation="Horizontal"  Margin="0,10,0,0" Visibility="Collapsed">
+                    <TextBlock >Materialità operativa preliminare:</TextBlock>
+                    <TextBlock FontWeight="Bold" Name="materialita1Operativa" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Margin="10,0,0,0">Materialità operativa da bilancio:</TextBlock>
+                    <TextBlock FontWeight="Bold" Name="materialita1Bilancio" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+                <StackPanel Name="materialita23SP" Orientation="Horizontal"  Margin="0,10,0,0" Visibility="Collapsed">
+                    <TextBlock >Materialità operativa preliminare SP:</TextBlock>
+                    <TextBlock FontWeight="Bold" Name="materialita23OperativaSP" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Margin="10,0,0,0">Materialità operativa da bilancio SP:</TextBlock>
+                    <TextBlock FontWeight="Bold" Name="materialita23BilancioSP" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+                <StackPanel Name="materialita23CE" Orientation="Horizontal"  Margin="0,10,0,0" Visibility="Collapsed">
+                    <TextBlock >Materialità operativa preliminare CE:</TextBlock>
+                    <TextBlock FontWeight="Bold" Name="materialita23OperativaCE" Margin="10,0,0,0"></TextBlock>
+                    <TextBlock Margin="10,0,0,0">Materialità operativa da bilancio CE:</TextBlock>
+                    <TextBlock FontWeight="Bold" Name="materialita23BilancioCE" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+                <StackPanel Name="rischioindividuazione" Orientation="Horizontal"  Margin="0,10,0,0" Visibility="Collapsed">
+                    <TextBlock  Name="RischioIndividuazioneTitolo"></TextBlock>
+                    <TextBlock FontWeight="Bold" Name="RischioIndividuazioneValore" Margin="10,0,0,0"></TextBlock>
+                </StackPanel>
+           
+                <StackPanel Margin="0,10,0,0">
+                    <RadioButton GroupName="SceltaCampione" Name="rdbRagionato">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Campionamento Ragionato</TextBlock>
+                            <TextBlock >(Non è statistico, bensì basato sul giudizio professionale del revisore)</TextBlock>
+                        </StackPanel> 
+                    </RadioButton>
+                    <RadioButton GroupName="SceltaCampione" Name="rdbCasuale">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Campionamento Casuale</TextBlock>
+                            <TextBlock TextWrapping="Wrap">(è considerato statistico, ma proprio perchè basato esclusivamente su scelte casuali, è elevata la probabilità che il campione non sia rappresentativo della popolazione)</TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton GroupName="SceltaCampione" Name="rdbMUS">
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">MUS - monetary unit sampling</TextBlock>
+                            <TextBlock TextWrapping="Wrap">(campionamento basato sull'unità monetaria di un euro: è un campionamento statistico, in questa configurazione correlato alla materialità operativa ed al rischio di individuazione del ciclo. il campione ha buona probabilità di essere rappresentativo della popolazione)</TextBlock>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+                <Grid Grid.ColumnSpan="2" Grid.Row="1" Margin="10,10,10,10" Height="400" MinWidth="350" >
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
+                            <!--<Setter Property="FontFamily" Value="Palatino Linotype"></Setter>-->
+                            <Setter Property="Width" Value="30"></Setter>
+                            <Setter Property="FontSize" Value ="14"></Setter>
+                            <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+                        </Style>
+
+                        <Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
+                            <Setter Property="Width" Value="30"></Setter>
+                            <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+                        </Style>
+                    </Grid.Resources>
+
+                    <DockPanel Name="mainPanel" RenderTransformOrigin="0.5,0.5">
+                        <DockPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="0.242"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="0.529"/>
+                            </TransformGroup>
+                        </DockPanel.RenderTransform>
+
+                        <ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top">
+
+                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Taglia">
+                                <Image Source="Images\EditCut.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copia">
+                                <Image Source="Images\EditCopy.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Incolla">
+                                <Image Source="Images\EditPaste.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Annulla">
+                                <Image Source="Images\EditUndo.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Ripristina">
+                                <Image Source="Images\EditRedo.png"></Image>
+                            </Button>
+
+                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Grassetto">
+                                <TextBlock FontWeight="Bold">B</TextBlock>
+                            </Button>
+                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Corsivo">
+                                <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+                            </Button>
+                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Sottolineato">
+                                <TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Ingrandisci Carattere">
+                                <Image Source="Images\CharacterGrowFont.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Riduci Carattere">
+                                <Image Source="Images\CharacterShrinkFont.png"></Image>
+                            </Button>
+
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Elenco Puntato">
+                                <Image Source="Images\ListBullets.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Elenco Numerato">
+                                <Image Source="Images/ListNumbering.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Allineamento a Sinistra">
+                                <Image Source="Images\ParagraphLeftJustify.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Allineamenteo Centrato">
+                                <Image Source="Images\ParagraphCenterJustify.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Alineamento a Destra">
+                                <Image Source="Images\ParagraphRightJustify.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Allineamento Giustificato">
+                                <Image Source="Images\ParagraphFullJustify.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Aumenta Tabulazione">
+                                <Image Source="Images\ParagraphIncreaseIndentation.png"></Image>
+                            </Button>
+                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Riduci Tabulazione">
+                                <Image Source="Images\ParagraphDecreaseIndentation.png"></Image>
+                            </Button>
+
+                        </ToolBar>
+
+                        <RichTextBox Name="mainRTB" AcceptsTab="True" Focusable="True" TabIndex="1" PreviewMouseDown="obj_PreviewMouseLeftButtonDown" PreviewKeyDown="obj_PreviewKeyDown">
+                            <RichTextBox.Resources>
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0"/>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                </Style>
+                            </RichTextBox.Resources>
+
+                        </RichTextBox>
+                    </DockPanel>
+                </Grid>
+                <TextBox x:Name="txtMotivazione" Visibility="Collapsed" TextChanged="GestoreEvento_DatiCambiati" TextWrapping="Wrap" Height="60"></TextBox>
+            </StackPanel>
+            <StackPanel Name="stpSelezioneCampione" Visibility="Collapsed">
+                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Fase 6) Scelta Campione.</TextBlock>
+                <StackPanel Height="550">
+                    <StackPanel Name="stpStratificazione_Attributo" Margin="10">
+                        <TextBlock>Scegliere uno o più strati sui quali eseguire il campionamento.</TextBlock>
+                        <StackPanel Name="stpStratificazione_Attributo_Interna" Margin=" 20, 20, 0, 0">                    
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Name="stpStratificazione_Intervalli" Margin="10">
+                        <TextBlock>Scegliere uno o più strati sui quali eseguire il campionamento.</TextBlock>
+                        <StackPanel Name="stpStratificazione_Intervalli_Interna" Margin=" 20, 20, 0, 0">
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Name="stpSelezioneEstrapolazione" Visibility="Collapsed">
+                <TextBlock FontWeight="Bold" Margin="0,10,0,0">Fase 7) Estrapolazione Campione.</TextBlock>
+                <TextBlock FontWeight="Bold" Name="txtTipoCampionamento" Margin="0,5,0,0"></TextBlock>
+
+                <TextBlock HorizontalAlignment="Stretch" TextAlignment="Center" Name="txtTipoCampionamento_Info" Margin="0,5,0,10" Foreground="Blue" FontWeight="Bold"></TextBlock>
+
+                <TabControl Margin="10,0,0,0" Name="tabCampionamento" SelectionChanged="tabCampionamento_SelectionChanged" Background="Transparent" BorderBrush="Transparent">
+                </TabControl>
+                <Grid Name="grdCampionamentoHeader" Margin="10,-5,0,0"  HorizontalAlignment="Left">
+                </Grid>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="10,0,20,0">
+                    <ScrollViewer Height="470" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"  HorizontalAlignment="Left" >
+                        <Grid Name="grdCampionamento">
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+            <StackPanel Name="stpFinal" Visibility="Collapsed">
+                <TabControl Name="tabFinal"  Margin="10,0,0,0" SelectionChanged="tabFinal_SelectionChanged" Background="Transparent"  BorderBrush="Transparent">
+                </TabControl>
+            
+                <Grid Name="grdFinalHeader" Margin="10,-5,0,0" HorizontalAlignment="Left">
+                </Grid>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="10,0,20,0">
+                    <ScrollViewer Height="500" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left">
+                        <Grid Name="grdFinal">
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+
+                <StackPanel Orientation="Vertical" Margin="0,5,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                        <Border BorderBrush="Blue" BorderThickness="1" Margin="5" Padding="5" >
+                            <Grid Width="235" MinWidth="235">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Name="lblTotaleSaldiCampione" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Name="txtTotaleSaldiCampione" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Name="lblNumeroErroriSuCampione" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Name="txtNumeroErroriSuCampione" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                            </Grid>                        
+                        </Border>
+                        <Border BorderBrush="Blue" BorderThickness="1" Margin="5" Padding="5" >
+                            <Grid Width="235" MinWidth="235">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Name="lblTotaleErrori" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Name="txtTotaleErroriCampione" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Name="lblPercentualeErroriSustrato" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Name="txtPercentualeErroriSustrato" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>                            
+                            </Grid>
+                        </Border>
+                        <Border BorderBrush="Violet" BorderThickness="1" Margin="5" Padding="5">
+                            <Grid Width="235" MinWidth="235">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Name="lblTotaleDebiti" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Name="txtTotaleDebiti" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Name="lblPercentualeSuTotaleDebiti" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Name="txtPercentualeSuTotaleDebiti" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>                            
+                            </Grid>
+                        </Border>
+                        <Border BorderBrush="Violet" BorderThickness="1" Margin="5" Padding="5">
+                            <Grid Width="235" MinWidth="235">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Name="lblTotaleErroriCampione" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Name="txtTotaleErrori" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Name="lblPercentualeErroriSuCampione" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Name="txtPercentualeErroriSuCampione" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border BorderBrush="DarkGray" BorderThickness="1" Margin="5" Padding="5">
+                            <Grid Width="250" MinWidth="250">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition ></RowDefinition>
+                                    <RowDefinition ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Name="lblPercentualeProiettata" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Name="txtPercentualeProiettata" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Name="lblMaterialità" HorizontalAlignment="Stretch" TextAlignment="Left"></TextBlock>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Name="txtMaterialità" HorizontalAlignment="Stretch" TextAlignment="Right"></TextBlock>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Name="stpCompleteCircolarizzazione" Visibility="Collapsed">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="15, 20, 15, 20">
+                    <TextBlock Foreground="Blue">Con il comando FILE PER INDIRIZZI, Revisoft estrae un foglio excel contenente i nominativi da circolarizzare.</TextBlock>
+                    <TextBlock Foreground="Blue">In caso di stratificazione del campione, scegliere con un tick nella checkbox gli strati da circolarizzare.</TextBlock>
+                    <TextBlock Foreground="Blue">Il file dovrà essere completato con gli indirizzi.</TextBlock>
+                    <TextBlock Foreground="Blue" Margin="0,10,0,0" TextWrapping="Wrap">con il comando IMPORTA FILE E STAMPA LETTERE il file excel contenente gli indirizzi verrà importato e Revisoft provvederà a creare un file Word contenente tutte le lettere da stampare.</TextBlock>
+                </StackPanel>
+
+                <ScrollViewer Height="220">
+                    <StackPanel Name="stpStratiCircolarizzazione" Orientation="Vertical" HorizontalAlignment="Left" Margin="220,5, 0, 5">
+                    </StackPanel>
+                </ScrollViewer>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock MinWidth="200">Saldi riferiti al:</TextBlock>
+                    <TextBox Name="txtData" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">Revisore:</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">Denominazione:</TextBlock>
+                    <TextBox Name="txtRevisore" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">Indirizzo:</TextBlock>
+                    <TextBox Name="txtRevisoreIndirizzo" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">CAP:</TextBlock>
+                    <TextBox Name="txtRevisoreCAP" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">Città:</TextBlock>
+                    <TextBox Name="txtRevisoreCitta" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">Email:</TextBlock>
+                    <TextBox Name="txtEmail" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">PEC:</TextBlock>
+                    <TextBox Name="txtPEC" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock  MinWidth="200">Fax:</TextBlock>
+                    <TextBox Name="txtFax" MinWidth="800"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15, 5, 5, 5">
+                    <TextBlock MinWidth="200">Luogo e Data Spedizione:</TextBlock>
+                    <TextBox Name="txtDataSpedizione" MinWidth="800"></TextBox>
+                </StackPanel>                
+            </StackPanel>
+        </StackPanel>
+        </StackPanel>
+        <StackPanel Background="WhiteSmoke" Name="btnPanel" Height="80" Width="1320" MaxHeight="80" MaxWidth="1320" MinHeight="80" MinWidth="1320">
+            <StackPanel Name="stp1_btn" Orientation="Horizontal" Visibility="Collapsed">
+            </StackPanel>
+            <StackPanel Name="stp2_btn" Orientation="Horizontal" Visibility="Collapsed">
+            </StackPanel>
+            <StackPanel Name="stpIntervalliMonetari_btn" Orientation="Horizontal" Visibility="Collapsed">
+                <Button Click="Btn_Back_IntervalliMonetari_Click" Margin="5" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Width="16" Height="16" Source="/Images/icone/wa_nav_sess_prev.png"></Image>
+                        <TextBlock Margin="5,0,0,0">Indietro</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Margin="5" Padding="5" Click="Btn_Next_IntervalliMonetari_Click">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Margin="0,0,0,5">Avanti</TextBlock>
+                        <Image Width="16" Height="16" Margin="10,0,0,0" Source="/Images/icone/wa_nav_sess_next.png"></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="Btn_Esci_Click" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/door2.png"></Image>
+                        <TextBlock>Esci senza salvare</TextBlock>
+                    </StackPanel>
+                </Button>
+                
+                <!--<Button Margin="30, 5, 5, 5" Padding="10" Click="Btn_Esci_Click">Esci senza salvare</Button>-->
+                <Button Click="OpenSuggerimenti" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Guida.png"></Image>
+                        <TextBlock>Suggerimenti</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button Click="OpenSuggerimenti" Margin="30, 5, 5, 5" Padding="10">Suggerimenti</Button>-->
+            </StackPanel>
+            <StackPanel Name="stpMotivazione_btn" Orientation="Horizontal" Visibility="Collapsed">
+
+                <Button Click="Btn_Back_Motivazioni_Click" Margin="5" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Width="16" Height="16" Source="/Images/icone/wa_nav_sess_prev.png"></Image>
+                        <TextBlock Margin="5,0,0,0">Indietro</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Margin="5" Padding="5" Click="Btn_Next_Motivazioni_Click">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Margin="0,0,0,5">Avanti</TextBlock>
+                        <Image Width="16" Height="16" Margin="10,0,0,0" Source="/Images/icone/wa_nav_sess_next.png"></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="Btn_Esci_Click" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/door2.png"></Image>
+                        <TextBlock>Esci senza salvare</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <!--<Button Margin="30,5,5,5" Padding="10" Click="Btn_Esci_Click">Esci senza salvare</Button>-->
+                <Button Click="OpenSuggerimenti" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Guida.png"></Image>
+                        <TextBlock>Suggerimenti</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button Click="OpenSuggerimenti" Margin="30, 5, 5, 5" Padding="10">Suggerimenti</Button>-->
+            </StackPanel>
+            <StackPanel Name="stpSelezioneCampione_btn" Orientation="Horizontal" Visibility="Collapsed">
+                <Button Click="Btn_Back_Stratificazioni_Click" Margin="5" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Width="16" Height="16" Source="/Images/icone/wa_nav_sess_prev.png"></Image>
+                        <TextBlock Margin="5,0,0,0">Indietro</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Margin="5" Padding="5" Click="Btn_Next_Stratificazioni_Click">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Margin="0,0,0,5">Avanti</TextBlock>
+                        <Image Width="16" Height="16" Margin="10,0,0,0" Source="/Images/icone/wa_nav_sess_next.png"></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="Btn_Esci_Click" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/door2.png"></Image>
+                        <TextBlock>Esci senza salvare</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button HorizontalAlignment="Right" Margin="30,5,5,5" Padding="10" Click="Btn_Esci_Click">Esci senza salvare</Button>-->
+                <Button Click="OpenSuggerimenti" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Guida.png"></Image>
+                        <TextBlock>Suggerimenti</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button Click="OpenSuggerimenti" Margin="30, 5, 5, 5" Padding="10">Suggerimenti</Button>-->
+            </StackPanel>
+            <StackPanel Name="stpSelezioneEstrapolazione_btn" Orientation="Horizontal" Visibility="Collapsed">
+
+                <Button Click="Btn_Back_Final" Margin="5" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Width="16" Height="16" Source="/Images/icone/wa_nav_sess_prev.png"></Image>
+                        <TextBlock Margin="5,0,0,0">Indietro</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Margin="5" Padding="5" Click="Btn_Next_Final">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Margin="0,0,0,5">Avanti</TextBlock>
+                        <Image Width="16" Height="16" Margin="10,0,0,0" Source="/Images/icone/wa_nav_sess_next.png"></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="Btn_Esci_Click" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/door2.png"></Image>
+                        <TextBlock>Esci senza salvare</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button Margin="30,5,5,5" Padding="10" Click="Btn_Esci_Click">Esci senza salvare</Button>-->
+                <Button Click="OpenSuggerimenti" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Guida.png"></Image>
+                        <TextBlock>Suggerimenti</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button Click="OpenSuggerimenti" Margin="30, 5, 5, 5" Padding="10">Suggerimenti</Button>-->
+
+                <Border BorderThickness="2" BorderBrush="Blue" Margin="20,0,0,0">
+                    <StackPanel Orientation="Horizontal" Name="stpCircolarizzazione" >
+                        <TextBlock FontWeight="Bold" Margin="10,15,0,0">Opzioni:</TextBlock>
+                        <StackPanel Orientation="Vertical" Margin="10,10,0,0">
+                            <RadioButton GroupName="Final" Name="rdbFinal_Circolarizzazione" Checked="rdbFinal_Circolarizzazione_Checked">Per circolarizzazione</RadioButton>
+                            <RadioButton GroupName="Final" Name="rdbFinal_Procedure" Checked="rdbFinal_Circolarizzazione_Checked">Per procedure di validità (controlli di sostanza)</RadioButton>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Name="stpFinal_btn" Orientation="Horizontal" Visibility="Collapsed">
+                <Button Click="ButtonDeleteFinal_Click" Margin="5" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Width="16" Height="16" Source="/Images/icone/wa_nav_sess_prev.png"></Image>
+                        <TextBlock Margin="5,0,0,0">Indietro</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button BorderBrush="DarkRed" Click="Btn_Esci_Click" Margin="5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/disk_blue.png"></Image>
+                        <TextBlock>Chiudi e Salva</TextBlock>
+                    </StackPanel>
+                </Button>
+                
+                <!--<Button Margin="5" Padding="10" Click="Btn_Esci_Click" BorderBrush="DarkRed">Chiudi e Salva</Button>-->
+
+                <!--<Button Click="ButtonDeleteRaw_Click" Margin="30, 5, 5, 5" Padding="10">CANCELLA tutto</Button>-->
+                <Button Click="ButtonDeleteRaw_Click" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/gomma16.png"></Image>
+                        <TextBlock>CANCELLA tutto</TextBlock>
+                    </StackPanel>
+                </Button>
+                
+                <Button Click="OpenSuggerimenti" Margin="30,5,5,5" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Guida.png"></Image>
+                        <TextBlock>Suggerimenti</TextBlock>
+                    </StackPanel>
+                </Button>
+                <!--<Button Click="OpenSuggerimenti" Margin="30, 5, 5, 5" Padding="10">Suggerimenti</Button>-->
+
+
+                <Button Click="ButtonDatiFinal_Click" HorizontalAlignment="Right" Padding="5,0,5,0"  Margin="310, 5, 5, 5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Documenti/excel.png"></Image>
+                        <TextBlock>Estrai Campioni</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Click="ButtonDatiOriginali_Click" HorizontalAlignment="Right" Margin="430, 5, 5, 5" Padding="5,0,5,0" Visibility="Collapsed">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Documenti/excel.png"></Image>
+                        <TextBlock>Dati Originali</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Name="btnCircolarizzazione" Click="ButtonCircolarizzazione_Click" Margin="5, 5, 5, 5" Padding="10" BorderBrush="DarkGreen">
+                    <StackPanel HorizontalAlignment="Stretch">
+                        <TextBlock TextAlignment="Center">Stampa Lettere</TextBlock>
+                        <TextBlock TextAlignment="Center">Circolarizzazione</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Click="ButtonDati_Click" Margin="30, 5, 5, 5" HorizontalAlignment="Right" Padding="5,0,5,0">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/tb_wa_report.png"></Image>
+                        <TextBlock>Anteprima Stampa</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Name="stpCompleteCircolarizzazione_btn" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                <Button Name="btnCircolarizzazioneBack" Click="ButtonCircolarizzazioneBack_Click" Margin="5,0,0,0" Padding="5">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <Image Width="16" Height="16" Source="/Images/icone/wa_nav_sess_prev.png"></Image>
+                        <TextBlock Margin="5,0,0,0">Indietro</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Name="DataCircolarizzazione" Click="ButtonDatiCircolarizzazione_Click" Margin="150,0,0,0" HorizontalAlignment="Right" Padding="5">
+                    <StackPanel>
+                        <Image Width="16" Height="16" Source="/Images/icone/Documenti/excel.png"></Image>
+                        <TextBlock>File per Indirizzi</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button Name="btnCircolarizzazioneComplete" Click="ButtonCircolarizzazioneComplete_Click" HorizontalAlignment="Right" Margin="5,0,0,0" Padding="5">
+                    <StackPanel HorizontalAlignment="Stretch">
+                        <TextBlock TextAlignment="Center">Importa Indirizzi</TextBlock>
+                        <TextBlock TextAlignment="Center">e Stampa Lettere</TextBlock>
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

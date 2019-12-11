@@ -1,0 +1,34 @@
+﻿<Window x:Class="RevisoftApplication.wNoteOperativeTODOLIST"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revisoft" Width="600" Height="380" WindowStyle="ToolWindow" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
+    <StackPanel Margin="10">
+        <TextBlock Text="Note operative" Margin="0,0,0,5" HorizontalAlignment="Center" FontWeight="Bold" />
+
+        <TextBlock Text="Chiudendo la finestra i dati immessi restano salvati." Margin="0,10,0,5" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="Riaprendola possono essere modificati. Per cancellari, utilizzare il tasto 'Azzera Valori'" Margin="0,0,0,5" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="Con questa funzione si può generare un documento che elenchi i controlli da svolgere in una sessione di verifica periodica." Margin="10,10,10,5" TextWrapping="Wrap" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="Il documento verrà inviato alla società prima dell'accesso, affinché possa predisporre i documenti oggetto di verifica." Margin="10,10,10,5" TextWrapping="Wrap" HorizontalAlignment="Center"  />
+        <TextBlock Text="Per scrivere i controlli che verranno svolti basta apporre un tick nella check box a fianco delle carte di lavoro; si possono aggiungere note nello spazio a fianco." Margin="10,10,10,5" TextWrapping="Wrap" HorizontalAlignment="Center"  />
+        <TextBlock  Margin="10,10,10,5" TextWrapping="Wrap" HorizontalAlignment="Center">
+            <Run Foreground="Black">Se la sessione di verifica è stata pianificata, il revisore troverà un simbolo</Run>
+            <Run Foreground="Red">P</Run>
+            <Run Foreground="Black">a fianco delle carte di lavoro ed il tick nella check box già apposto (in questo caso va tolto se non si vuole indicare quella attività).</Run>
+        </TextBlock>
+        <TextBlock Text="Con Crea PDF verrà generato il documento da inviare." Margin="10,10,10,5" TextWrapping="Wrap" HorizontalAlignment="Center">
+            <Run>Con</Run>
+            <Run FontWeight="Bold">Crea PDF</Run>
+            <Run >verrà generato il documento da inviare.</Run>
+        </TextBlock>
+
+        <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+            <Button Content="OK" Click="Button_Click" Width="90" Margin="5"/>
+        </Grid>
+
+
+    </StackPanel>
+</Window>

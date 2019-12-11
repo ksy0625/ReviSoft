@@ -1,0 +1,108 @@
+﻿<Window x:Class="RevisoftApplication.wSchedaSessioniPianificazioniVerifiche"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Pianificazione delle Sessioni" 
+        ResizeMode="NoResize"         
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="Manual" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        Closing="Window_Closing"
+        SizeToContent="WidthAndHeight" MinHeight="180" 
+        >
+
+    <StackPanel Orientation="Horizontal" Margin="15">
+        <StackPanel Name="ButtonBarLeft" Orientation="Vertical" Width="90" Margin="10">
+            <Button Name="btn_NodoHelp"   ToolTip="Suggerimenti Revisoft" Width="75" Margin="0,5,0,0" Click="btn_GuidaRevisoft_Click">
+                <StackPanel>
+                    <Image Source="/Images/icone/lightbulb_on.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Suggerimenti</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Name="btn_SOSPESI" Visibility="Visible" ToolTip="SOSPESI" Width="75" Margin="0,5,0,0" Click="btn_SOSPESI_Click">
+                <StackPanel>
+                    <Image Source="/Images/icone/Stato/sospesi.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Sospesi</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btn_CancellaTutto" Visibility="Visible" ToolTip="Chiudi" Width="75" Margin="7.5,5,7.5,0" Click="btnCancellaTutto_Click">
+                <StackPanel>
+                    <Image Source="Images/icone/gomma16.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap"><Run Text="Cancella tutto"/></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Name="btn_Chiudi" Visibility="Visible" ToolTip="Chiudi" Width="75" Margin="0,5,0,0" Click="btn_Chiudi_Click">
+                <StackPanel>
+                    <Image Source="/Images/icone/door2.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Esci</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Background="WhiteSmoke" Height="Auto" Name="stackPanel1" VerticalAlignment="Top" Margin="10">
+      <Label Name="lab1" Content="Impostazione della pianificazione" FontSize="16" FontWeight="Bold" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+            <TextBlock TextWrapping="Wrap" Margin="15" Text="Sessioni nel periodo" Name="labelTitolo" FontWeight="Bold"></TextBlock>
+
+            <StackPanel Height="Auto">
+                <Grid Height="40" Margin="0,10,0,0" Visibility="Collapsed">
+                    <Label Content="Aggiungi nuova Sessione" Height="28" HorizontalAlignment="Left" Margin="5,5,0,0" Name="label1" VerticalAlignment="Top" Width="150" Visibility="Collapsed" />
+                    <Button Content="Aggiungi" Height="23" HorizontalAlignment="Left" Margin="160,7,0,0" Name="btnAdd" VerticalAlignment="Top" Width="75" Click="buttonAdd_Click" Visibility="Collapsed" />
+                </Grid>
+
+                <Grid Margin="10,10,0,20" Height="Auto" Name="DynamicGrid" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" Visibility="Visible">
+                </Grid>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Height="46" Margin="10,0,0,0" x:Name="btnAdd_Copy"  Width="250" Click="buttonAdd_Click" >
+                        <ContentControl>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontWeight="Bold" HorizontalAlignment="Center">Crea Sessioni</TextBlock>
+                                <TextBlock  HorizontalAlignment="Center">per ogni sessione creata stabilire una data</TextBlock>
+                            </StackPanel>
+                        </ContentControl>
+                    </Button>
+                    <Button Height="46" x:Name="buttonComando"  Margin="10,0,0,0" Width="290" Click="buttonApri_Click">
+                        <ContentControl>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock FontWeight="Bold" HorizontalAlignment="Center">Apri Pianificazione</TextBlock>
+                                <TextBlock  HorizontalAlignment="Center">per scegliere le attività da svolgere in ogni sessione</TextBlock>
+                            </StackPanel>
+                        </ContentControl>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Name="ButtonBarRight" Orientation="Vertical" Width="90" Margin="10">
+
+        <Button Name="btn_Stato_Completato"   ToolTip="Completato" Width="75" Margin="0,5,0,0" Click="btn_Stato_Completato_Click">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/RevisoftApplication;component/Images/icone/Stato/completo.png" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap" Margin="0"><LineBreak/>Completato</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btn_Stato_DaCompletare"   ToolTip="Da Completare" Width="75" Margin="0,5,0,0" Click="btn_Stato_DaCompletare_Click">
+            <StackPanel Orientation="Vertical">
+                <Image Source="/RevisoftApplication;component/Images/icone/Stato/parziale.png" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Da Completare</TextBlock>
+            </StackPanel>
+        </Button>
+            
+            <Button Name="btn_CopiaDaAltraSessione2" Visibility="Collapsed"  ToolTip="Copia contenuti da altra sessione" Width="75" Margin="0,5,0,0" Click="btn_CopiaDaAltraSessione_Click">
+                <StackPanel>
+                    <Image Source="/RevisoftApplication;component/Images/icone/copy.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap" >Copia da altra sessione</TextBlock>
+                </StackPanel>
+            </Button>
+            <!--<Button Name="btn_EsciSenzaSalvare"   ToolTip="Esci Senza Salvare" Width="75" Margin="0,5,0,0" Click="btn_EsciSenzaSalvare_Click">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="Images/icone/door2.png" Stretch="Fill" Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap" Name="txtEsciSenzaSalvare">Esci senza salvare</TextBlock>
+                </StackPanel>
+            </Button>-->
+        </StackPanel>
+    </StackPanel>
+</Window>

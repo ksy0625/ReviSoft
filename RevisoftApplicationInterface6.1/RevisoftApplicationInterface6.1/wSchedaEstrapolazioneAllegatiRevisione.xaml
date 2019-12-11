@@ -1,0 +1,59 @@
+﻿<Window x:Class="RevisoftApplication.wSchedaEstrapolazioneAllegatiRevisione"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Scheda Estrazione Allegati da Revisione" 
+        ResizeMode="NoResize" 
+        ShowInTaskbar="False" 
+        WindowStyle="ToolWindow" 
+        Icon="/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        d:DesignWidth="484" 
+        SizeToContent="WidthAndHeight" 
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="10,1,0,0">
+        <Label Content="ESTRAZIONE ALLEGATI DA REVISIONE" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+                <TextBlock Text="Questa funzione permette di estrarre i documenti allegati di un determinato cliente. (Tra parentesi il numero di documenti presenti)" TextWrapping="Wrap" Margin="10" />
+        
+        <StackPanel Height="Auto">
+            <Grid Height="Auto" Margin="0,10,0,0">
+                <Label Content="Cliente" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="label1" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,9,0,0" Name="cmbClienti" VerticalAlignment="Top" Width="297" SelectionChanged="cmbClienti_SelectionChanged"  TabIndex="0" />
+            </Grid>
+
+            <Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Per Fascicolo Accettazione dell'incarico e ISQC" FontWeight="Bold"></TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <StackPanel Name="stpSessioni1" Orientation="Vertical" Margin="0,0,5,0">
+                        </StackPanel>
+                        <StackPanel Name="stpSessioniISQC" Orientation="Vertical" Margin="0,0,5,0">
+                        </StackPanel>
+                    </StackPanel>
+                    <Border HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="0,0,0,1"></Border>
+                    <TextBlock Margin="0,10,0,0" Text="Per Fascicolo di bilancio" FontWeight="Bold"></TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                        <StackPanel Name="stpSessioni2" Orientation="Vertical" Margin="5,0,0,0">
+                    </StackPanel>
+                    <StackPanel Name="stpSessioni3" Orientation="Vertical" Margin="5,0,0,0">
+                    </StackPanel>
+                    <StackPanel Name="stpSessioni9" Orientation="Vertical" Margin="5,0,0,0">
+                    </StackPanel>
+                </StackPanel>
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="375,0,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+            <Button Content="Estrai" Height="23" HorizontalAlignment="Left" Margin="288,0,0,0" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonTODOList_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

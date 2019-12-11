@@ -1,0 +1,317 @@
+﻿<Window x:Class="RevisoftApplication.wWorkAreaTree_SOSPESI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ConvNS" 
+        Title="Revisoft - SOSPESI" 
+        Height="674" Width="1180" 
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing" 
+        WindowState="Normal"
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        ShowInTaskbar="True" Background="WhiteSmoke">
+    <Window.Resources>
+        <XmlDataProvider x:Key="xdpTree" XPath="/Tree"></XmlDataProvider>
+        <local:TypeVisibilityConverter x:Key="typeVisibilityConverter"></local:TypeVisibilityConverter>
+        <local:BackgroundColorConverter x:Key="backgroundColorConverter"></local:BackgroundColorConverter>
+        <local:IconeSospesiConverter x:Key="IconeSospesiConverter"></local:IconeSospesiConverter>
+        <local:IconeStatoConverter x:Key="iconeStatoConverter"></local:IconeStatoConverter>
+        <local:TooltipStatoConverter x:Key="tooltipStatoConverter"></local:TooltipStatoConverter>
+        <local:FontWeightConverter x:Key="FontWeightConverter"></local:FontWeightConverter>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+
+            <RowDefinition Height="Auto"></RowDefinition>
+
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Name="labelTitolo" Content="SOSPESI" FontSize="16" FontWeight="Bold" Foreground="#FFF5AB1C" Margin="10,0,10,0" Padding="0"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Per accedere al sospeso: doppio click su icona del sospeso (nodo)." FontSize="12" FontWeight="Bold"  Margin="10,0,157,27" Padding="0" Grid.RowSpan="3"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Titolo attività" FontSize="14" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Right" Name="labelAttivita" Margin="0,0,10,0" Padding="0"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Height="Auto" HorizontalAlignment="Stretch" Name="txtTitoloRagioneSociale" Text="Titolo cliente" Foreground="Black" FontSize="14" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Right"  Margin="0,0,10,10" Padding="0"/>
+
+        <Grid Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Width="Auto" Name="grdMainContainer" Grid.IsSharedSizeScope="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="848"/>
+            </Grid.ColumnDefinitions>
+            <TabControl Grid.Column="0" TabStripPlacement="Left" Name="tabControlSospesi" HorizontalAlignment="Left" Margin="10.2,18,0,0" VerticalAlignment="Top" BorderThickness="1,1,1,0" SelectionChanged="TabControl_SelectionChanged" Width="280" Height="505">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        ContentSource="Header"
+                                        Margin="10,2"
+                                        Height="20"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="PaleTurquoise" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                            <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                           <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="PaleTurquoise" />
+                                            <Setter Property="Foreground" Value="Black"/>
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+
+            </TabControl>
+
+            <Grid Background="WhiteSmoke" Margin="290,10,-18.4,9.8" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <HierarchicalDataTemplate DataType="Node" ItemsSource="{Binding XPath=Node[@ID]}" AlternationCount="1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,0" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="ColonnaCodice" Width="Auto"/>
+                                    <ColumnDefinition SharedSizeGroup="ColonnaTitolo" Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0"/>
+                                    <ColumnDefinition SharedSizeGroup="ColonnaExtraOut" Width="Auto" MaxWidth="200"/>
+                                    <ColumnDefinition SharedSizeGroup="ColonnaExtraOutSessioni" Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding XPath=@Codice}" Margin="0,0,5,0"/>
+                                <Border Grid.Column="1" BorderBrush="WhiteSmoke" BorderThickness="0,0,0,1" Padding="0">
+                                    <TextBlock Grid.Column="1" Text="{Binding XPath=@Titolo}" FontWeight="{Binding XPath=../@LastID, Converter={StaticResource FontWeightConverter}}" Margin="0,0,15,0"/>
+                                </Border>
+                                <GridSplitter Grid.Column="3" Width="0" Background="White"/>
+                                <!--<Border Grid.Column="4" HorizontalAlignment="Stretch"  BorderBrush="White" BorderThickness="0,0,2,1" Padding="5,5,5,1">
+                                        <CheckBox IsChecked="{Binding XPath=@Checked, Mode=TwoWay, NotifyOnSourceUpdated=True}" Click="CheckBox_SourceUpdated" Tag="{Binding XPath=@ID}" />
+                                    </Border>-->
+                                <ItemsControl Grid.Column="5" HorizontalAlignment="Right" ItemsSource="{Binding XPath=Sessioni/Sessione}" MouseLeftButtonDown="ItemsControl_MouseLeftButtonDown">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="ColonnaExtra" Width="80"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="0,0,2,1" Padding="5,1,5,1">
+                                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                                        <Image Source="{Binding XPath=@Sospesi, Converter={StaticResource IconeSospesiConverter}}" ToolTip="{Binding XPath=@idsessione}" Height="20" Width="20" PreviewMouseLeftButtonDown="OnItemMouseDoubleClick">
+                                                        </Image>
+                                                        <Image Source="{Binding XPath=@Stato, Converter={StaticResource iconeStatoConverter}}" Height="20" Width="20" >
+                                                            <Image.ToolTip>
+                                                                <MultiBinding Converter="{StaticResource tooltipStatoConverter}">
+                                                                    <Binding XPath="@Stato" />
+                                                                    <Binding XPath="@ToolTip" />
+                                                                </MultiBinding>
+                                                            </Image.ToolTip>
+                                                        </Image>
+                                                    </StackPanel>
+                                                </Border>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </Grid>
+                        </Border>
+                    </HierarchicalDataTemplate>
+                    <Style x:Key="TreeViewItemFocusVisual">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Rectangle/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <PathGeometry x:Key="TreeArrow" Figures="M0,0 L0,6 L6,0 z"/>
+                    <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Width" Value="16"/>
+                        <Setter Property="Height" Value="16"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Border Background="Transparent" Height="16" Padding="5,5,5,5" Width="16" Visibility="{Binding XPath=@Tipologia, Converter={StaticResource typeVisibilityConverter}}">
+                                        <Path x:Name="ExpandPath" Data="{StaticResource TreeArrow}" Fill="Transparent" Stroke="#FF989898">
+                                            <Path.RenderTransform>
+                                                <RotateTransform Angle="135" CenterY="3" CenterX="3"/>
+                                            </Path.RenderTransform>
+                                        </Path>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF1BBBFA"/>
+                                            <Setter Property="Fill" TargetName="ExpandPath" Value="Transparent"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="RenderTransform" TargetName="ExpandPath">
+                                                <Setter.Value>
+                                                    <RotateTransform Angle="180" CenterY="3" CenterX="3"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Fill" TargetName="ExpandPath" Value="#FF595959"/>
+                                            <Setter Property="Stroke" TargetName="ExpandPath" Value="#FF262626"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style TargetType="{x:Type TreeViewItem}">
+
+                        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=AlternationIndex, Converter={StaticResource backgroundColorConverter}}"/>
+                        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                        <Setter Property="Padding" Value="1,0,0,0"/>
+                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                        <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+
+                        <Setter Property="IsExpanded" Value="{Binding XPath=@Expanded, Mode=TwoWay}"/>
+                        <Setter Property="IsSelected" Value="{Binding XPath=@Selected, Mode=TwoWay}"/>
+                        <Setter Property="Visibility" Value="{Binding XPath=../@Tipologia, Converter={StaticResource typeVisibilityConverter}}"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition MinWidth="19" Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ExpandCollapseToggleStyle}"/>
+                                        <Border Grid.ColumnSpan="2" x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                            <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </Border>
+                                        <ItemsPresenter x:Name="ItemsHost" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsExpanded" Value="false">
+                                            <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                                        </Trigger>
+                                        <Trigger Property="HasItems" Value="false">
+                                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter Property="Background" TargetName="Bd" Value="#7EF5A41C"/>
+                                        </Trigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsSelected" Value="true"/>
+                                                <Condition Property="IsSelectionActive" Value="false"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="Background" TargetName="Bd" Value="#7EF5A41C"/>
+                                        </MultiTrigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                                <Setter Property="ItemsPanel">
+                                    <Setter.Value>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+                <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1" CornerRadius="0" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="13,10,10,10">
+                    <ScrollViewer  Width="auto">
+                        <TreeView HorizontalAlignment="Stretch" Name="tvMain" FontSize="13" BorderThickness="0" Width="800">
+                            <TreeViewItem IsExpanded="True" ItemsSource="{Binding Source={StaticResource xdpTree}, XPath=/Tree/Node[@ID]/Node[@ID]}" AlternationCount="1" Selected="TreeViewItem_Selected" >
+                                <TreeViewItem.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition SharedSizeGroup="ColonnaCodice" Width="Auto"/>
+                                            <ColumnDefinition SharedSizeGroup="ColonnaTitolo" Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3"/>
+                                            <ColumnDefinition SharedSizeGroup="ColonnaExtraOut" Width="Auto" MaxWidth="200"/>
+                                            <ColumnDefinition SharedSizeGroup="ColonnaExtraOutSessioni" Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Text="Revisoft - Revisione Legale" Margin="0,0,5,0" VerticalAlignment="Center" />
+                                        <ItemsControl Grid.Column="5" HorizontalAlignment="Right" ItemsSource="{Binding Source={StaticResource xdpTree}, XPath=/Tree/Sessioni/Sessione}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition SharedSizeGroup="ColonnaExtra" Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="0,0,2,1" Padding="5,0,5,0">
+                                                            <TextBlock Text="{Binding  XPath=@Alias}" FontWeight="Bold" HorizontalAlignment="Center" TextAlignment="Center" />
+                                                        </Border>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </Grid>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeView>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Cerca Carta di Lavoro nell'albero:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20, 0, 10, 0"/>
+            <TextBox  Grid.Column="1" x:Name="searchTextBox"  Height="Auto" HorizontalAlignment="Stretch" KeyUp="searchTextBox_KeyUp" VerticalAlignment="Top" />
+            <Button Grid.Column="2" Content="Crea DOC" Height="23" HorizontalAlignment="Center" Name="buttonCreaPDF" Width="75" Click="buttonCreaPDF_Click" VerticalAlignment="Top" Margin="20, 0, 0, 0" />
+            <Button Grid.Column="3" Content="Chiudi" Height="23" HorizontalAlignment="Center" Name="buttonChiudi" Width="75" Click="buttonChiudi_Click"  VerticalAlignment="Top" Margin="20, 0, 20, 0"/>
+        </Grid>
+
+    </Grid>
+</Window>

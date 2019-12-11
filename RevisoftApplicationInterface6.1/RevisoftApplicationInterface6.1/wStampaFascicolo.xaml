@@ -1,0 +1,62 @@
+﻿<Window x:Class="RevisoftApplication.wStampaFascicolo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Crea Fascicolo" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        d:DesignWidth="484" 
+        SizeToContent="WidthAndHeight" Height="386" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="Crea Fascicolo" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <TextBlock  TextWrapping="Wrap" Margin="10,0" >Si Creano due fascicoli:</TextBlock>
+        <TextBlock  TextWrapping="Wrap" Margin="20,0" >- Per le carte di lavoro inerenti l’Accettazione dell’incarico (scegliere con la selezione tramite check box le sessioni da includere);</TextBlock>
+        <TextBlock  TextWrapping="Wrap" Margin="20,0" >- Per l’attività di revisione, che include le carte di lavoro delle aree 2, 3 e 9 (selezionare l’esercizio tramite la tendina).</TextBlock>        
+        
+        <TextBlock TextWrapping="Wrap" Margin="10,5,10,0" ><Run Text="In base alle prestazioni del computer la stampa può richiedere tempi di elaborazione differenti"/><Run Text=" a seconda delle potenzialità del dispositivo"/><Run Text="."/></TextBlock>
+        <TextBlock Text="Selezionare Cliente ed Esercizio per proseguire." TextWrapping="Wrap" Margin="10" />
+
+        <StackPanel Height="Auto">
+            <Grid Height="Auto" >
+                <Label Content="Revisore" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblRevisore" VerticalAlignment="Top" Width="124" />
+                <TextBox Height="25" HorizontalAlignment="Left" Margin="135,9,0,0" Name="txtRevisore" VerticalAlignment="Top" Width="297" TabIndex="0" />
+            </Grid>
+            
+            <Grid Height="Auto" Margin="0,10,0,0">
+                <Label Content="Cliente" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="label1" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,9,0,0" Name="cmbClienti" VerticalAlignment="Top" Width="297" SelectionChanged="cmbClienti_SelectionChanged" TabIndex="0" />
+            </Grid>
+
+            <Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <StackPanel Name="stpSessioni1" Orientation="Vertical" Margin="0,0,25,0">
+                    </StackPanel>
+                    <Border VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="0,0,1,0"></Border>
+                    <StackPanel Name="stpSessioni239" Orientation="Vertical" Margin="45,0,0,0" Visibility="Collapsed">
+                        <Label Content="Esercizio Aree 2-3-9" Height="28" HorizontalAlignment="Left" Margin="5,-5,0,0" Name="label3" VerticalAlignment="Top" Width="124" />
+                        <ComboBox Height="25" HorizontalAlignment="Left" Margin="10,0,0,0" Name="cmbData" VerticalAlignment="Top" MinWidth="200" TabIndex="2" >
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <!--<Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData">
+               
+            </Grid>-->
+
+        </StackPanel>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="375,0,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+            <Button Content="Crea" Height="23" HorizontalAlignment="Left" Margin="288,0,0,0" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonStampa_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

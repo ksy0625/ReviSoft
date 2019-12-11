@@ -1,0 +1,174 @@
+﻿<Window x:Class="RevisoftApplication.wWorkAreaTree_AssegnazioneIncarichi"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:brl="clr-namespace:RevisoftApplication.BRL"
+        xmlns:self="clr-namespace:RevisoftApplication"
+        xmlns:local="clr-namespace:ConvNS" 
+        Title="Revisoft - Assegnazione Incarichi" 
+        Height="620" Width="1100" 
+        WindowStartupLocation="CenterOwner"
+        Closing="Window_Closing" 
+        WindowState="Normal"
+        SizeChanged="Window_SizeChanged"
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        ShowInTaskbar="True" Background="WhiteSmoke">
+    <Window.Resources>
+        <local:TypeVisibilityConverter x:Key="typeVisibilityConverter"></local:TypeVisibilityConverter>
+        <local:BackgroundColorConverter x:Key="backgroundColorConverter"></local:BackgroundColorConverter>
+        <local:IconeStatoConverter x:Key="iconeStatoConverter"></local:IconeStatoConverter>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+
+    <TabControl>
+        <TabItem Header="Associazione incarichi" Name="tbiAssociaIncarichi">
+            <Grid Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Assegnazione Incarichi" FontSize="16" FontWeight="Bold" Foreground="#FFF5AB1C" Margin="10,0,10,0" Padding="0"/>
+
+                <Grid Grid.Column="0" Grid.Row="1" Height="35">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Cliente" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" Margin="0,0,10,0" Name="cmbClienti" VerticalAlignment="Center" SelectionChanged="CmbClienti_SelectionChanged" DisplayMemberPath="RagioneSociale" SelectedValuePath="ID" />
+                    <Label Grid.Column="2" Content="Area" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="3" Margin="0,0,20,0" Name="cmbAree" VerticalAlignment="Center" SelectionChanged="CmbAree_SelectionChanged" DisplayMemberPath="Titolo" SelectedValuePath="Codice" />
+                </Grid>
+
+                <Grid Grid.Column="0" Grid.Row="2" Height="35">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Reviewer" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" Margin="0,0,10,0" Name="cmbReviewer" VerticalAlignment="Center" SelectionChanged="CmbReviewer_SelectionChanged" DisplayMemberPath="Login" SelectedValuePath="id" />
+                    <Label Grid.Column="2" Content="Esecutore" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="3" Margin="0,0,20,0" Name="cmbExecutor" VerticalAlignment="Center" SelectionChanged="CmbExecutor_SelectionChanged" DisplayMemberPath="Login" SelectedValuePath="id" Grid.ColumnSpan="2" />
+                </Grid>
+
+
+                <Border Grid.Row="3" Grid.Column="0" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="10">
+                    <Grid Grid.Column="0" Grid.Row="2" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="5" />
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="10,10,10,0" Height="390" VerticalAlignment="Top">
+                            <TextBlock Text="Carte di Lavoro" Margin="0,0,5,0" VerticalAlignment="Center" Background="White" />
+                            <TreeView Name="trvCartelle" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="0,10,0,0" Height="357">
+                                <TreeView.ItemContainerStyle>
+                                    <Style>
+                                        <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+                                    </Style>
+                                </TreeView.ItemContainerStyle>
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate DataType="{x:Type brl:Cartella}" ItemsSource="{Binding Figli}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" IsEnabled="{Binding IsEnabled}" Checked="CheckBoxChanged" Unchecked="CheckBoxChanged"/>
+                                            <TextBlock Text="{Binding Codice}" Margin="10,0,0,0"/>
+                                            <TextBlock Text="{Binding Titolo}" Margin="10,0,0,0"/>
+                                            <TextBlock Text="Assegnato a " Margin="10,0,0,0" Foreground="DarkGray" FontWeight="Bold" Visibility="{Binding IsAssegnato, Converter={StaticResource BoolToVis}}"/>
+                                            <TextBlock Text="{Binding Esecutore}" Foreground="DarkGray" FontWeight="Bold" Visibility="{Binding IsAssegnato, Converter={StaticResource BoolToVis}}"/>
+                                        </StackPanel>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </StackPanel>
+
+                        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+
+                        <StackPanel Grid.Column="2" Margin="10,10,10,0" Height="390" VerticalAlignment="Top">
+                            <TextBlock Text="Riepilogo" Margin="0,0,5,0" VerticalAlignment="Center" Background="White" />
+                            <TreeView Name="trvRiepilogo" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="0,10,0,0" Height="359">
+                                <TreeView.ItemContainerStyle>
+                                    <Style>
+                                        <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+                                    </Style>
+                                </TreeView.ItemContainerStyle>
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate DataType="{x:Type brl:RiepilogoItem}" ItemsSource="{Binding Figli}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Area:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsArea, Converter={StaticResource BoolToVis}}"/>
+                                            <TextBlock Text="Reviewer:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsRevisore, Converter={StaticResource BoolToVis}}"/>
+                                            <TextBlock Text="Esecutore:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsEsecutore, Converter={StaticResource BoolToVis}}"/>
+                                            <TextBlock Text="{Binding Etichetta}" Margin="10,0,0,0"/>
+                                        </StackPanel>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+
+                <Grid Grid.Column="0" Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" x:Name="searchLabel" Text="Cerca Carta di Lavoro nell'albero:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20, 0, 10, 0"/>
+                    <TextBox  Grid.Column="1" x:Name="searchTextBox"  Height="Auto" HorizontalAlignment="Stretch" KeyUp="SearchTextBox_KeyUp" VerticalAlignment="Top" />
+                    <Label Grid.Column="2" Content="" />
+                    <Button Grid.Column="3" Content="Salva" Height="23" HorizontalAlignment="Center" Name="buttonSalva" Width="75" Click="ButtonSalva_Click"  VerticalAlignment="Top" Margin="20, 0, 20, 0"/>
+                    <Button Grid.Column="4" Content="Chiudi" Height="23" HorizontalAlignment="Center" Name="buttonChiudi" Width="75" Click="ButtonChiudi_Click"  VerticalAlignment="Top" Margin="20, 0, 20, 0"/>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Riepilogo associazione utenti carte" Name="tbiRiepilogo">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,0,0,20">
+                <StackPanel Background="WhiteSmoke" Height="530" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="1076" Margin="0,0,0,0">
+                    <Label Content="Riepilogo delle cartelle associate agli utenti" FontSize="14" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+                    <Grid Margin="5,10,0,0" Name="gridClienti">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Cliente" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" />
+                        <ComboBox Grid.Column="1" Margin="0,2,566,2" Name="cmbClientiRiepilogo" VerticalAlignment="Center" SelectionChanged="cmbClientiRiepilogo_SelectionChanged" DisplayMemberPath="RagioneSociale" SelectedValuePath="ID" />
+                    </Grid>
+                    <TreeView Name="trvRiepilogoRiepilogo" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,10,0,0" Height="450">
+                        <TreeView.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type brl:RiepilogoItem}" ItemsSource="{Binding Figli}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Area:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsArea, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="Reviewer:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsRevisore, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="Esecutore:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsEsecutore, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="Team" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsTeam, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="Cliente:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsCliente, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="Team Leader:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="Nessun Ruolo:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsNonAssegnato, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="{Binding Etichetta}" Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</Window>

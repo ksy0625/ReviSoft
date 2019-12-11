@@ -1,0 +1,10 @@
+﻿<Window x:Class="RevisoftApplication.WindowWorkAreaTabella"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uc="clr-namespace:UserControls"
+        Title="Revisoft Work Area - Tabella" 
+        WindowStartupLocation="Manual">
+    <StackPanel HorizontalAlignment="Stretch">
+        <uc:ucTabella x:Name="Tabella"></uc:ucTabella>
+    </StackPanel>
+</Window>

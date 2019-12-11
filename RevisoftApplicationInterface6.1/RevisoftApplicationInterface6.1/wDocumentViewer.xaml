@@ -1,0 +1,21 @@
+﻿<Window x:Class="RevisoftApplication.DocumentViewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ex="clr-namespace:Smith.WPF.HtmlEditor;assembly=Smith.WPF.HtmlEditor"
+         xmlns:b="clr-namespace:BindValidation"
+        Title="Revisoft - Visualizzatore Documenti" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/Images/Revisoft.ico" 
+        WindowStartupLocation="Manual" Left="120" Top="50"
+        Background="WhiteSmoke" 
+        Height="600" Width="1100"
+        MaxHeight="600"
+        MaxWidth="1100"
+        MinHeight="600"
+        MinWidth="1100"
+        >
+    <WebBrowser Name="webbrowser1" />
+</Window>
+
+

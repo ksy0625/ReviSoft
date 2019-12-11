@@ -1,0 +1,378 @@
+﻿<UserControl x:Class="UserControls.ucCompensiERisorse_6_1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ConvNS"  
+       Width="1150">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Percent x:Key="TypePercent"></local:Percent>
+    </UserControl.Resources>
+    <Border CornerRadius="10" Name="brdMain">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                         <StackPanel Margin="10">
+
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Name="img3" Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" ></Image>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="STIMA ORE (riferimento documento CNDCEC 2018)"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+
+                                            <Border  BorderThickness="1" BorderBrush="LightGray">
+                                                <StackPanel Orientation="Vertical" Margin="0,20,0,20" Width="Auto">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock  Text="Dati del bilancio precedente"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="5" Width="600">Totale attivo
+                                                        </TextBlock>
+                                                        <TextBox Margin="5" TextAlignment="Right" Width="300" Name="txtTotale_Attivo" LostFocus="txtstimaaore_LostFocus"></TextBox>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="5" Width="600">Totale ricavi delle vendite e delle prestazioni
+                                                        </TextBlock>
+                                                        <TextBox Margin="5" TextAlignment="Right" Width="300" Name="txtTotale_Ricavi" LostFocus="txtstimaaore_LostFocus"></TextBox>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="5" Width="600">Media aritmetica semplice
+                                                        </TextBlock>
+                                                        <TextBox Margin="5" TextAlignment="Right"  Width="300" Name="txtMedia" IsReadOnly="True"  IsTabStop="False" LostFocus="txtstimaaore_LostFocus"></TextBox>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="5" Width="600">Numero di ore-base
+                                                        </TextBlock>
+                                                        <TextBox Margin="5" TextAlignment="Right"  Width="300" IsReadOnly="True"  IsTabStop="False" Name="txtNumeroOre" LostFocus="txtstimaaore_LostFocus"></TextBox>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock  Text="Rettifiche per componenti di rischio"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="5" Width="300">Rettifica per settore di attività aziendale
+                                                        </TextBlock>
+                                                        <ComboBox Width="290" Margin="5" Name="txtSettore" LostFocus="txtstimaaore_LostFocus">
+                                                             <ComboBoxItem>Settore industriale</ComboBoxItem>
+                                                            <ComboBoxItem>Settore commerciale, servizi e diversi</ComboBoxItem>
+                                                            <ComboBoxItem>Settore produzioni su commessa</ComboBoxItem>
+                                                            <ComboBoxItem>Settore immobiliare</ComboBoxItem>
+                                                        </ComboBox>
+                                                        <TextBox Margin="5" TextAlignment="Right"  Width="300" IsReadOnly="True"  IsTabStop="False" Name="txtPercMaggRid" LostFocus="txtstimaaore_LostFocus"></TextBox>
+
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Margin="5" Width="300">Rettifica per rischio preliminare di incarico
+                                                        </TextBlock>
+                                                        <ComboBox Width="290" Margin="5" Name="txtRischio" LostFocus="txtstimaaore_LostFocus">
+                                                            <ComboBoxItem>Rischio preliminare "Basso"</ComboBoxItem>
+                                                            <ComboBoxItem>Rischio preliminare "Moderato"</ComboBoxItem>
+                                                            <ComboBoxItem>Rischio preliminare "Alto"</ComboBoxItem>
+                                                        </ComboBox>
+                                                        <TextBox Margin="5" TextAlignment="Right"  Width="300" IsReadOnly="True"  IsTabStop="False" Name="txtPercRischioMaggRid" LostFocus="txtstimaaore_LostFocus"></TextBox>
+
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal" Background="LightGreen">
+                                                        <TextBlock Margin="5" Width="600">Totale ore
+                                                        </TextBlock>
+                                                        <TextBox Margin="5" TextAlignment="Right" FontWeight="Bold" IsReadOnly="True"  IsTabStop="False" Width="300" Name="txtTotaleOre" LostFocus="txtstimaaore_LostFocus"></TextBox>
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                            </Border>
+                                            <Grid Width="Auto" Height="Auto">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+
+                                                <Border Grid.Column="0" Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="Gray">
+                                                    <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Grid.IsSharedSizeScope="True" Background="#f9f9f9">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="*"/>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+
+
+                                                    </Grid>
+                                                </Border>
+                                            </Grid>
+
+
+                                        </StackPanel>
+                                    </Grid>
+
+                                </ScrollViewer>
+
+                            </Border>
+
+
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Name="img1" Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" ></Image>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="COMPENSO REVISIONE - PREVENTIVAZIONE - TERMINI DI ESECUZIONE DELLE ATTIVITA'"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+
+
+                                            <Grid Width="Auto" Height="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+
+                    <Border Grid.Column="0" Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="Gray">
+                        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdErroriRilevati" Grid.IsSharedSizeScope="True" Background="#f9f9f9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            
+
+                            <DataGrid 
+                            Name="dtgAffidamenti" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="3" 
+                            Grid.Row="3" 
+                            Margin="10" 
+                            Width="Auto" 
+                            Height="Auto" 
+                            RowHeaderWidth="0" 
+                            AlternatingRowBackground="#FFF1F1F1" 
+                            AlternationCount="2" 
+                            AutoGenerateColumns="False" 
+                            SelectionMode="Single" 
+                            SelectionUnit="Cell"
+                            
+                            GridLinesVisibility="None"
+                            
+                            Binding.SourceUpdated="DataGrid_SourceUpdated" 
+                            BeginningEdit="DataGrid_BeginningEdit" 
+                            Loaded="dtgErroriRilevati_Loaded" 
+                            DataGridCell.Selected="DataGrid_GotFocus" 
+                            CellEditEnding="dtgErroriRilevati_CellEditEnding" 
+                            CanUserReorderColumns="False" 
+                            CanUserResizeColumns="False" 
+                            CanUserSortColumns="False"
+                            CanUserAddRows="False">
+
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                        <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGrid.CellStyle>
+
+                                <DataGrid.Resources>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                        <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                    </Style>
+                                </DataGrid.Resources>
+
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="Background" Value="LightGray" />
+                                        <Setter Property="FontSize" Value="13" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Padding" Value="4" />
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+
+
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Fase" x:Name="FirstColumn" Width="50" MinWidth="50" IsReadOnly="False"  Binding="{Binding fase,Mode=TwoWay,NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Left"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Attività" x:Name="SecondColumn" Width="*" MinWidth="450" IsReadOnly="False"  Binding="{Binding attivita, Mode=TwoWay,  NotifyOnSourceUpdated=True,UpdateSourceTrigger=LostFocus}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Left"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Esecutore" x:Name="ThirdColumn" Width="*" MinWidth="200" IsReadOnly="False"  Binding="{Binding esecutore, Mode=TwoWay,  NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Right"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTemplateColumn Header="Qualifica" Width="2*" MinWidth="150" IsReadOnly="False" x:Name="FourthColumn">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <ComboBox x:Name="cmb" SelectedValuePath="Tag" SelectedValue="{Binding qualifica,Mode=TwoWay,  NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}" >
+                                                    <ComboBox.Style>
+                                                        <Style TargetType="ComboBox">
+                                                            <Setter Property="Visibility" Value="{Binding XPath=@bold, Converter={StaticResource TypeVisibilityConverter}}"/>
+                                                            <Setter Property="IsDropDownOpen" Value="False"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                                                    <Setter Property="IsDropDownOpen" Value="True"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </ComboBox.Style>
+                                                    <ComboBoxItem Tag="Junior">Junior</ComboBoxItem>
+                                                    <ComboBoxItem Tag="Senior">Senior</ComboBoxItem>
+                                                    <ComboBoxItem Tag="Reviewer">Reviewer</ComboBoxItem>
+                                                    <ComboBoxItem Tag="Revisore o membro CS">Revisore o membro CS</ComboBoxItem>
+                                                  
+                                                </ComboBox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    
+                                   
+                                    <DataGridTextColumn Header="Data termine" x:Name="FifthColumn" Width="*" MinWidth="100" IsReadOnly="False"  Binding="{Binding data_termine,Mode=TwoWay,  NotifyOnSourceUpdated=True,  UpdateSourceTrigger=LostFocus}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Right"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="ore" Width="*" MinWidth="100" IsReadOnly="False" Binding="{Binding ore,Mode=TwoWay,  NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}" >
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="TextAlignment" Value="Right"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Button Margin="14,5,112,5" Grid.Column="0" Grid.Row="4" Visibility="{Binding Path=_ID, Converter={StaticResource TypeVisibilityConverter}}" Content=" Nuova riga " ToolTip="Aggiungi riga" Click="AddRowErroriRilevati" MaxWidth="75" />
+                            <Button Margin="100,5,26,5" Grid.Column="0" Grid.Row="4" Content=" Elimina riga " ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate" Click="DeleteRowErroriRilevati" MaxWidth="75" />
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                                       
+
+                                        </StackPanel>
+                                    </Grid>
+                                    
+                                </ScrollViewer>
+
+                            </Border>
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <Grid  >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Name="img2" Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" ></Image>
+                                        <TextBlock Grid.Column="1" Grid.Row="0" Text="RIEPILOGO"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+ 
+                                            <Grid   Name="tblTerminiEsecuzione" Width="450" Margin="10" HorizontalAlignment="Right"  ></Grid>
+
+
+                                        </StackPanel>
+                                    </Grid>
+
+                                </ScrollViewer>
+
+                            </Border>
+
+   
+        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

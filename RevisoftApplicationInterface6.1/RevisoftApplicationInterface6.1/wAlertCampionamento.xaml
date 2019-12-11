@@ -1,0 +1,25 @@
+﻿<Window x:Class="RevisoftApplication.wAlertCampionamento"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revisoft" Width="600" Height="280" WindowStyle="ToolWindow" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50" SizeToContent="WidthAndHeight" ShowInTaskbar="False">
+    <StackPanel Margin="10">
+        <TextBlock Text="Attenzione" Margin="0,0,0,5" HorizontalAlignment="Center" FontWeight="Bold" />
+
+        <TextBlock Text="I campionamento Casuale e MUS si basano sulle scelte di un numero casuale," Margin="0,10,0,5" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="non ripetibile se non ipoteticamente." Margin="0,10,0,5" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="Pertanto se il campionamento è completato o addirittura circolarizzato," Margin="0,10,0,5" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="NON cancellare o modificare le impostazioni per non alterare i risultati," Margin="0,10,0,5" HorizontalAlignment="Center"  />
+
+        <TextBlock Text="che non saranno più recuperabili." Margin="0,10,0,5" HorizontalAlignment="Center"  />
+
+        <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+            <Button Content="OK" Click="Button_Click" Width="90" Margin="5"/>
+        </Grid>
+
+
+    </StackPanel>
+</Window>

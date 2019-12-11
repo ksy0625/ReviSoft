@@ -1,0 +1,42 @@
+﻿<Window x:Class="RevisoftApplication.wSigillo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Applica Sigillo" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        d:DesignWidth="484" 
+        SizeToContent="WidthAndHeight" Height="209" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="Applica Sigillo" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <TextBlock Text="Applica il sigillo ad un esercizio."  TextWrapping="Wrap" Margin="10,0" />
+        
+        <StackPanel Height="Auto">
+            <Grid Height="Auto" Margin="0,10,0,0">
+                <Label Content="Cliente" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="label1" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,9,0,0" Name="cmbClienti" VerticalAlignment="Top" Width="313" SelectionChanged="cmbClienti_SelectionChanged" TabIndex="0" />
+            </Grid>
+
+            <Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData">
+                <Label Content="Esercizio" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="label3" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,0,0,0" Name="cmbData" VerticalAlignment="Top" Width="313" TabIndex="2" />
+            </Grid>
+
+        </StackPanel>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="375,0,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+            <Button Content="Applica" Height="23" HorizontalAlignment="Left" Margin="288,0,0,0" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonStampa_Click" />
+            <Button Content="Licenza" Height="23" HorizontalAlignment="Left" Margin="200,0,0,0" Name="buttonLicenza" VerticalAlignment="Top" Width="75" Click="buttonLicenzaSigillo_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

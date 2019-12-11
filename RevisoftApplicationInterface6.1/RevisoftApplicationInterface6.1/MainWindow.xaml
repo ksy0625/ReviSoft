@@ -1,0 +1,1054 @@
+﻿<Window x:Class="RevisoftApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="REVISOFT - Il software per sindaci e revisori" 
+        Height="680" 
+        Width="1100" 
+        FontWeight="Bold"
+        WindowStyle="SingleBorderWindow" 
+        Icon="/Images/icone/revisoftdatev.ico"
+        Background="WhiteSmoke" 
+        WindowStartupLocation="CenterOwner" 
+        
+        WindowState="Maximized"
+        Closing="MainWindow_Closed">
+
+  <Window.Resources>
+    <SolidColorBrush x:Key="buttonHover" Color="#FF8BA2B2"/>
+    <Style x:Key="StackPanelStyle"  TargetType="{x:Type StackPanel}">
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <!--<Setter Property="Background" Value="#FF8BA2B2"/>-->
+          <!--<Setter Property="Background" Value="#59FFFFFF"/>-->
+          <Setter Property="Background" Value="{DynamicResource buttonHover}"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+    <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border Background="Transparent">
+              <ContentPresenter/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Height" Value="75"/>
+    </Style>
+    <Style x:Key="StackPanelStyleW"  TargetType="{x:Type StackPanel}">
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <Setter Property="Background" Value="Gainsboro"/>
+
+        </Trigger>
+      </Style.Triggers>
+
+    </Style>
+    <Style x:Key="TransparentStyleWNB" TargetType="{x:Type Button}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0,0,0,0">
+              <ContentPresenter/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <Setter Property="Cursor" Value="Hand"/>
+        </Trigger>
+      </Style.Triggers>
+
+    </Style>
+    <Style x:Key="TransparentStyleW" TargetType="{x:Type Button}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" Padding="0,0,0,0">
+              <ContentPresenter/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <Setter Property="Cursor" Value="Hand"/>
+        </Trigger>
+      </Style.Triggers>
+
+    </Style>
+    <Style TargetType="Image">
+      <Setter Property="Margin" Value="0,8,0,0"/>
+    </Style>
+  </Window.Resources>
+
+  <DockPanel>
+    <Menu DockPanel.Dock="Top" Background="#FFBCBCBC" FontWeight="Normal">
+
+      <MenuItem Header="File">
+        <MenuItem Header="Esci" Click="menuFileEsci_Click" />
+      </MenuItem>
+
+      <MenuItem Header="?">
+        <MenuItem Header="Guida Operativa" Click="menuInfoGuida_Click" />
+        <MenuItem Header="Documenti di Revisione" Click="menuInfoDocRevisione_Click" />
+        <MenuItem Header="Documenti di Vigilanza" Click="menuInfoDocVigilanza_Click" />
+        <MenuItem Header="Note di Rilascio" Click="menuInfoNoteRilascio_Click" />
+        <!--<MenuItem Header="Brochure della Procedura di Revisione" Click="menuProceduraRevisioneWeb_Click" />-->
+        <Separator />
+        <MenuItem Header="Revisoft sul web" Click="menuInfoWeb_Click" />
+        <Separator />
+        <MenuItem Header="Informazioni" Click="menuInfoAbout_Click" />
+      </MenuItem>
+    </Menu>
+
+
+    <StatusBar Name="statusBar1" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="#FFBBBBBB">
+      <StatusBarItem Content="Intestatario:" Name="StatusBarItem_Intestatario" />
+      <Separator Margin="5,2" />
+      <StatusBarItem Content="Utente:" Name="StatusBarItem_Utente" />
+      <Separator Margin="5,2" />
+      <!--<StatusBarItem Content="Scadenza:" Name="StatusBarItem_Scadenza" />
+            <Separator Margin="5,2" />-->
+      <!--<StatusBarItem Content="Tipo Licenza:" Name="StatusBarItem_TipoLicenza" />
+            <Separator Margin="5,2" />-->
+      <StatusBarItem Content="Giorni:" Name="StatusBarItem_Giorni" />
+      <Separator Margin="5,2" />
+      <StatusBarItem Content="Anagrafiche:" Name="StatusBarItem_Anagrafiche" />
+      <Separator Margin="5,2" />
+      <StatusBarItem Content="Archivio:" Name="StatusBarItem_Archivio" />
+      <Separator Margin="5,2" />
+      <StatusBarItem Content="" Name="StatusBarItem_ClienteFisso" />
+      <StatusBarItem HorizontalAlignment="Right">
+        <ProgressBar Height="16" Width="150" Name="progressBarLicenza" HorizontalAlignment="Stretch" Background="White" OpacityMask="{x:Null}" Foreground="#FF01D328"></ProgressBar>
+      </StatusBarItem>
+    </StatusBar>
+    <StackPanel Name="stpLeftContainer" Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Stretch" >
+
+
+      <!--
+        TOOL BAR **********************************************************************************************************************************************
+        -->
+
+      <Border BorderThickness="0,0,1,0" BorderBrush="Black" VerticalAlignment="Stretch" >
+        <StackPanel Name="ButtonBar" Orientation="Vertical" Width="110" Margin="0,0,0,0" HorizontalAlignment="Right" Background="#FF3B9589" VerticalAlignment="Stretch">
+
+          <!-- HOME PAGE  -->
+          <StackPanel Name="ButtonBar_HomePage" Visibility="Visible">
+
+            <Button Style="{StaticResource TransparentStyle}"  Name="btn_Exit"  Click="menuFileEsci_Click" ToolTip="Esci da Revisoft" Width="110" Margin="0,15,0,0">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/door2.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Esci</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Fissa_Start"  Click="menuClientiFissa_Start_Click" ToolTip="Usando questa funzione il Cliente rimane FISSO (ovvero in ogni area rimarrà sempre selezionato tale cliente) sino all'uscita." Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/office-building.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Scegli Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+
+
+            <Button Visibility="Collapsed" Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Sblocca_Start"  Click="menuClientiDeFissa_Start_Click" ToolTip="Abbandona il cliente selezionato" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/office-building.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Esci da Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <StackPanel Name="ButtonBar_AlwaysON" Visibility="Visible">
+
+
+
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Apri_Utenti"  Click="btn_Apri_Utenti_Click"  ToolTip="Apri finestra gestione utenti" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/Utente.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Gestione Utenti</TextBlock>
+              </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Associa_Utenti"  Click="btn_Associa_Utenti_Click"  ToolTip="Apri finestra associazione revisori/esecutori - utenti" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/AssociaUtenti.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center"><Run Text="Associa"/><Run Text="zione"/><LineBreak/><Run/><Run Text=" "/><Run Text="Utenti"/><Run Text="/"/><Run Text="Ruoli"/></TextBlock>
+              </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Riepilogo_Utenti"  Click="btn_Riepilogo_Utenti_Click"  ToolTip="Apri finestra visualizzazione associazione revisori/esecutori - utenti" Width="110" Margin="8,5,7,0" HorizontalContentAlignment="Stretch" Height="84">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/AssociaUtenti.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" Height="32" HorizontalAlignment="Left" Width="91"><Run Text="Associazione"/><LineBreak/><Run Text="Utenti"/><Run Text="/Carte"/></TextBlock>
+              </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_AssociaClientiLeader"  Click="btn_AssociaClientiLeader_Click"  ToolTip="Apri finestra associazione clienti - team leader" Width="110" Margin="8,5,7,0" HorizontalContentAlignment="Stretch" Height="84">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/AssociaClienti.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" Height="32" HorizontalAlignment="Left" Width="91"><Run Text="Associazione"/><LineBreak/><Run Text="Clienti"/><Run Text="/Leader"/></TextBlock>
+              </StackPanel>
+            </Button>
+
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_AssegnaIncarico"   ToolTip="Assegna Incarico" Width="110" Margin="8,5,7,0" HorizontalContentAlignment="Stretch" Height="84" Click="menuStrumentiAssegnaIncarico_Click" Visibility="Collapsed" >
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/sblocca_utenti.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap" Width="38" Height="38">Assegna Incarico</TextBlock>
+              </StackPanel>
+            </Button>
+
+          </StackPanel>
+
+          <!-- CLIENTI -->
+          <StackPanel Name="ButtonBar_Clienti" Visibility="Collapsed">
+            <Button  Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Suggerimenti"  Click="menuClientiSuggerimenti_Click" ToolTip="Suggerimenti Uso maschera Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Visibility="Visible">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/lightbulb_on.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Suggerimenti Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Nuovo"  Click="menuClientiNuovo_Click" ToolTip="Nuovo Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Visibility="Visible">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Nuovo Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Visibility="Collapsed" Style="{StaticResource TransparentStyle}" Name="btn_Clienti_elenco"  Click="menuClienti_elenco_Click" ToolTip="Mostra elenco completo dei clienti." Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Elenco Clienti</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Visibility="Collapsed" Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Modifica"  Click="menuClientiModifica_Click" ToolTip="Modifica Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Modifica Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Visibility="Collapsed" Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Vedi"  Click="menuClientiVedi_Click" ToolTip="Modifica Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Vedi Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Elimina"  Click="menuClientiElimina_Click" ToolTip="Elimina Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Elimina Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <!--<Button Name="btn_Cliente_Condividi"  Click="menuClientiCondividi_Click" ToolTip="Condividi Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <Image Source="/Images/icone/table_tree_export.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                                <TextBlock FontSize="11" TextAlignment="Center">Condividi Cliente</TextBlock>
+                            </StackPanel>
+                        </Button>-->
+            <Button Visibility="Collapsed" Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Esporta"  Click="menuClientiEsporta_Click" ToolTip="Esporta Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/table_tree_export.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Esporta Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Visibility="Collapsed" Style="{StaticResource TransparentStyle}" Name="btn_Cliente_Importa"  Click="menuClientiImporta_Click" ToolTip="Importa Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel HorizontalAlignment="Stretch">
+                <Image Source="/Images/icone/table_tree_import.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Importa Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Name="btn_Cliente_Fissa" Visibility="Collapsed" Click="menuClientiFissa_Click" ToolTip="Fissa Cliente" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/table_tree_import.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center">Fissa Cliente</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- INCARICHI  -->
+          <StackPanel VerticalAlignment="Stretch" Name="ButtonBar_Incarichi" Visibility="Collapsed" >
+            <StackPanel>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_Incarico_Nuovo"  Click="menuIncarichiNuovo_Click" ToolTip="Nuovo Incarico" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Nuovo Incarico</TextBlock>
+                </StackPanel>
+              </Button>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_Incarico_Riesame"  Click="menuIncarichiRiesame_Click" ToolTip="Riesame Incarico" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Riesame Incarico</TextBlock>
+                </StackPanel>
+              </Button>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_Incarico_Modifica"  Click="menuIncarichiModifica_Click" ToolTip="Modifica Incarico" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica Incarico / Riesame</TextBlock>
+                </StackPanel>
+              </Button>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_Incarico_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuIncarichiVedi_Click" ToolTip="Vedi Dettagli in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri in sola lettura</TextBlock>
+                </StackPanel>
+              </Button>
+            </StackPanel>
+            <StackPanel>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_Incarico_Elimina" Click="menuIncarichiElimina_Click" ToolTip="Elimina Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina Sessione</TextBlock>
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </StackPanel>
+
+          <!-- ISQCs  -->
+          <StackPanel VerticalAlignment="Stretch" Name="ButtonBar_ISQCs" Visibility="Collapsed" >
+            <StackPanel>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_ISQC_Nuovo"  Click="menuISQCsNuovo_Click" ToolTip="Nuovo ISQC" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Nuovo ISQC</TextBlock>
+                </StackPanel>
+              </Button>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_ISQC_Modifica"  Click="menuISQCsModifica_Click" ToolTip="Modifica ISQC" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica ISQC</TextBlock>
+                </StackPanel>
+              </Button>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_ISQC_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuISQCsVedi_Click" ToolTip="Vedi Dettagli in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri in sola lettura</TextBlock>
+                </StackPanel>
+              </Button>
+            </StackPanel>
+            <StackPanel>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_ISQC_Elimina" Click="menuISQCsElimina_Click" ToolTip="Elimina Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina Sessione</TextBlock>
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </StackPanel>
+
+          <!-- FLUSSI  -->
+          <StackPanel VerticalAlignment="Stretch" Name="ButtonBar_Flussi" Visibility="Collapsed" >
+            <StackPanel>
+              <Button Style="{StaticResource TransparentStyle}" Name="btn_Flussi_Apri"  Click="menuFlussiApri_Click" ToolTip="Apri Flussi" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+                <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                  <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                  <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri Flussi</TextBlock>
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </StackPanel>
+
+          <!-- REVISIONI  -->
+          <StackPanel Name="ButtonBar_Revisioni" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Revisione_Nuova"  Click="menuRevisioniNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Revisione_Modifica"  Click="menuRevisioniModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Revisione_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuRevisioniVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Revisione_Elimina"  Click="menuRevisioniElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- BILANCIO  -->
+          <StackPanel Name="ButtonBar_Bilanci" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Bilancio_Nuova"  Click="menuBilancioNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Bilancio_Modifica"  Click="menuBilancioModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Bilancio_Sessione_Apri_ReadOnly" Visibility="Collapsed"  Click="menuBilancioVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Bilancio_Elimina"  Click="menuBilancioElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- CONCLUSIONI  -->
+          <StackPanel Name="ButtonBar_Conclusioni" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Conclusione_Nuova"  Click="menuConclusioneNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Conclusione_Modifica"  Click="menuConclusioneModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Conclusione_Sessione_Apri_ReadOnly" Visibility="Collapsed"  Click="menuConclusioneVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Conclusione_Elimina"  Click="menuConclusioneElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- VERIFICHE  -->
+          <StackPanel Name="ButtonBar_Verifiche" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Verifica_Nuova"  Click="menuVerificheNuova_Click" ToolTip="Crea una nuova Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Verifica_Modifica"  Click="menuVerificheModifica_Click" ToolTip="Modifica Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Verifica_Sessione_Apri_ReadOnly" Visibility="Collapsed"  Click="menuVerificheVedi_Click" ToolTip="Apri Sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Verifica_Elimina"  Click="menuVerificheElimina_Click" ToolTip="Elimina Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- PIANIFICAZIONE VERIFICHE  -->
+          <StackPanel Name="ButtonBar_PianificazioniVerifiche" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVerifica_Nuova"  Click="menuPianificazioniVerificheNuova_Click" ToolTip="Crea un nuovo Periodo" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuovo Periodo</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVerifica_Modifica"  Click="menuPianificazioniVerificheModifica_Click" ToolTip="Modifica Periodo" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica un Periodo</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVerifica_Sessione_Apri_ReadOnly" Visibility="Collapsed"  Click="menuPianificazioniVerificheVedi_Click" ToolTip="Apri Periodo in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri Periodo in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVerifica_Elimina"  Click="menuPianificazioniVerificheElimina_Click" ToolTip="Elimina Periodo" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina Periodo</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- VIGILANZA  -->
+          <StackPanel Name="ButtonBar_Vigilanza" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Vigilanza_Nuova"  Click="menuVigilanzaNuova_Click" ToolTip="Crea una nuova Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Vigilanza_Modifica"  Click="menuVigilanzaModifica_Click" ToolTip="Modifica Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Vigilanza_Sessione_Apri_ReadOnly" Visibility="Collapsed"  Click="menuVigilanzaVedi_Click" ToolTip="Apri Sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_Vigilanza_Elimina"  Click="menuVigilanzaElimina_Click" ToolTip="Elimina Sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- PIANIFICAZIONE VIGILANZA  -->
+          <StackPanel Name="ButtonBar_PianificazioniVigilanza" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVigilanza_Nuova"  Click="menuPianificazioniVigilanzaNuova_Click" ToolTip="Crea un nuovo Periodo" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea un nuovo Periodo</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVigilanza_Modifica"  Click="menuPianificazioniVigilanzaModifica_Click" ToolTip="Modifica Periodo" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica un Periodo</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVigilanza_Sessione_Apri_ReadOnly" Visibility="Collapsed"  Click="menuPianificazioniVigilanzaVedi_Click" ToolTip="Apri Periodo in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri Periodo in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_PianificazioniVigilanza_Elimina"  Click="menuPianificazioniVigilanzaElimina_Click" ToolTip="Elimina Periodo" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina Periodo</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- RELAZIONI  -->
+          <StackPanel Name="ButtonBar_RelazioneB" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneB_Nuova"  Click="menuRelazioneBNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneB_Modifica"  Click="menuRelazioneBModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneB_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuRelazioneBVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneB_Elimina"  Click="menuRelazioneBElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <StackPanel Name="ButtonBar_RelazioneBC" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBC_Nuova"  Click="menuRelazioneBCNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBC_Modifica"  Click="menuRelazioneBCModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBC_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuRelazioneBCVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBC_Elimina"  Click="menuRelazioneBCElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <StackPanel Name="ButtonBar_RelazioneV" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneV_Nuova"  Click="menuRelazioneVNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneV_Modifica"  Click="menuRelazioneVModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneV_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuRelazioneVVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneV_Elimina"  Click="menuRelazioneVElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+
+          <StackPanel Name="ButtonBar_RelazioneVC" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneVC_Nuova"  Click="menuRelazioneVCNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button  Style="{StaticResource TransparentStyle}" Name="btn_RelazioneVC_Modifica"  Click="menuRelazioneVCModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneVC_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuRelazioneVCVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneVC_Elimina"  Click="menuRelazioneVCElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <StackPanel Name="ButtonBar_RelazioneBV" Visibility="Collapsed">
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBV_Nuova"  Click="menuRelazioneBVNuova_Click" ToolTip="Crea una nuova sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_new.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Crea una nuova sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBV_Modifica"  Click="menuRelazioneBVModifica_Click" ToolTip="Modifica una sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_edit.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Modifica una sessione</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBV_Sessione_Apri_ReadOnly" Visibility="Collapsed" Click="menuRelazioneBVVedi_Click" ToolTip="Apri sessione in sola lettura" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_tree_view.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Apri sessione in sola lettura</TextBlock>
+              </StackPanel>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle}" Name="btn_RelazioneBV_Elimina"  Click="menuRelazioneBVElimina_Click" ToolTip="Elimina sessione" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/tb_delete.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina sessione</TextBlock>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+
+          <!-- STRUMENTI  -->
+          <StackPanel Name="ButtonBar_Strumenti" Visibility="Visible">
+
+          </StackPanel>
+          <StackPanel Name="ButtonBar_Ticket" Visibility="Visible">
+            <Button  Style="{StaticResource TransparentStyle}" Name="btn_Ticket"   ToolTip="Nuova richiesta di assistenza" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="Btn_Ticket_Click">
+              <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110">
+                <Image Source="/Images/icone/mail_forward.png" Stretch="Fill" Width="38" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Nuovo ticket</TextBlock>
+              </StackPanel>
+            </Button>
+
+          </StackPanel>
+
+        </StackPanel>
+      </Border>
+
+
+      <!--
+        QUADRO SINOTTICO **********************************************************************************************************************************************
+        -->
+
+    </StackPanel>
+    <ScrollViewer Background="White" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+      <Grid Name="quadroprincipale" Margin="10,0,10,0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition></ColumnDefinition>
+          <ColumnDefinition></ColumnDefinition>
+          <ColumnDefinition Width="10"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="100"></RowDefinition>
+          <RowDefinition Height="auto"  MinHeight="75"></RowDefinition>
+          <RowDefinition Height="auto"  MinHeight="100"></RowDefinition>
+          <RowDefinition Height="auto"  MinHeight="100"></RowDefinition>
+          <RowDefinition Height="auto"  MinHeight="100"></RowDefinition>
+          <RowDefinition Height="auto"  MinHeight="100"></RowDefinition>
+          <RowDefinition Height="auto"  MinHeight="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock  Grid.Row="0" FontSize="14"  Margin="9,10,0,0"  Name="txtTipoUtenteLoggato" ></TextBlock>
+        <TextBlock  Grid.Row="0" FontSize="14"  FontWeight="Normal" Margin="100,10,0,0" Name="txtUtenteLoggato" ></TextBlock>
+        <Image Name="logo" Source="/Images/logo2016.png" Height="43" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="287" Grid.ColumnSpan="3" />
+        <!--CLIENTI -->
+        <Border Grid.Row="1" Grid.ColumnSpan="2" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+
+          <StackPanel Grid.Row="1" Height="Auto" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="Auto" Orientation="Vertical" >
+
+            <!-- EXPANDER CLIENTI  -->
+            <Grid Height="Auto" Width="Auto" Margin="0">
+              <Expander Name="Expander_Clienti" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+                <Expander.Header>
+                  <TextBlock Name="tbClienti" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C">Clienti</TextBlock>
+                </Expander.Header>
+
+                <Grid Margin="25,0,0,0">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                  </Grid.ColumnDefinitions>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                  </Grid.RowDefinitions>
+                  <Border Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" HorizontalAlignment="Stretch" Margin="5,5,42,5" >
+                    <Grid Margin="0,0,0,10">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"></ColumnDefinition>
+                        <ColumnDefinition Width="19*"></ColumnDefinition>
+                        <ColumnDefinition Width="288*"/>
+                        <ColumnDefinition Width="153*"></ColumnDefinition>
+                        <ColumnDefinition Width="153*"></ColumnDefinition>
+                        <ColumnDefinition Width="230*"></ColumnDefinition>
+
+                      </Grid.ColumnDefinitions>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                      </Grid.RowDefinitions>
+                      <!--<TextBlock Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="0" Text="Anagrafiche" FontWeight="Regular" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>-->
+
+                      <TextBlock Grid.Column="0" Grid.Row="1" Text="ID" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,5,19,3" Background="LightGray" Grid.ColumnSpan="2"></TextBlock>
+                      <StackPanel Name="stpClienti_ID" Grid.Column="0" Grid.Row="2" Margin="0,3,19,0" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Visibility="Hidden"></StackPanel>
+
+                      <TextBlock Grid.Column="1" Grid.Row="1" Text="Ragione Sociale" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,5,3,3" Background="DarkGray" FontSize="14" Foreground="White" Grid.ColumnSpan="2"></TextBlock>
+                      <StackPanel Name="stpClienti_RagioneSociale" Grid.Column="1" Grid.Row="2" Margin="0,3,3,0" VerticalAlignment="Stretch" Grid.ColumnSpan="2" ></StackPanel>
+
+                      <TextBlock Grid.Column="3" Grid.Row="1" Text="Codice Fiscale" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,5,3,3" Background="DarkGray" FontSize="14" Foreground="White"></TextBlock>
+                      <StackPanel Name="stpClienti_CodiceFiscale" Grid.Column="3" Grid.Row="2" Margin="0,3,3,0" VerticalAlignment="Stretch"></StackPanel>
+
+                      <TextBlock Grid.Column="4" Grid.Row="1" Text="Partita IVA" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,5,3,3" Background="DarkGray" FontSize="14" Foreground="White"></TextBlock>
+                      <StackPanel Name="stpClienti_PIVA" Grid.Column="4" Grid.Row="2" Margin="0,3,3,0" VerticalAlignment="Stretch"></StackPanel>
+
+                      <TextBlock Grid.Column="5" Grid.Row="1" Text="Esercizio" HorizontalAlignment="Stretch" TextAlignment="Center" Margin="0,5,3,3" Background="DarkGray" FontSize="14" Foreground="White"></TextBlock>
+                      <StackPanel Name="stpClienti_Esercizio" Grid.Column="5" Grid.Row="2" Margin="0,3,3,0" VerticalAlignment="Stretch"></StackPanel>
+
+                    </Grid>
+                  </Border>
+                </Grid>
+              </Expander>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <!--ACCETTAZIONE INCARICO -->
+        <Border Grid.Row="2" Grid.Column="0" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER ATTIVITà  -->
+          <Grid Height="Auto" Width="Auto" Margin="0">
+            <Expander Name="Expander_Accettazione" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbAccettazione" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C" TextWrapping="Wrap">ACCETTAZIONE DELL'INCARICO</TextBlock>
+              </Expander.Header>
+
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="Area1CS" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" IsThreeState="True">Area 1 CS - Collegio sindacale</RadioButton>
+                <RadioButton Grid.Row="1" GroupName="Attivita_RadioButtonGroup" Name="Area1SU" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" IsThreeState="True">Area 1 SU - Sindaco Unico</RadioButton>
+                <RadioButton Grid.Row="2" GroupName="Attivita_RadioButtonGroup" Name="Area1REV" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" IsThreeState="True">Area 1 REV - Revisore - Società di revisione</RadioButton>
+
+              </Grid>
+
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!--VERIFICHE PERIODICHE E PIANIFICAZIONE Isa Italia 250B -->
+        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER ATTIVITà  -->
+          <Grid Height="Auto" Width="Auto" Margin="0">
+            <Expander Name="Expander_Verifiche" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbVerifiche" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C" TextWrapping="Wrap">VERIFICHE PERIODICHE E PIANIFICAZIONE Isa Italia 250B</TextBlock>
+              </Expander.Header>
+
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition Height="10"></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="rdbPianificazioniVerifica" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Pianificazione Controllo Contabile</RadioButton>
+                <RadioButton Grid.Row="1" GroupName="Attivita_RadioButtonGroup" Name="rdbVerifica" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 4 - Verifiche per controllo contabile</RadioButton>
+
+                <RadioButton Grid.Row="3" GroupName="Attivita_RadioButtonGroup" Name="rdbPianificazioniVigilanza" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Pianificazione Attività di Vigilanza</RadioButton>
+                <RadioButton Grid.Row="4" GroupName="Attivita_RadioButtonGroup" Name="rdbVigilanza" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 5 - Verifiche per attività di vigilanza</RadioButton>
+
+              </Grid>
+
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!--VALUTAZIONE DEL RISCHIO -->
+        <Border Grid.Row="3" Grid.Column="0" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER ATTIVITà  -->
+          <Grid Height="Auto" Width="Auto" Margin="0">
+            <Expander Name="Expander_Revisione" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbRevisione" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C" TextWrapping="Wrap">VALUTAZIONE DEL RISCHIO</TextBlock>
+              </Expander.Header>
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="rdbRevisione" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" Content="Area 2 - Comprensione della società e valutazione del rischio"></RadioButton>
+              </Grid>
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!--TEAM DI REVISIONE -ISQC -->
+        <Border Grid.Row="3" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER   -->
+          <Grid Height="Auto" Width="Auto">
+
+            <Expander Name="Expander_Archivio" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbTeamRev" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C" TextWrapping="Wrap">TEAM DI REVISIONE -ISQC</TextBlock>
+              </Expander.Header>
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="rdb_createam" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" IsThreeState="True">Area Team - Crea team ed assegna incarichi</RadioButton>
+
+                <RadioButton Grid.Row="1" GroupName="Attivita_RadioButtonGroup" Name="rdbISQC" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" IsThreeState="True">Area ISQC - Controllo interno qualità di revisione</RadioButton>
+              </Grid>
+
+
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!-- PIANIFICAZIONE E CONTROLLO DEL BILANCIO-->
+        <Border Grid.Row="4" Grid.Column="0" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER ATTIVITà  -->
+          <Grid Height="Auto" Width="Auto" Margin="0">
+            <Expander Name="Expander_Flussi" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbBilancio" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C" TextWrapping="Wrap">PIANIFICAZIONE E CONTROLLO DEL BILANCIO</TextBlock>
+              </Expander.Header>
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="rdbBilancio" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 3 - Controllo del bilancio</RadioButton>
+                <RadioButton Grid.Row="2" GroupName="Attivita_RadioButtonGroup" Name="rdbConclusioni" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 9 - Conclusioni</RadioButton>
+
+              </Grid>
+
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!--GESTIONE DEI FLUSSI DI COMUNICAZIONE-->
+        <Border Grid.Row="4" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER STRUMENTI  -->
+          <Grid Height="Auto" Width="Auto">
+            <Expander Name="Expander_Strumenti" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbFlussi" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C">GESTIONE DEI FLUSSI DI COMUNICAZIONE</TextBlock>
+              </Expander.Header>
+
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="rdb_Flusso_ISQC" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" IsThreeState="True">Comunicazioni per controllo di qualità interno (ISQC)</RadioButton>
+                <RadioButton Grid.Row="1" GroupName="Attivita_RadioButtonGroup" Name="rdb_Flusso_Societa" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Comunicazioni fra Organi della società</RadioButton>
+                <RadioButton Grid.Row="2" GroupName="Attivita_RadioButtonGroup" Name="rdb_Flusso_Gruppo" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Comunicazioni fra Organi delle società del gruppo</RadioButton>
+                <RadioButton Grid.Row="3" GroupName="Attivita_RadioButtonGroup" Name="rdb_Flusso_Terzi" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Comunicazioni con terzi</RadioButton>
+              </Grid>
+
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!--RELAZIONI AL BILANCIO-->
+        <Border Grid.Row="5" Grid.Column="0" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER ATTIVITà  -->
+          <Grid Height="Auto" Width="Auto" Margin="0">
+            <Expander Name="Expander_Relazioni" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbRelazioni" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C">RELAZIONI AL BILANCIO</TextBlock>
+              </Expander.Header>
+
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Row="0" GroupName="Attivita_RadioButtonGroup" Name="rdbRelazioneB" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6"  >Area 91 - Relazione solo Revisione Legale - Bilancio di Esercizio</RadioButton>
+                <Border Grid.Row="1" BorderThickness="0">
+                  <RadioButton Foreground="Gray"  GroupName="Attivita_RadioButtonGroup" Name="rdbRelazioneBC" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" BorderBrush="#FFAB5E5E" >Area 92 - Relazione solo Revisione Legale - Bilancio Consolidato</RadioButton>
+                </Border>
+
+                <RadioButton Grid.Row="2" GroupName="Attivita_RadioButtonGroup" Name="rdbRelazioneV" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 93 - Relazione solo Attività di Vigilanza - Bilancio di Esercizio</RadioButton>
+                <Border Grid.Row="3" BorderThickness="0">
+                  <RadioButton Foreground="Gray"  GroupName="Attivita_RadioButtonGroup" Name="rdbRelazioneVC" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 94 - Relazione solo Attività di Vigilanza - Bilancio Consolidato</RadioButton>
+                </Border>
+                <RadioButton Grid.Row="4" GroupName="Attivita_RadioButtonGroup" Name="rdbRelazioneBV" Checked="RadioButton_Checked" FontSize="15" Margin="0,0,0,6" >Area 95 - Relazione Revisione Legale e Attività di Vigilanza - Bilancio di Esercizio</RadioButton>
+              </Grid>
+            </Expander>
+          </Grid>
+        </Border>
+
+        <!--STRUMENTI OPERATIVI E DI SISTEMA-->
+        <Border Grid.Row="5" Grid.Column="1" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="5,5,5,20">
+          <!-- EXPANDER STRUMENTI  -->
+          <Grid Height="Auto" Width="Auto">
+            <Expander Name="Expander_Configurazione" IsExpanded="False" FontSize="12" FontWeight="Bold"  Margin="5,10,0,10" Expanded="Expander_Expanded" Collapsed="Expander_ALL_Collapsed" >
+              <Expander.Header>
+                <TextBlock Name="tbStrumenti" Margin="5,0,0,0" FontSize="18" Foreground="#F5A41C">STRUMENTI OPERATIVI E DI SISTEMA</TextBlock>
+              </Expander.Header>
+
+              <Grid Margin="30,15,15,15">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource TransparentStyleWNB}" Name="btn_Documenti"   ToolTip="Documenti"  Margin="10" Click="menuStrumentiDocumenti_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">Archivio documenti</TextBlock>
+                </Button>
+                <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource TransparentStyleWNB}" Name="btn_TODOList"   ToolTip="To Do List"  Margin="10" Click="menuStrumentiTODOList_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">To Do List</TextBlock>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource TransparentStyleWNB}" Name="btn_SOSPESI"   ToolTip="Sospesi"  Margin="10" Click="menuStrumentiSOSPESI_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">Sospesi</TextBlock>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource TransparentStyleWNB}" Name="btn_StampaFascicolo"   ToolTip="Fascicolo Revisione"  Margin="10" Click="menuStrumentiStampaFascicolo_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">Fascicolo Revisione</TextBlock>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="0" Style="{StaticResource TransparentStyleWNB}" Name="btn_ApriFormulario"   ToolTip="Formulario"  Margin="10" Click="menuStrumentiFormulario_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">Formulario</TextBlock>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="1" Style="{StaticResource TransparentStyleWNB}" Name="btn_EstraiDaRevisione"   ToolTip="Estrai da Revisione"   Margin="10" Click="menuStrumentiEstraiDaRevisione_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">Estrai da REVISIONE</TextBlock>
+                </Button>
+                <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource TransparentStyleWNB}" Name="btn_EstraiDaVerifiche"   ToolTip="Estrai da Verifiche"   Margin="10" Click="menuStrumentiEstraiDaVerifiche_Click">
+                  <TextBlock FontSize="15" TextAlignment="Left" TextWrapping="Wrap">Estrai da VERIFICHE</TextBlock>
+                </Button>
+              </Grid>
+            </Expander>
+          </Grid>
+        </Border>
+      </Grid>
+    </ScrollViewer>
+
+  </DockPanel>
+</Window>

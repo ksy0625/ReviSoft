@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="UserControls.ucTempiRevisione"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConvNS" 
+             xmlns:uc="clr-namespace:UserControls"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+     
+            <Style TargetType="Image">
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+      
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Percent x:Key="TypePercent"></local:Percent>
+    </UserControl.Resources>
+    <StackPanel x:Name="stack" CanVerticallyScroll="True">
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <!--<ScrollViewer  Name="ContenitoreCompensoRevisione" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Text="TEMPI DI REVISIONE" Margin="0,0,0,10"></TextBlock>
+
+                    <Grid Grid.Row="1" Grid.Column="1" Name="tblMainContainer" Margin="10" HorizontalAlignment="Stretch"></Grid>
+                                         
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Visibility="{Binding Path=_ID, Converter={StaticResource TypeVisibilityConverter}}" Content=" Nuova riga " ToolTip="Aggiungi riga" Click="AddRowCompensoRevisione" MaxWidth="75" Margin="20,0,0,0"  />
+                    <Button Grid.Column="1" Grid.Row="2" IsTabStop="False" HorizontalAlignment="Left" Content=" Elimina riga " ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate" Click="DeleteRowCompensoRevisione" MaxWidth="75" Margin="109,0,0,0" />
+                    <TextBlock Grid.Column="1" Grid.Row="2" Name="lblTotale" HorizontalAlignment="Right" Margin="0,-10,90,10" >Totale</TextBlock>
+                    <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" TextAlignment="Right" Name="txtTotale" IsReadOnly="True" Width="61" Margin="0,-10,12,10"></TextBox>                    
+                </Grid>
+            <!--</ScrollViewer>-->
+        </Border>
+    </StackPanel>
+</UserControl>

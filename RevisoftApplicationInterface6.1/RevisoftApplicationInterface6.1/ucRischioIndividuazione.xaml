@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="UserControls.ucRischioIndividuazione"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ConvNS"  
+       Width="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Percent x:Key="TypePercent"></local:Percent>
+   </UserControl.Resources>
+  <Border CornerRadius="10" Name="brdMain2">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                         <StackPanel Margin="10">
+
+                            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="15"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+
+                                            <Border  BorderThickness="1" BorderBrush="LightGray">
+                                                <StackPanel Orientation="Vertical" Margin="0,20,0,20" Width="Auto">
+                                                    <StackPanel  Orientation="Horizontal">
+                                                        <TextBlock Margin="5"   TextWrapping="WrapWithOverflow" Width="1000" >
+                                                         <Run Text="Il "/>
+                                                         <Bold><Run Text="Rischio di Individuazione "/></Bold>
+                                                         <Run Text="proposto alla voce di bilancio deriva dalla correlazione della voce ad un ciclo e verrà esposto nella carta di lavoro concernente la pianificazione dei controlli."/>
+                                                         <LineBreak/>
+                                                         <Run Text="In quella sede il revisore potrà modificare il Rischio di individuazione proposto qualora rilevi rischi specifici - minori o maggiori - rispetto al rischio derivante fra l'incrocio del Rischio intrinseco e Rischio di controllo."/>
+                                                         <LineBreak/>
+                                                         <Run Text="Per le voci di bilancio non correlate ad un ciclo (nell'impresa non c'è una "/>
+                                                        <Italic><Run Text="procedura"/></Italic>
+                                                        <Run Text=" sistematica per gestire i fatti e gli atti amminstrativi inerenti) viene proposta l'esecuzione di"/>
+                                                         <Bold><Run Text="Procedure di validità"/></Bold>
+                                                         <Run Text=" cioè controlli di sostanza."/>
+                                                        </TextBlock>
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                                                        <TextBlock  Text="COLLEGAMENTO GIUDIZIO SUI CICLI ALLE VOCI DI BILANCIO ORDINARIO"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+
+                                                        <Grid   Name="tblordinario" Width="1000" Margin="10" HorizontalAlignment="Right"  ></Grid>
+
+
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                            </Border>
+          
+
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="2">
+
+                                            <Border  BorderThickness="1" BorderBrush="LightGray">
+                                                <StackPanel Orientation="Vertical" Margin="0,20,0,20" Width="Auto">
+                                                    <StackPanel  Orientation="Horizontal">
+                                                        <TextBlock Margin="5"   TextWrapping="WrapWithOverflow" Width="1000" >
+                                                         <Run Text="Il "/>
+                                                         <Bold><Run Text="Rischio di Individuazione "/></Bold>
+                                                         <Run Text="proposto alla voce di bilancio deriva dalla correlazione della voce ad un ciclo e verrà esposto nella carta di lavoro concernente la pianificazione dei controlli."/>
+                                                         <LineBreak/>
+                                                         <Run Text="In quella sede il revisore potrà modificare il Rischio di individuazione proposto qualora rilevi rischi specifici - minori o maggiori - rispetto al rischio derivante fra l'incrocio del Rischio intrinseco e Rischio di controllo."/>
+                                                         <LineBreak/>
+                                                         <Run Text="Per le voci di bilancio non correlate ad un ciclo (nell'impresa non c'è una "/>
+                                                        <Italic><Run Text="procedura"/></Italic>
+                                                        <Run Text=" sistematica per gestire i fatti e gli atti amminstrativi inerenti) viene proposta l'esecuzione di"/>
+                                                         <Bold><Run Text="Procedure di validità"/></Bold>
+                                                         <Run Text=" cioè controlli di sostanza."/>
+                                                        </TextBlock>
+                                                    </StackPanel>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                                                        <TextBlock  Text="COLLEGAMENTO GIUDIZIO SUI CICLI ALLE VOCI DI BILANCIO ABBREVIATO"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+
+                                                        <Grid   Name="tblabbreviato" Width="1000" Margin="10" HorizontalAlignment="Right"  ></Grid>
+
+
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                            </Border>
+
+
+                                        </StackPanel>
+                                    </Grid>
+
+                                </ScrollViewer>
+
+                            </Border>
+
+
+   
+        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

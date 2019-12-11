@@ -1,0 +1,39 @@
+﻿<Window x:Class="RevisoftApplication.wSceltaTipologiaCaricamentoDati"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Scalta tipologia Caricamento Dati" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" Height="209" Width="467.697" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="Scelta tipologia Caricamento Dati" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+        <TextBlock Text="" Width="250" DockPanel.Dock="Left" Name="TitoloBilancio" TextWrapping="Wrap" Margin="10,0" FontWeight="Bold" />
+
+        <StackPanel Height="Auto">
+            <DockPanel Grid.Column="2" Grid.Row="2">
+                <RadioButton DockPanel.Dock="Left" Name="rdbBVEA" Content="Bilancio di verifica Esercizio Attuale" GroupName="bilancio" Margin="10,0,0,0" Width="209" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
+                <Label Content="(estensioni compatibili: xlsx)" DockPanel.Dock="Right" FontWeight="Bold"></Label>
+            </DockPanel>
+            <DockPanel Grid.Column="2" Grid.Row="2">
+                <RadioButton DockPanel.Dock="Left" Name="rdbBVEP" Content="Bilancio di verifica Esercizio Precedente" GroupName="bilancio" Margin="10,0,0,0" Width="209" HorizontalAlignment="Left" VerticalAlignment="Center"></RadioButton>
+                <Label Content="(estensioni compatibili: xlsx)" DockPanel.Dock="Right" FontWeight="Bold"></Label>
+            </DockPanel>
+            <RadioButton Name="rdbXBRL" Content="XBRL" GroupName="bilancio" Margin="10, 5, 10, 10" ></RadioButton>
+            <RadioButton x:Name="rdbBV" Content="Modifica correlazioni fra Bilancio di Verifica e Voci di Bilancio" GroupName="bilancio" Margin="10, 10, 10, 0"/>
+            <RadioButton x:Name="rdbBVCancella" Content="Cancella TUTTE le correlazioni fra Bilancio di Verifica e Voci di Bilancio" GroupName="bilancio" Margin="10, 10, 10, 0"/>
+        </StackPanel>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Applica" HorizontalAlignment="Left" Margin="361,-10,0,10.6" Name="buttonComando" Width="75" Click="buttonApplica_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

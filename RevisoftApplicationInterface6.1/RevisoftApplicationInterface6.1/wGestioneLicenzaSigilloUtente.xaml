@@ -1,0 +1,35 @@
+﻿<Window x:Class="RevisoftApplication.WindowGestioneLicenzaSigilloUtente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestione Licenza Sigillo" Height="346" Width="565" 
+        Icon="/RevisoftApplication;component/Images/Spunta2%20-%20Andrea.png" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        ResizeMode="NoResize"
+        Background="WhiteSmoke" ShowInTaskbar="False"
+        >
+    <Grid Background="WhiteSmoke" Height="319" Width="559">
+        <StackPanel Height="264" HorizontalAlignment="Left" Margin="94,12,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="448">
+            <Label Content="Licenza Sigillo Revisoft" Height="36" Name="label1" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Width="330" />
+
+            <Canvas Height="213" Name="canvas1" Width="428" HorizontalAlignment="Center" >
+                <Label Canvas.Left="6" Canvas.Top="6" Content="Intestatario" Height="28" Name="label3" />
+                <TextBox Canvas.Left="120" Canvas.Top="6" Height="23" Name="textBoxIntestatario" Width="302" IsReadOnly="True" />
+                <Label Canvas.Left="6" Canvas.Top="40" Content="Utente" Height="28" Name="label4" />
+                <TextBox Canvas.Left="120" Canvas.Top="40" Height="23" Name="textBoxUtente" Width="302" IsReadOnly="True" />
+                <Label Canvas.Left="6" Canvas.Top="74" Content="Tipo Licenza" Height="28" Name="label2" Width="84" />
+                <TextBox Canvas.Left="120" Canvas.Top="74" Height="23" Name="textBoxTipoLicenza" Width="302" IsReadOnly="True" />
+                <Label Canvas.Left="6" Canvas.Top="107" Content="Codice Macchina" Height="28" Name="label5" Width="108" />
+                <TextBox Canvas.Left="120" Canvas.Top="109" Height="23" Name="textBoxCodiceMacchina" Width="302" IsReadOnly="True" />
+                <Label Canvas.Left="6" Canvas.Top="140" Content="Scadenza" Height="28" Name="label6" Width="108" />
+                <ProgressBar Background="White" Canvas.Left="120" Canvas.Top="180" Height="16" Name="progressBarLicenza" Width="302" />
+                <Label Canvas.Left="6" Canvas.Top="175" Content="Utilizzo" Height="28" Name="label7" Width="108" />
+                <TextBox Canvas.Left="120" Canvas.Top="145" Height="23" IsReadOnly="True" Name="textBoxScadenza" Width="302" />
+            </Canvas>
+        </StackPanel>
+        <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="468,284,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+        <Canvas Height="318" HorizontalAlignment="Left" Name="canvas2" VerticalAlignment="Top" Width="87" Background="#FF989898" Margin="-3,0,0,0">
+            <Image Canvas.Left="10" Canvas.Top="10" Height="307" Name="image1" Source="/RevisoftApplication;component/Images/logo-trasp-VERTICALE.png" Stretch="Uniform" StretchDirection="Both" Width="51" />
+        </Canvas>
+        <Button Content="Rinnova" Height="23" HorizontalAlignment="Left" Margin="377,284,0,0" Name="buttonRinnova" VerticalAlignment="Top" Width="75" Click="buttonRinnovo_Click"/>
+    </Grid>
+</Window>

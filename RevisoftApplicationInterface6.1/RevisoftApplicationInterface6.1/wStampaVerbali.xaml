@@ -1,0 +1,92 @@
+﻿<Window x:Class="RevisoftApplication.wStampaVerbali"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - VERBALI VERIFICHE PERIODICHE" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Margin="3,0">
+        <Label Content="STAMPE DELLE OPERAZIONI DELLE VERIFICHE PERIODICHE" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <!--<TextBlock Text="(attività di solo controllo contabile o controllo contabile e attività di vigilanza)"  TextWrapping="Wrap" Margin="10,0" HorizontalAlignment="Center" />-->
+
+        <StackPanel Height="Auto" HorizontalAlignment="Center">
+            <Grid Height="Auto" Margin="0,10,0,0">
+                <Label Content="Cliente" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="label1" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,9,0,0" Name="cmbClienti" VerticalAlignment="Top" Width="297" SelectionChanged="cmbClienti_SelectionChanged" TabIndex="0" />
+            </Grid>
+
+            <Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData">
+                <Label Content="Sessione" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="label3" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,0,0,0" Name="cmbData" VerticalAlignment="Top" Width="297" TabIndex="2" />
+            </Grid>
+
+        </StackPanel>
+
+        <CheckBox Name="rdbVerbale" Margin="10">
+            <WrapPanel>
+                <StackPanel Orientation="Vertical" Width="680">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Verbale per libro dei sindaci:" FontWeight="Bold"/>
+                        <TextBlock Text="Con " Margin="10,0,0,0"/>
+                        <TextBlock Text="solo " FontWeight="Bold" Margin="0,0,0,0"/>
+                        <TextBlock Text="questa opzione il verbale " Margin="0,0,0,0"/>
+                        <TextBlock Text="includerà sia " FontWeight="Bold" Margin="0,0,0,0"/>
+                        <TextBlock Text="l'attività di vigilanza " Margin="0,0,0,0"/>
+                        <TextBlock Text="che " FontWeight="Bold" Margin="0,0,0,0"/>
+                        <TextBlock Text="il controllo contabile." Margin="0,0,0,0"/>
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                        <CheckBox Name="chk4" Margin="10,0,0,0">4 - Controllo contabile</CheckBox>
+                        <CheckBox Name="Chk5" Margin="10,0,0,0">5 - Attività di Vigilanza</CheckBox>
+                    </StackPanel>-->
+                </StackPanel>
+            </WrapPanel>
+        </CheckBox>
+
+        <CheckBox Name="rdbMemorandum" Margin="10">
+            <WrapPanel>
+                <TextBlock Text="Memorandum:" FontWeight="Bold"/>
+                <TextBlock Text="Se presente anche questa opzione" FontWeight="Bold" Margin="10,0,0,0"/>
+                <TextBlock Text=", le attività di controllo contabile " Margin="0,0,0,0"/>
+                <TextBlock Text="NON " FontWeight="Bold" Margin="0,0,0,0"/>
+                <TextBlock Text="verranno incluse nel verbale dei sindaci." Margin="0,0,0,0"/>
+            </WrapPanel>
+        </CheckBox>
+        
+        <TextBlock Text="Opzioni per la stampa dei controlli contabili" HorizontalAlignment="Center" FontWeight="Bold" Margin="10,5,10,0" />
+        <TextBlock Text="(sia per il verbale che per il memorandum)" HorizontalAlignment="Center" Margin="10,5,10,0" />
+
+        <RadioButton Name="rdbCompleta" Margin="10" GroupName="opzioni">
+            <WrapPanel>
+                <TextBlock Text="Stampa completa" FontWeight="Bold"/>            </WrapPanel>
+        </RadioButton>
+
+        <RadioButton Name="rdbDescrittiva" Margin="10" GroupName="opzioni">
+            <WrapPanel>
+                <StackPanel Orientation="Vertical" Width="520">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Stampa descrittiva:" FontWeight="Bold"/>
+                        <TextBlock Text="solo testo senza parte tabellare" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                        <RadioButton Name="chkCommenti" Margin="10,0,0,0" GroupName="commenti">Commenti</RadioButton>
+                        <RadioButton Name="chkTesto" Margin="10,0,0,0" GroupName="commenti">Testo da stampare</RadioButton>
+                    </StackPanel>-->
+                </StackPanel>
+            </WrapPanel>
+        </RadioButton>
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,10" Height="Auto" HorizontalAlignment="Center">
+            <Button Content="Crea" Height="23" HorizontalAlignment="Left" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonStampa_Click" />
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Name="buttonChiudi" Margin="10,0,0,0" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+        </StackPanel>
+
+    </StackPanel>
+</Window>

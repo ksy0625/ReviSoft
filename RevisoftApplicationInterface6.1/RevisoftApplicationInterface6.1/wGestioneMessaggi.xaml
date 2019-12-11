@@ -1,0 +1,23 @@
+﻿<Window x:Class="RevisoftApplication.WindowGestioneMessaggi"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestione Messaggi" Height="309" Width="500" 
+        Icon="/RevisoftApplication;component/Images/Spunta2%20-%20Andrea.png" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow"
+        Closing="GestoreEvento_ChiusuraFinestra" ShowInTaskbar="False"        
+        >
+    <Grid Background="WhiteSmoke">
+        <StackPanel Height="227" HorizontalAlignment="Left" Margin="64,6,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="402">
+            <Label Content="Messaggio" Height="36" Name="labelTitolo" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Width="330" Foreground="Black" />
+            <TextBlock Height="25" Name="textBlockAbstract" Text="" Width="387" FontSize="14" TextWrapping="Wrap" />
+            <TextBlock FontSize="14" Height="164" Name="textBlockDescrizione" Text="" Width="388" TextWrapping="Wrap" Margin="7,0" />
+        </StackPanel>
+        <Canvas Height="290" HorizontalAlignment="Left" Name="canvas2" VerticalAlignment="Top" Width="54" Background="#FF989898">
+            <Image Height="228" Name="image1" Stretch="Uniform" Width="31" Source="/RevisoftApplication;component/Images/logo-trasp-VERTICALE.png" StretchDirection="Both" Canvas.Left="12" Canvas.Top="19" />
+        </Canvas>
+        <Button Content="Chiudi" Height="23" Name="buttonChiudi" Width="75" Click="buttonChiudi_Click" Margin="403,247,0,0" />
+    </Grid>
+
+</Window>

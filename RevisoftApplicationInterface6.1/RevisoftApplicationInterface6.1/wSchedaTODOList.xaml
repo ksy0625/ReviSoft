@@ -1,0 +1,49 @@
+﻿<Window x:Class="RevisoftApplication.wSchedaTODOList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Scheda TO DO List" 
+        ResizeMode="NoResize"         
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke"  
+        SizeToContent="WidthAndHeight" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="TO DO List" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+                <TextBlock Text="Selezionare Cliente ed Area per proseguire." TextWrapping="Wrap" Margin="10" />
+        
+        <StackPanel Height="Auto">
+            <Grid Height="Auto" Margin="0,10,0,0">
+                <Label Content="Cliente" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="label1" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,9,0,0" Name="cmbClienti" VerticalAlignment="Top" Width="297" SelectionChanged="cmbClienti_SelectionChanged" TabIndex="0" />
+            </Grid>
+
+            <Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData">
+                <Label Content="Verifiche Periodiche" Height="28" HorizontalAlignment="Left" Margin="5,0,0,0" Name="label3" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,0,0,0"  SelectionChanged="cmbArea_SelectionChanged" Name="cmbData" VerticalAlignment="Top" Width="297" TabIndex="2" />
+            </Grid>
+
+            <Grid Height="Auto" Margin="0,10,0,0" Width="Auto" Name="grdPianificazione" Visibility="Collapsed">
+                <Label Content="Sessioni Pianificate" Height="28" HorizontalAlignment="Left" Margin="5,5,0,0" Name="lblPianificate" VerticalAlignment="Top" Width="124" />
+                <ComboBox Height="25" HorizontalAlignment="Left" Margin="135,5,0,0" Name="cmbPianificate" VerticalAlignment="Top" Width="297" SelectionChanged="cmbPianificate_SelectionChanged" TabIndex="0" />
+            </Grid>
+
+            <Grid Height="Auto" Margin="0,10,0,0" Width="Auto" Name="grdData">
+                <Label Content="Data Sessione" Height="28" HorizontalAlignment="Left" Margin="5,5,0,0" Name="lblSessione" VerticalAlignment="Top" Width="124" />
+                <DatePicker Height="25" Margin="112,5,0,0"  Name="dtpDataNomina" VerticalAlignment="Top" Width="297" UseLayoutRounding="False" SelectedDateFormat="Short"  ToolTip="Selezionare una data" TabIndex="2" />
+            </Grid>
+        </StackPanel>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="375,0,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+            <Button Content="TO DO List" Height="23" HorizontalAlignment="Left" Margin="288,0,0,0" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonTODOList_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

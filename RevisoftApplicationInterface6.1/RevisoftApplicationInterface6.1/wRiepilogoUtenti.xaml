@@ -1,0 +1,54 @@
+﻿<Window x:Class="RevisoftApplication.wRiepilogoUtenti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:brl="clr-namespace:RevisoftApplication.BRL"
+        xmlns:self="clr-namespace:RevisoftApplication"
+        xmlns:local="clr-namespace:ConvNS" 
+        mc:Ignorable="d"
+        Title="Revisoft - Riepilogo Utenti" 
+        Height="570" Width="520" 
+        WindowStartupLocation="CenterScreen"
+        Background="WhiteSmoke" ShowInTaskbar="False" >
+   <Window.Resources>
+      <local:TypeVisibilityConverter x:Key="typeVisibilityConverter"></local:TypeVisibilityConverter>
+      <local:BackgroundColorConverter x:Key="backgroundColorConverter"></local:BackgroundColorConverter>
+      <local:IconeStatoConverter x:Key="iconeStatoConverter"></local:IconeStatoConverter>
+      <BooleanToVisibilityConverter x:Key="BoolToVis" />
+   </Window.Resources>
+   <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+      <StackPanel Background="WhiteSmoke" Height="530" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="500" Margin="0,0,0,0">
+         <Label Content="Riepilogo delle cartelle associate agli utenti" FontSize="14" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+         <Grid Margin="5,10,0,0" Name="gridClienti">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="90"></ColumnDefinition>
+               <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Cliente" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" />
+            <ComboBox Grid.Column="1" Margin="0,0,0,0" Name="cmbClienti" VerticalAlignment="Center" SelectionChanged="CmbClienti_SelectionChanged" DisplayMemberPath="RagioneSociale" SelectedValuePath="ID" />
+         </Grid>
+         <TreeView Name="trvRiepilogo" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,10,0,0" Height="450">
+            <TreeView.ItemContainerStyle>
+               <Style>
+                  <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+               </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ItemTemplate>
+               <HierarchicalDataTemplate DataType="{x:Type brl:RiepilogoItem}" ItemsSource="{Binding Figli}">
+                  <StackPanel Orientation="Horizontal">
+                     <TextBlock Text="Area:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsArea, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="Reviewer:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsRevisore, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="Esecutore:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsEsecutore, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="Team" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsTeam, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="Cliente:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsCliente, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="Team Leader:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="Nessun Ruolo:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsNonAssegnato, Converter={StaticResource BoolToVis}}"/>
+                     <TextBlock Text="{Binding Etichetta}" Margin="10,0,0,0"/>
+                  </StackPanel>
+               </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+         </TreeView>
+      </StackPanel>
+   </ScrollViewer>
+</Window>

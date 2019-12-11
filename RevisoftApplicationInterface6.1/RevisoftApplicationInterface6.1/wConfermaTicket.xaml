@@ -1,0 +1,16 @@
+﻿<Window x:Class="RevisoftApplication.WindowConfermaTicket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nuovo ticket" 
+        Height="229.886" Width="526.206" 
+        Icon="/RevisoftApplication;component/Images/Spunta2%20-%20Andrea.png" 
+        ResizeMode="NoResize" 
+        Background="WhiteSmoke" 
+        SizeToContent="Manual" WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        WindowStyle="ToolWindow" ShowInTaskbar="False" Topmost="True">
+    <Grid Height="207" Width="500" VerticalAlignment="Top" Background="WhiteSmoke" Margin="12,0,11.2,0">
+        <Label Content="E' stato aperto il ticket n.:" Height="28" HorizontalAlignment="Left" Margin="10,28,0,0" Name="label_numeroticket" VerticalAlignment="Top" Width="427" />
+        <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="413,158,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+        <Label Content="E' stata inviata una segnalazione all'help desk e a i nostri tecnici.&#xA;Riceverete un'email con la presa in carico e la risoluzione del ticket num: ....&#xA;Segnarsi il numero del ticket qualora desideraste ulteriore assistenza telefonica in merito." Height="73" HorizontalAlignment="Left" Margin="10,61,-11,0" x:Name="label_numeroticket_Copy" VerticalAlignment="Top" Width="501" />
+    </Grid>
+</Window>

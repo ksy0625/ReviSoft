@@ -1,0 +1,97 @@
+﻿<Window x:Class="RevisoftApplication.wGestioneArchivio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revisoft" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="438" ShowInTaskbar="False">
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="Gestione Archivio" FontSize="16" FontWeight="Bold" Name="label9" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+        <TabControl Name="tabControl1" Width="Auto" Height="310" Margin="5,10,5,0">
+
+
+            <TabItem Header="Utilità" Name="tabItemAggiornamento" FontWeight="Normal">
+                <Grid Margin="0,10,0,0" Height="Auto">
+
+                    <Button Name="btn_ScambiaArchivioLocaleRemoto_RemotoLocale" ToolTip="Trasferimento Archivi in Path remoto da selezionare" Margin="17,19,341,164" Click="btn_ScambiaArchivioLocaleRemoto_RemotoLocale_Click" HorizontalContentAlignment="Center">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_replace.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center">Scambia Archivio</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Scambio collegamento ad archivio locale o remoto" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="116,16,0,0" Name="label4" VerticalAlignment="Top" />
+                    <TextBlock Height="70" HorizontalAlignment="Left" Margin="124,41,0,0" Name="textBlock7" Text="La procedura consente di passare velocemente dall'archivio remoto all'archivio locale e viceversa. Revisoft si collegherà automaticamente all'archivio non in uso." TextWrapping="Wrap" VerticalAlignment="Top" Width="295" />
+
+                    <Button Name="btn_AggiornamentoArchivi" ToolTip="Aggiornamento modelli di sistema su archivio di rete condiviso" Margin="17,128,341,55" Click="btn_AggiornamentoArchivi_Click" HorizontalContentAlignment="Center">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/server_to_client.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center">Aggiorna Archivio</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Aggiorna archivio di rete" Height="28" HorizontalAlignment="Left" Margin="120,121,0,0" Name="label3" VerticalAlignment="Top" FontWeight="Bold" />
+                    <TextBlock Height="70" HorizontalAlignment="Left" Margin="124,147,0,0" Name="textBlock6" Text="La procedura consente di trasferire sull'archivio di rete condiviso i modelli di sistema utilizzati da Revisoft. Questa funzionalità deve essere attivata dopo aver effettuato un aggiornamento del Client." VerticalAlignment="Top" Width="295" TextWrapping="Wrap" />
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="Impostazioni" Name="tabItemImpostazioni" FontWeight="Normal">
+                <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+                    <RadioButton GroupName="radioGroupTipo" Content="Archivio Locale" Height="16" HorizontalAlignment="Left" Margin="16,14,0,0" Name="radioButtonArchivioLocale" Checked="radioButtonArchivioLocale_Checked" VerticalAlignment="Top" FontWeight="Bold" IsEnabled="False" />
+                    <TextBlock Height="40" HorizontalAlignment="Left" Margin="33,33,0,0" Name="textBlock1" Text="Selezionare questa opzione quando l'archivio principale di Revisoft è registrato sullo stesso computer del software (default)." VerticalAlignment="Top" Width="392" TextWrapping="Wrap" />
+                    <RadioButton GroupName="radioGroupTipo" Content="Archivio Remoto" Height="16" HorizontalAlignment="Left" Margin="16,73,0,0" Name="radioButtonArchivioRemoto" Checked="radioButtonArchivioRemoto_Checked" VerticalAlignment="Top" FontWeight="Bold" IsEnabled="False" />
+                    <TextBlock Height="34" HorizontalAlignment="Left" Margin="34,92,0,0" Name="textBlock2" Text="Selezionare questa opzione quando l'archivio princiapale di Revisoft è memorizzato su una risorsa di rete come un server." VerticalAlignment="Top" Width="367" TextWrapping="Wrap" />
+                    <RadioButton GroupName="radioGroupTipo" Content="Cloud" Height="16" HorizontalAlignment="Left" Margin="16,158,0,0" Name="radioButtonArchivioCloud" VerticalAlignment="Top" FontWeight="Bold" IsEnabled="False" />
+                    <TextBox Height="23" HorizontalAlignment="Left" Margin="34,127,0,0" Name="textBoxArchivioRemotoPath" VerticalAlignment="Top" Width="344" IsReadOnly="True" IsEnabled="False" />
+                    <Button Content=". . ." Height="23" HorizontalAlignment="Left" Margin="384,126,0,0" Name="buttonSelezionaArchivioRemoto" Click="buttonSelezionaArchivioRemoto_Click" VerticalAlignment="Top" Width="41" IsEnabled="False" />
+                    <TextBlock Height="34" HorizontalAlignment="Left" Margin="34,177,0,0" Name="textBlock3" Text="Selezionare questa opzione per utilizzare il servizio cloud Revisoft (archivi accessibili tramite connessione internet)." TextWrapping="Wrap" VerticalAlignment="Top" Width="367" />
+
+                    <Button Height="45" HorizontalAlignment="Left" Margin="140,219,0,0" Name="buttonApplica" VerticalAlignment="Top" Width="138" Click="buttonApplica_Click" IsEnabled="False" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_gear.png" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Width="85">Applica impostazione</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Strumenti" Name="tabItemStrumenti">
+                <Grid Margin="0,10,0,0" Height="Auto">
+                    <Button Name="btn_TrasferimentoArchivi" ToolTip="Trasferimento Archivi in Path remoto da selezionare" Margin="17,19,341,164" Click="btn_TrasferimentoArchivi_Click" HorizontalContentAlignment="Center">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/server_from_client.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center">Condividi Archivio</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Trasferimento archivio su risorsa di rete" Height="28" HorizontalAlignment="Left" Margin="116,16,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" />
+                    <TextBlock Height="70" HorizontalAlignment="Left" Margin="124,41,0,0" Name="textBlock4" Text="La procedura trasferisce gli archivi Revisoft dal disco locale ad un disco di rete condiviso affinché altri utenti Revisoft con licenza client possano accedere ai dati." VerticalAlignment="Top" Width="295" TextWrapping="Wrap" />
+
+                    <Button Name="btn_TrasferimentoArchiviLocale" ToolTip="Trasferimento Archivi in Path remoto da selezionare" Margin="17,128,341,55" Click="btn_TrasferimentoArchiviLocale_Click" HorizontalContentAlignment="Center">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/server_to_client.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center">Ripristina Archivio Locale</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Trasferimento archivio su disco locale" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="120,120,0,0" Name="label2" VerticalAlignment="Top" />
+                    <TextBlock Height="70" HorizontalAlignment="Left" Margin="124,146,0,0" Name="textBlock5" Text="La procedura riporta gli archivi Revisoft da un disco di rete condiviso al disco locale. Con questa operazione l'archivio condiviso Revisoft non sarà più accessibile da parte di altri utenti Revisoft con licenza client." TextWrapping="Wrap" VerticalAlignment="Top" Width="295" />
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="375,0,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>
+
+

@@ -1,0 +1,78 @@
+﻿<Window x:Class="RevisoftApplication.wGestioneBackUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revisoft" 
+        ResizeMode="NoResize"  
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="426" Width="473" ShowInTaskbar="False">
+    <StackPanel Background="WhiteSmoke" Height="398" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="460" Margin="3,0,0,0">
+    <Label Content="Gestione Salvataggi" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <TabControl Name="tabControl1" Width="Auto" Height="310" Margin="5,10,5,0">
+
+            <TabItem Header="Salvataggi di Sistema" Name="tabItemImpostazioni" FontWeight="Normal">
+
+
+
+
+                <Grid Margin="0,10,0,0" Height="Auto">
+
+                    <Button Name="btn_BackUp" Margin="13,14,345,179" Click="btn_BackUp_Click" ToolTip="Esegue salvataggio dell'archivio corrente">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_disk.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center">Salvataggio</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Name="btn_Restore" ToolTip="Ripristina l'archivio utilizzando il salvataggio selezionato" Margin="13,95,345,98" Click="btn_Restore_Click" IsEnabled="False">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_replace.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center">Ripristina</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Name="btn_Elimina" ToolTip="Elimina salvataggio" Margin="13,177,345,16" Click="btn_Elimina_Click" IsEnabled="False">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_delete.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center">Elimina</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <ListBox Name="lstRestore" Height="237" HorizontalAlignment="Left" Margin="110,14,0,0" VerticalAlignment="Top" Width="320" SelectionChanged="lstRestore_SelectionChanged" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Salvataggi su File" Name="tabItemStrumenti">
+
+                <Grid Margin="0,10,0,0" Height="Auto">
+                    <Button Name="btn_BackUpFile" Grid.Column="0" Margin="17,19,341,164" Click="btn_BackUpFile_Click" ToolTip="Esegue salvataggio dell'archivio corrente su File Esterno scelto dall'utente">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_disk.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center">Salvataggio su File</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Effettua un salvataggio su file esterno" Height="28" HorizontalAlignment="Left" Margin="116,16,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" />
+                    <TextBlock Height="70" HorizontalAlignment="Left" Margin="124,41,0,0" Name="textBlock4" Text="La procedura effettua il salvataggio degli archivi Revisoft su un file esterno selezionabile dall'utente. Il file può essere generato su risorse di rete condivise oppure su periferiche USB." VerticalAlignment="Top" Width="295" TextWrapping="Wrap" />
+
+                    <Button Name="btn_RestoreFile"  Grid.Column="1" Margin="17,128,341,55" ToolTip="Ripristina l'archivio utilizzando un File Esterno selezionato dall'utente"  Click="btn_RestoreFile_Click">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_replace.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center">Ripristina da File</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="Ripristina un salvataggio da file esterno" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="120,120,0,0" Name="label2" VerticalAlignment="Top" />
+                    <TextBlock Height="70" HorizontalAlignment="Left" Margin="124,146,0,0" Name="textBlock5" Text="La procedura ripristina l'archivio Revisoft utilizzando un precedente salvataggio su file esterno. Il file può essere recuperato da risorse di rete condivise oppure da periferiche USB." TextWrapping="Wrap" VerticalAlignment="Top" Width="295" />
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Right" Margin="0, 15, 5, 0"  Grid.Column="2"  Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" RenderTransformOrigin="0.507,-0.043" />
+
+    </StackPanel>
+</Window>
+
+

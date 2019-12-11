@@ -1,0 +1,13 @@
+﻿<Window x:Class="RevisoftApplication.WindowWorkAreaCheckList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ConvNS"         
+        xmlns:uc="clr-namespace:UserControls"
+        Title="Revisoft Work Area - Check List" 
+        Height="Auto" 
+        Width="640" 
+        WindowStartupLocation="Manual"
+        SizeChanged="Window_SizeChanged"
+        LayoutUpdated="Window_LayoutUpdated">
+    <uc:ucCheckList Grid.Column="0" x:Name="CheckList"  ></uc:ucCheckList>
+</Window>

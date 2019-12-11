@@ -1,0 +1,42 @@
+﻿<Window x:Class="RevisoftApplication.wSigilloSbloccoBlocco"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Rompi Sigillo" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" Height="172" Width="473" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="Rompi Sigillo" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <TextBlock Text="NB: La funzione Sigillo è una funzione per l'organizzazione dello studio"  TextWrapping="Wrap" Margin="10,0" />
+
+        <StackPanel Height="Auto">
+            <Grid Height="Auto" Margin="0,10,0,0">
+                <Label Content="Password" Height="28" HorizontalAlignment="Left" Margin="5,5,0,0" Name="label1" VerticalAlignment="Top" Width="124" />
+                <PasswordBox Name="txtPassword" Margin="103,7,0,3" Height="23"></PasswordBox>
+            </Grid>
+
+            <Grid Margin="0,10,0,0" Height="Auto" Name="GridComboData"/>
+
+        </StackPanel>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="309*"/>
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="133*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Annulla" Height="23" HorizontalAlignment="Left" Margin="292,-17,0,-4" Name="buttonAnnulla" VerticalAlignment="Top" Width="75" Click="buttonAnnulla_Click" Grid.ColumnSpan="3" />
+            <Button Content="Applica" Height="23" HorizontalAlignment="Right" Margin="0,-17,0,-4" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonApplica_Click" RenderTransformOrigin="-1.133,1.261" Grid.Column="2" />
+        </Grid>
+
+    </StackPanel>
+</Window>

@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="UserControls.uc_Excel_Bilancio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ConvNS"
+        SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <!--<local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>        
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Percent x:Key="TypePercent"></local:Percent>-->
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <Button Name="btnEspandiBV" Width="250" MaxWidth="250" HorizontalAlignment="Left" Click="btnEspandiTuttoBV_Click" Visibility="Collapsed" Tag="opened">Chiudi Tutte le voci del Bilancio di Verifica</Button>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="10" Name="stpMain">
+            </StackPanel>
+        </ScrollViewer>
+    </StackPanel>   
+</UserControl>

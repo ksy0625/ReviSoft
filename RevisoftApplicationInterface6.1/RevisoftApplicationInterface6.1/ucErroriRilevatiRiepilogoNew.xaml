@@ -1,0 +1,335 @@
+﻿<UserControl x:Class="UserControls.ucErroriRilevatiRiepilogoNew"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConvNS" 
+             xmlns:uc="clr-namespace:UserControls"
+             mc:Ignorable="d"
+             SizeChanged="UserControl_SizeChanged"
+             KeyUp="UserControl_KeyUp">
+    <UserControl.Resources>
+        <Style TargetType="Image">
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Border CornerRadius="10" Name="brdMain">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Image Name="img1" Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="15" Width="15" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="Sommario delle Rettifiche"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray" ></TextBlock>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                                <Grid Name="grdMain" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" SharedSizeGroup="A"></ColumnDefinition>
+                        <ColumnDefinition Width="250" SharedSizeGroup="B"></ColumnDefinition>
+                        <ColumnDefinition Width="100" SharedSizeGroup="C"></ColumnDefinition>
+                        <ColumnDefinition Width="100" SharedSizeGroup="D"></ColumnDefinition>
+                        <ColumnDefinition Width="100" SharedSizeGroup="G"></ColumnDefinition>
+                        <ColumnDefinition Width="100" SharedSizeGroup="G"></ColumnDefinition>
+                        <ColumnDefinition Width="100" SharedSizeGroup="G"></ColumnDefinition>
+                        <ColumnDefinition Width="100" SharedSizeGroup="G"></ColumnDefinition>
+                        <ColumnDefinition Width="75" SharedSizeGroup="H"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!--<TextBlock Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="0" Text="SOMMARIO DELLE RETTIFICHE" Background="Beige" FontWeight="Bold" Margin="10" TextAlignment="Center"></TextBlock>-->
+
+
+                                    <Border Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="1" Background="LightYellow" BorderThickness="1,1,0,0" BorderBrush="Black">
+                        <TextBlock Text="Sul P.N. esercizio attuale" Margin="5" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="1" Background="PaleGreen" BorderThickness="1,1,0,0" BorderBrush="Black">
+                                        <TextBlock Text="Su C.E. esercizio attuale" Margin="5" TextAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="CARTA DI LAVORO" Margin="5, 5, 5, 0" ToolTip="Fare doppio click per aprirne il contenuto" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="(Doppio click per aprirla)" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                                    <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Descrizione dell'Errore"  Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Rettifica" Margin="5" TextAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Già sul P.N.   esercizio precedente" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="4" Grid.Row="2" Background="LightYellow" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Importo lordo" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="5" Grid.Row="2" Background="LightYellow" BorderThickness="1,1,0,1" BorderBrush="Black">
+                                        <TextBlock Text="Effetto imposte" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="6" Grid.Row="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Importo lordo" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="7" Grid.Row="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Effetto imposte" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="8" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <TextBlock Text="errore irrilevante o corretto" Margin="5" FontSize="10" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                </Grid>
+                         
+                        
+                <Grid Name="grdMainET" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" SharedSizeGroup="A"></ColumnDefinition>
+                        <ColumnDefinition Width="250" SharedSizeGroup="B"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="100" Width="100" SharedSizeGroup="C"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="100" Width="100" SharedSizeGroup="D"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="100" Width="100" SharedSizeGroup="E"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="100" Width="100" SharedSizeGroup="F"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="100" Width="100" SharedSizeGroup="G"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="100" Width="100" SharedSizeGroup="G"></ColumnDefinition>
+                        <ColumnDefinition Width="75" SharedSizeGroup="H"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!--<TextBlock Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="0" Text="SOMMARIO DELLE RETTIFICHE" Background="Beige" FontWeight="Bold" Margin="10" TextAlignment="Center"></TextBlock>-->
+
+                    <Border Grid.Column="0" Grid.ColumnSpan="9" Grid.Row="0" BorderThickness="0,2,0,0" BorderBrush="Blue" Margin="0,10,0,20">
+                        <TextBlock Text="CONFRONTO CON ERRORE TRASCURABILE" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" ></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="4" Grid.ColumnSpan="4" Grid.Row="1" Background="White" BorderThickness="1,1,0,0" BorderBrush="Black">
+                        <TextBlock Text="ECCEDENZA RISPETTO ALL'ERRORE TRASCURABILE" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="8" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,1,1" BorderBrush="Black">
+                                        <TextBlock Text="errore irrilevante o corretto" Margin="5" FontSize="10" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="CARTA DI LAVORO" Margin="5, 5, 5, 0" ToolTip="Fare doppio click per aprirne il contenuto" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="(Doppio click per aprirla)" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Descrizione dell'Errore"  Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Rettifica" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Già sul P.N.   esercizio precedente" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="4" Grid.Row="2" Background="LightYellow" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Netto su P.N." Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="5" Grid.Row="2" Background="LightYellow" BorderThickness="1,1,0,1" BorderBrush="Black">
+                                        <TextBlock Text="Eccedenza" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="6" Grid.Row="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Netto su C.E." Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                                    <Border Grid.Column="7" Grid.Row="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                                        <TextBlock Text="Eccedenza" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                                    </Border>
+
+
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+
+                <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Image Name="img2" Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="15" Width="15" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="Sommario delle Rettifiche Non Numerarie" Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                <Grid Name="grdMainNN" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" SharedSizeGroup="A"></ColumnDefinition>
+                        <ColumnDefinition Width="70" SharedSizeGroup="B"></ColumnDefinition>
+                        <ColumnDefinition Width="680" SharedSizeGroup="E"></ColumnDefinition>
+                        <ColumnDefinition Width="75" SharedSizeGroup="H"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!--<TextBlock Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="0" Text="SOMMARIO DELLE RETTIFICHE" Background="Beige" FontWeight="Bold" Margin="10" TextAlignment="Center"></TextBlock>-->
+
+                    
+                    <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="CARTA DI LAVORO" Margin="5, 5, 5, 0" ToolTip="Fare doppio click per aprirne il contenuto" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="(Doppio click per aprirla)" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+
+                    <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Numero" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                    
+                    <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Descrizione dell'Errore"  Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <TextBlock Text="Corretto" Margin="5" FontSize="10" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                </Grid>
+                            
+                
+                <Grid Name="grdMainETNN" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" SharedSizeGroup="A"></ColumnDefinition>
+                        <ColumnDefinition Width="490" SharedSizeGroup="B"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="120" Width="120" SharedSizeGroup="E"></ColumnDefinition>
+                        <ColumnDefinition Width="75" SharedSizeGroup="H"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Border>
+
+                <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Image Name="img3" Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="15" Width="15" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="Sommario delle Riclassifiche"  Margin="5" FontSize="13" FontWeight="Bold" Foreground="Gray"></TextBlock>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                                <Grid Name="grdMainMR" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" SharedSizeGroup="A"></ColumnDefinition>
+                        <ColumnDefinition Width="400" SharedSizeGroup="B"></ColumnDefinition>
+                        <ColumnDefinition Width="120" SharedSizeGroup="C"></ColumnDefinition>
+                        <ColumnDefinition Width="120" SharedSizeGroup="D"></ColumnDefinition>
+                        <ColumnDefinition Width="120" SharedSizeGroup="E"></ColumnDefinition>
+                        <ColumnDefinition Width="75" SharedSizeGroup="H"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <!--<TextBlock Grid.Column="0" Grid.ColumnSpan="8" Grid.Row="0" Text="SOMMARIO DELLE RETTIFICHE" Background="Beige" FontWeight="Bold" Margin="10" TextAlignment="Center"></TextBlock>-->
+
+                    
+                    <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <StackPanel>
+                            <TextBlock Text="CARTA DI LAVORO" Margin="5, 5, 5, 0" ToolTip="Fare doppio click per aprirne il contenuto" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock Text="(Doppio click per aprirla)" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Descrizione dell'Errore"  Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Conto Imputato" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                    <Border Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Conto Proposto" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="4" Grid.Row="1" Grid.RowSpan="2" Background="PaleGreen" BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <TextBlock Text="Importo" Margin="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+
+                    <Border Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Background="White" BorderThickness="1,1,1,1" BorderBrush="Black">
+                        <TextBlock Text="Corretto" Margin="5" FontSize="10" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                </Grid>
+                <Grid Name="grdMainETMR" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" SharedSizeGroup="A"></ColumnDefinition>
+                        <ColumnDefinition Width="250" SharedSizeGroup="B"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="120" Width="120" SharedSizeGroup="C"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="120" Width="120" SharedSizeGroup="D"></ColumnDefinition>
+                        <ColumnDefinition MinWidth="120" Width="120" SharedSizeGroup="E"></ColumnDefinition>
+                        <ColumnDefinition Width="75" SharedSizeGroup="H"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                </Grid>
+            </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Border>
+    </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

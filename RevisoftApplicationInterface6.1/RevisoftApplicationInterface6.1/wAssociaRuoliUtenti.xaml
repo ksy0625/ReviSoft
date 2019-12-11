@@ -1,0 +1,144 @@
+﻿<Window x:Class="RevisoftApplication.wAssociaRuoliUtenti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RevisoftApplication"
+        xmlns:converter="clr-namespace:RevisoftApplication.Converter"
+        mc:Ignorable="d"
+        Title="Associa esecutori e revisori" Height="569" Width="525"
+        WindowStartupLocation="CenterScreen"
+        Background="WhiteSmoke" ShowInTaskbar="False" >
+
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Background="WhiteSmoke" Height="529" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="498" Margin="3,0,0,0">
+            <Label Content="Associazione revisori/esecutori con utenti e clienti" FontSize="14" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+            <!--<TextBlock FontSize="13" Margin="4,2,0,0" Name="textBlockDescrizione" Text="Descrizione" TextWrapping="Wrap" />-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="450"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <TabControl Grid.Row="0" Name="tcAssociazione" Width="Auto" Height="440" Margin="5,10,5,0" SelectionChanged="tcAssociazione_SelectionChanged" >
+                    <TabItem Header="Associazione rev./esec. - utenti" Name="tabItemUtenti" FontWeight="Normal">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="10"></RowDefinition>
+                                    <RowDefinition Height="375"/>
+
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Content="Associazione revisori/esecutori con utenti" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblTeamLeader" VerticalAlignment="Top" FontWeight="Normal" FontStyle="Normal" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                                <DataGrid Grid.Row="2" HorizontalAlignment="Left" Height="368" 
+                                              VerticalAlignment="Top" Width="462"
+                                              Name="GridImpostaRuoli" 
+                                              AutoGenerateColumns = "False" 
+                                              CanUserAddRows="False"
+                                              Margin="10,0,0,0" Grid.ColumnSpan="2" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header = "Utente" Width="90" IsReadOnly="True"  Binding = "{Binding Login}" />
+                                        <DataGridTextColumn Header = "Nome" Width="90" IsReadOnly="True" Binding = "{Binding Nome}" />
+                                        <DataGridTextColumn Header = "Cognome" Width="90" IsReadOnly="True" Binding = "{Binding Cognome}" />
+                                        <DataGridComboBoxColumn Header = "Ruolo" Width="130*" IsReadOnly="false" x:Name="RuoloColumn" 
+                                                                SelectedValueBinding = "{Binding RuoId}" 
+                                                                DisplayMemberPath="Descr" SelectedValuePath="Id"/>
+                                        <DataGridTextColumn Header = "Id" Width="0" Visibility="Hidden" IsReadOnly="True" Binding = "{Binding Id}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Associazione clienti con rev./esec." Name="tabItemClienti" FontWeight="Normal">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="8"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="8"></RowDefinition>
+                                    <RowDefinition Height="337"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Content="Associazione clienti con revisori/esecutori" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblCliente" VerticalAlignment="Top" FontWeight="Normal" FontStyle="Normal" />
+                                <Label Grid.Row="2" Content="Cliente" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblAnagrafica" VerticalAlignment="Top" Width="100" FontWeight="Normal" FontStyle="Normal" />
+                                <ComboBox Grid.Row="2" Height="25" Width="250" Name="cmbCliente" ItemsSource="{Binding _listClienti}" DisplayMemberPath="RagioneSociale" SelectedValuePath="ID" SelectionChanged="cmbCliente_SelectionChanged" />
+                                <Grid Grid.Row="4"  Margin="6,0,0,0">
+                                    <Grid.RowDefinitions>                                        
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25"></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Content="Revisori" Height="28" HorizontalAlignment="Left" Margin="0,0,0,0"  Name="lblRevisori" VerticalAlignment="Top" FontWeight="Normal" FontStyle="Normal" />
+                                        <ComboBox Grid.Row="0" Height="25" Width="250 " Margin="0,0,5,0"  Name="cmbRevisori" 
+                                                  DisplayMemberPath="Login"
+                                                  SelectedValuePath="Id"
+                                                  SelectionChanged="cmbRevisori_SelectionChanged">
+                                            <!--<ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="{Binding Login}" VerticalAlignment="Center" Margin="5"></TextBlock>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Nome}" VerticalAlignment="Center" Margin="5"></TextBlock>
+                                                        <TextBlock Grid.Column="2" Text="{Binding Cognome}" VerticalAlignment="Center" Margin="5"></TextBlock>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>-->
+                                        </ComboBox>
+                                        <!--<ComboBox Grid.Row="0" Height="25" Width="250 " Margin="0,0,5,0"  Name="cmbRevisori" ItemsSource="{Binding _listRevisori}" DisplayMemberPath="Login" SelectedValuePath="Id" SelectionChanged="cmbRevisori_SelectionChanged" />-->
+                                        <!--<ComboBox Grid.Row="0" Height="25" Width="250" Margin="0,0,5,0" Name="cmbRevisori" ItemsSource="{Binding _listRevisori}" DisplayMemberPath="Login" SelectedValuePath="Id" SelectionChanged="cmbRevisori_SelectionChanged" />-->
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="0" Content="Esecutori" Height="25" HorizontalAlignment="Left"  Name="lblEsecutori" VerticalAlignment="Top" FontWeight="Normal" FontStyle="Normal" />
+                                                <Grid Grid.Row="1">
+                                                    <ListView x:Name="lvEsecutori" Margin="2" >
+                                                        <ListView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Grid Grid.Column="2">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="30"/>
+                                                                        <ColumnDefinition Width="100"/>
+                                                                        <ColumnDefinition Width="120"/>
+                                                                        <ColumnDefinition Width="120"/>
+                                                                <ColumnDefinition/>
+                                                                    </Grid.ColumnDefinitions>
+                                                            <CheckBox Grid.Column="0" IsChecked="{Binding InTeam}" FontSize="14" HorizontalAlignment="Left" IsEnabled="{Binding ReadOnly}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Margin="2,2,0,0"/>
+                                                                    <TextBlock Grid.Column="1" Text="{Binding Login}"  FontSize="14" />
+                                                                    <TextBlock Grid.Column="2" Text="{Binding Nome}"  FontSize="14"  />
+                                                                    <TextBlock Grid.Column="3" Text="{Binding Cognome}"  FontSize="14" />
+                                                        </Grid>
+                                                            </DataTemplate>
+                                                        </ListView.ItemTemplate>
+                                                    </ListView>
+                                                </Grid>
+                                            </Grid>
+                                   
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+                <Button  Grid.Row="1" Name="btnSalva"  Content="Salva" HorizontalAlignment="Left" Margin="300,15,0,0" VerticalAlignment="Top" Width="75" Click="btnSalva_Click"/>
+                <Button Grid.Row="1" Name="btnChiudi"  Content="Chiudi" HorizontalAlignment="Left" Margin="386,15,0,0" VerticalAlignment="Top" Width="75" Click="btnChiudi_Click"/>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

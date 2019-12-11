@@ -1,0 +1,129 @@
+﻿<UserControl x:Class="UserControls.ucDestinatariEBilancio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConvNS" 
+             xmlns:uc="clr-namespace:UserControls"
+             mc:Ignorable="d" 
+             SizeChanged="UserControl_SizeChanged">
+    <StackPanel x:Name="stack" CanVerticallyScroll="True">
+        <Border Name="brdDestinatari" CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="Destinatari:" Background="Transparent" MinWidth="100" BorderThickness="0"></TextBox>
+                <ComboBox Name="cmbDestinatari" Margin="20,0,0,0">
+                    <ComboBoxItem IsSelected="True">(Selezionare una voce)</ComboBoxItem>
+                    <ComboBoxItem Name="cmbitem1">dei soci</ComboBoxItem>
+                    <ComboBoxItem Name="cmbitem2">degli azionisti</ComboBoxItem>
+                    <ComboBoxItem Name="cmbitem3">dei soci e azionisti</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Border Name="brdBilancio2" CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="Bilancio:" Background="Transparent" MinWidth="100" BorderThickness="0"></TextBox>
+                <ComboBox Name="cmbBilancio" Margin="20,0,0,0" IsEnabled="False">                    
+                    <ComboBoxItem>all'esercizio</ComboBoxItem>
+                    <ComboBoxItem>al consolidato</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Border Name="brdBilancio" CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <Grid  Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" MinWidth="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+                    <RowDefinition MinHeight="20"></RowDefinition>
+
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBox Text="STATO PATRIMONIALE" IsTabStop="False" IsReadOnly="True" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="Transparent" FontWeight="Bold" BorderThickness="0"></TextBox>
+                <Border Grid.Column="0" Grid.Row="1" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Attività" IsReadOnly="True"  IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="1" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtAttivita" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="2" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Passività" IsReadOnly="True"  IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="2" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtPassivita" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="3" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Patrimonio Netto" IsReadOnly="True"  IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="3" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtPatrimonioNetto" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="4" BorderThickness="1" BorderBrush="Black">
+                    <TextBox Text="Utile (Perdita) d'esercizio" FontWeight="Bold" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="4" BorderThickness="1" BorderBrush="Black">
+                    <TextBox Name="txtUtilePerditaPatrimoniale" TextAlignment="Right"></TextBox>
+                </Border>
+
+                <TextBox Text="CONTO ECONOMICO" IsReadOnly="True" IsTabStop="False" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Background="Transparent" FontWeight="Bold" BorderThickness="0"></TextBox>
+                <Border Grid.Column="0" Grid.Row="7" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Valore della produzione" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="7" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtValoreProduzione" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="8" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Costi di produzione" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="8" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtCostiProduzione" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="9" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Risultato gestione finanziaria" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="9" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtRisultatoGestione" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="10" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Rettifiche di valore di attività finanziarie" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="10" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtRettifiche" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="11" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Risultato extragestione" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="11" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtRisultatoExtragestione" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="12" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Text="Imposte a carico dell'esercizio" IsReadOnly="True" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="12" BorderThickness="1,1,1,0" BorderBrush="Black">
+                    <TextBox Name="txtImposte" TextAlignment="Right"></TextBox>
+                </Border>
+                <Border Grid.Column="0" Grid.Row="13" BorderThickness="1" BorderBrush="Black">
+                    <TextBox Text="Utile (Perdita) d'esercizio" IsReadOnly="True" FontWeight="Bold" IsTabStop="False"></TextBox>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="13" BorderThickness="1" BorderBrush="Black">
+                    <TextBox Name="txtUtilePerditaEconomico" TextAlignment="Right"></TextBox>
+                </Border>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

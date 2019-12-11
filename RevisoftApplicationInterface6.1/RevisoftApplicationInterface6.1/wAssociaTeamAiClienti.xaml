@@ -1,0 +1,172 @@
+﻿<Window x:Class="RevisoftApplication.wAssociaTeamAiClienti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RevisoftApplication"
+        xmlns:converter="clr-namespace:RevisoftApplication.Converter"
+        xmlns:brl="clr-namespace:RevisoftApplication.BRL"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Associazione utenti" Height="500" Width="777" Loaded="Window_Loaded" ShowInTaskbar="False">
+
+  <!--<Window.Resources>
+        <converter:UtenteConverter x:Key="converter" />
+    </Window.Resources>-->
+  <Window.Resources>
+    <SolidColorBrush x:Key="clGrigioChiaro"  Color="#E8E8D7" />
+    <BooleanToVisibilityConverter x:Key="BoolToVis" />
+  </Window.Resources>
+
+  <TabControl>
+    <TabItem Header="Associazione clienti al team leader" Name="tbiClientiTeamLeader">
+      <StackPanel  Height="Auto" Name="stackPanel1" VerticalAlignment="Top" Margin="1,1,1,1">
+
+        <Label Content="Associazione clienti al team leader" FontSize="14" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+
+        <StackPanel Height="418">
+          <Grid Margin="2,2,10,2" Height="407">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="378*"></ColumnDefinition>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="37"></RowDefinition>
+              <RowDefinition Height="27"></RowDefinition>
+              <RowDefinition Height="30"></RowDefinition>
+              <RowDefinition Height="280" ></RowDefinition>
+              <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Team Leader" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblTeamLeader" VerticalAlignment="Top" Width="100" FontWeight="Normal" FontStyle="Normal" />
+            <ComboBox Grid.Row="0" Name="cmbTeamLeader" SelectionChanged="cmbTeamLeader_SelectionChanged" Margin="101,6,330,6"/>
+            <Label Grid.Row="1" Content="Clienti" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblUtenti" VerticalAlignment="Top" Width="100" FontWeight="Normal" FontStyle="Normal" Grid.RowSpan="2" />
+            <Grid Grid.Row="2" Margin="10,10,8,10" Grid.RowSpan="2" >
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+
+              <DataGrid Height="283" 
+                                VerticalAlignment="Top"
+                                Name="GridClienti" 
+                                AutoGenerateColumns = "False" 
+                                CanUserAddRows="False"
+                                Margin="0,-1,0,0"
+                                SelectedCellsChanged="GridClienti_SelectedCellsChanged" >
+
+                <DataGrid.Resources>
+                  <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding AssociatoValue}" Value="2">
+                        <Setter Property="Background" Value="LightGray"/>
+                      </DataTrigger>
+                      <DataTrigger Binding="{Binding AssociatoValue}" Value="1">
+                        <Setter Property="Background" Value="{StaticResource clGrigioChiaro}"/>
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                  <!--<DataGridCheckBoxColumn Header = "In Team" Width="50"  Binding = "{Binding InTeam}" IsReadOnly="{Binding ReadOnly, Converter={StaticResource converter}}" />-->
+                  <DataGridCheckBoxColumn Header = "In Team" Width="50"  Binding = "{Binding AssociatoLeader}" />
+                  <DataGridTextColumn Header = "Ragione Sociale" Width="140" IsReadOnly="True"  Binding = "{Binding RagioneSociale}" />
+                  <DataGridTextColumn Header = "Codice Fiscale" Width="130" IsReadOnly="True" Binding = "{Binding CodiceFiscale}" />
+                  <DataGridTextColumn Header = "Partita IVA" Width="130" IsReadOnly="True" Binding = "{Binding PartitaIVA}" />
+                  <DataGridTextColumn Header = "Stato" Width="100" IsReadOnly="True" Binding = "{Binding Stato}" />
+                  <DataGridTextColumn Header = "TeamLeader" Width="90*" IsReadOnly="True" Binding = "{Binding Leader}" />
+                  <DataGridTextColumn Header = "AssociatoValue" Width="0" Visibility="Hidden" IsReadOnly="True" Binding = "{Binding AssociatoValue}" />
+                  <DataGridTextColumn Header = "ID" Width="0" Visibility="Hidden" IsReadOnly="True" Binding = "{Binding ID}" />
+
+                  <!--<DataGridCheckBoxColumn Header = "In Team" Width="50"  Binding = "{Binding InTeam}" IsReadOnly="{Binding ReadOnly, Converter={StaticResource converter}}" />-->
+                </DataGrid.Columns>
+              </DataGrid>
+
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.ColumnSpan="2">
+              <Button Content="Salva"  Height="23" HorizontalAlignment="Left" Margin="568,0,0,0" Name="btnSalva" VerticalAlignment="Top" Width="75"  TabIndex="102" Click="btnSalva_Click"/>
+              <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="664,0,0,0" x:Name="btnChiudi" VerticalAlignment="Top" Width="75"  TabIndex="102" Click="btnChiudi_Click" RenderTransformOrigin="-0.147,0.478"/>
+            </Grid>
+
+          </Grid>
+        </StackPanel>
+
+      </StackPanel>
+    </TabItem>
+    <TabItem Header="Riepilogo Clienti - Team Leader">
+      <StackPanel  Height="Auto" Name="stackPanel2" VerticalAlignment="Top" Margin="1,1,1,1">
+        <Label Content="Riepilogo associazione clienti al team leader" FontSize="14" FontWeight="Bold" Name="labelTitoloRiepilogo" Foreground="#FFF5A41C" Margin="0,0,0,0"  />
+        <StackPanel>
+          <Grid Margin="2,2,10,2" Height="407">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="378*"></ColumnDefinition>
+              <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="37"></RowDefinition>
+              <RowDefinition Height="27"></RowDefinition>
+              <RowDefinition Height="30"></RowDefinition>
+              <RowDefinition Height="280" ></RowDefinition>
+              <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Team Leader" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblTeamLeaderRiepilogo" VerticalAlignment="Top" Width="100" FontWeight="Normal" FontStyle="Normal" />
+            <ComboBox Grid.Row="0" Name="cmbTeamLeaderRiepilogo" SelectionChanged="cmbTeamLeaderRiepilogo_SelectionChanged" Margin="101,6,330,6"/>
+            <Label Grid.Row="1" Content="Clienti" Height="28" HorizontalAlignment="Left" Margin="5,7,0,0" Name="lblUtentiRiepilogo" VerticalAlignment="Top" Width="100" FontWeight="Normal" FontStyle="Normal" Grid.RowSpan="2" />
+            <Grid Grid.Row="2" Margin="10,10,8,10" Grid.RowSpan="2" >
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <DataGrid Height="283" 
+                                VerticalAlignment="Top"
+                                Name="GridClientiRiepilogo" 
+                                AutoGenerateColumns = "False" 
+                                CanUserAddRows="False"
+                                Margin="0,-1,0,0">
+
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header = "Ragione Sociale" Width="160" IsReadOnly="True"  Binding = "{Binding RagioneSociale}" />
+                  <DataGridTextColumn Header = "Codice Fiscale" Width="150" IsReadOnly="True" Binding = "{Binding CodiceFiscale}" />
+                  <DataGridTextColumn Header = "Partita IVA" Width="150" IsReadOnly="True" Binding = "{Binding PartitaIVA}" />
+                  <DataGridTextColumn Header = "Stato" Width="100" IsReadOnly="True" Binding = "{Binding Stato}" />
+                  <DataGridTextColumn Header = "ID" Width="0" Visibility="Hidden" IsReadOnly="True" Binding = "{Binding ID}" />
+                </DataGrid.Columns>
+              </DataGrid>
+            </Grid>
+            <Grid Grid.Row="4" Grid.ColumnSpan="2">
+              <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="665,0,0,0" x:Name="btnChiudiRiepilogo" VerticalAlignment="Top" Width="75"  TabIndex="102" Click="btnChiudiRiepilogo_Click" RenderTransformOrigin="-0.147,0.478"/>
+            </Grid>
+          </Grid>
+        </StackPanel>
+      </StackPanel>
+    </TabItem>
+    <TabItem Header="Riepilogo Associazione - Team Leader">
+      <StackPanel  Height="Auto" Name="stackPanel3" VerticalAlignment="Top" Margin="1,1,1,1">
+        <Label Name="RiepAssTeamLeader" Content="Riepilogo Associazione - Team Leader" FontSize="14" FontWeight="Bold"  Foreground="#FFF5A41C" Margin="0,0,0,0"  />
+
+        <TreeView Name="trvRiepilogo" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto"  Height="390" Margin="0,10,0,0" >
+          <TreeView.ItemContainerStyle>
+            <Style>
+              <Setter Property="TreeViewItem.IsExpanded" Value="True"/>
+            </Style>
+          </TreeView.ItemContainerStyle>
+          <TreeView.ItemTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type brl:RiepilogoItem}" ItemsSource="{Binding Figli}">
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Area:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsArea, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="Revisore:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsRevisore, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="Esecutore:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsEsecutore, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="Team" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsTeam, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="Cliente:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsCliente, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="Team Leader:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsLeader, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="Nessun Ruolo:" Margin="0,0,0,10" FontWeight="Bold" Visibility="{Binding IsNonAssegnato, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Text="{Binding Etichetta}" Margin="10,0,0,0"/>
+              </StackPanel>
+            </HierarchicalDataTemplate>
+          </TreeView.ItemTemplate>
+        </TreeView>
+      </StackPanel>
+    </TabItem>
+  </TabControl>
+
+</Window>

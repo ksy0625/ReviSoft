@@ -1,0 +1,253 @@
+﻿<Window x:Class="RevisoftApplication.wDocumenti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:ConvNS" 
+        SizeChanged="UserControl_SizeChanged"
+        Background="WhiteSmoke"
+        Height="600" Width="1100" 
+        MaxHeight="600"
+        MaxWidth="1100"
+        MinHeight="600"
+        MinWidth="1100"
+        Title="Revisoft - Documenti" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" WindowStyle="ToolWindow"  ContentRendered="Window_ContentRendered" Closing="Window_Closing" WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        >
+  <Window.Resources>
+    <SolidColorBrush x:Key="buttonHover" Color="#FF8BA2B2"/>
+    <local:ClienteConverter x:Key="ClienteConverter"></local:ClienteConverter>
+    <local:TreeConverter x:Key="TreeConverter"></local:TreeConverter>
+    <local:SessioneConverter x:Key="SessioneConverter"></local:SessioneConverter>
+    <local:NodoConverter x:Key="NodoConverter"></local:NodoConverter>
+    <local:ImageEstensioneConverter x:Key="ImageEstensioneConverter"></local:ImageEstensioneConverter>
+    <local:TipoDocumentoConverter x:Key="TipoDocumentoConverter"></local:TipoDocumentoConverter>
+    <Style TargetType="Image">
+      <Setter Property="Margin" Value="0,10,0,0"/>
+    </Style>
+    <Style x:Key="StackPanelStyle"  TargetType="{x:Type StackPanel}">
+      <Style.Triggers>
+        <Trigger Property="IsMouseOver" Value="True">
+          <!--<Setter Property="Background" Value="#59FFFFFF"/>-->
+          <Setter Property="Background" Value="{DynamicResource buttonHover}"/>
+        </Trigger>
+      </Style.Triggers>
+    </Style>
+    <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border Background="Transparent">
+              <ContentPresenter/>
+            </Border>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Height" Value="90"/>
+    </Style>
+  </Window.Resources>
+
+  <Grid Name="grdMainContainer">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="110"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="34"/>
+      <RowDefinition Height="34"/>
+      <RowDefinition Height="34"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="179"/>
+      <RowDefinition Height="36"/>
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Grid.Column="1" Name="txtTitoloWindow" Margin="10,5,10,0" Text="Titolo"  Foreground="#FFF5A41C" FontSize="16" FontWeight="Bold"></TextBlock>
+
+    <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" BorderThickness="1" CornerRadius="10" BorderBrush="LightGray" Background="White" HorizontalAlignment="Stretch" Margin="10,40,10,10">
+
+      <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="4"  Margin="10, 10, 10, 10" Name="dtgMain" CanUserAddRows="False"  Background="White" BorderThickness="0" CanUserSortColumns="False" AlternatingRowBackground="WhiteSmoke" AlternationCount="2" AutoGenerateColumns="False" Loaded="dtgMain_Loaded" Binding.SourceUpdated="DataGrid_SourceUpdated" BeginningEdit="dtgMain_BeginningEdit" SelectionChanged="dtgMain_SelectionChanged" HeadersVisibility="Column" >
+        <DataGrid.GroupStyle>
+          <GroupStyle>
+            <GroupStyle.Panel>
+              <ItemsPanelTemplate>
+                <DataGridRowsPresenter/>
+              </ItemsPanelTemplate>
+            </GroupStyle.Panel>
+          </GroupStyle>
+        </DataGrid.GroupStyle>
+        <DataGrid.ColumnHeaderStyle>
+          <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="Background" Value="DarkGray" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Padding" Value="10,5,10,5" />
+          </Style>
+        </DataGrid.ColumnHeaderStyle>
+
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Cliente" Width="Auto" IsReadOnly="True" Binding="{Binding ClienteExtended}" />
+          <DataGridTextColumn Header="Area" Width="Auto" IsReadOnly="True" Binding="{Binding TreeExtended}">
+            <DataGridTextColumn.ElementStyle>
+              <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+              </Style>
+            </DataGridTextColumn.ElementStyle>
+          </DataGridTextColumn>
+          <DataGridTextColumn Header="Sessione" Width="Auto" IsReadOnly="True"  Binding="{Binding SessioneExtended}">
+          </DataGridTextColumn>
+          <DataGridTextColumn Header="Carta Lavoro" Width="Auto" IsReadOnly="True" Binding="{Binding NodoExtended}">
+          </DataGridTextColumn>
+          <DataGridTextColumn Header="Titolo" Width="Auto" MaxWidth="200" IsReadOnly="True" Binding="{Binding Titolo}"/>
+          <DataGridTextColumn Header="Note" Width="Auto" MaxWidth="300"  IsReadOnly="True" Binding="{Binding Descrizione}"/>
+          <DataGridTextColumn Header="Tipo" Width="Auto" IsReadOnly="True" Binding="{Binding TipoExtended}"/>
+          <DataGridTemplateColumn>
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Image Source="{Binding FileExtended}"></Image>
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+        </DataGrid.Columns>
+      </DataGrid>
+
+    </Border>
+
+    <Grid Grid.Row="4" Grid.Column="1" Margin="15,10,15,2" Name="grdSelectedData" Visibility="Visible" >
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+        <ColumnDefinition Width="2*"></ColumnDefinition>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="Auto"></RowDefinition>
+      </Grid.RowDefinitions>
+      <TextBlock Text="Cliente" Height="18" Margin="0,5,0,10"></TextBlock>
+      <TextBox  Grid.Column="1" Grid.Row="0" Name="txtCliente" Margin="15,3,0,3" IsReadOnly="True" Height="25"></TextBox>
+      <TextBlock Grid.Column="2" Text="Attività" Margin="15,5,0,10" Height="21"></TextBlock>
+      <TextBox  Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="0" Name="txtAttivita" Margin="15,3,0,3"  IsReadOnly="True" Height="25"></TextBox>
+      <TextBlock Grid.Row="1" Text="Sessione" Height="22" Margin="0,5,0,6"></TextBlock>
+      <TextBox  Grid.Column="1" Grid.Row="1" Name="txtSessione" Margin="15,3,0,3"  IsReadOnly="True" Height="25"></TextBox>
+      <TextBlock Grid.Column="2" Grid.Row="1" Text="C.d.Lav." Margin="15,5,0,3" Height="17"></TextBlock>
+      <TextBox  Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Name="txtNodo" Margin="15,3,0,3"  IsReadOnly="True" Height="25"></TextBox>
+
+      <TextBlock Grid.Row="2" Text="Titolo" Height="20" Margin="0,5,0,9"></TextBlock>
+      <TextBox  Grid.Column="1" Grid.Row="2" Name="txtID" Visibility="Collapsed"></TextBox>
+      <TextBox  Grid.Column="1" Grid.Row="2" Name="txtTitolo" Margin="15,3,0,3"  Height="40" TextWrapping="Wrap" MaxLength="50"></TextBox>
+      <TextBlock Grid.Column="2" Grid.Row="2" Text="Tipo" Margin="15,5,0,3" Height="17"></TextBlock>
+      <RadioButton Grid.Column="3" Grid.Row="2" GroupName="Tipo" Name="rdbPermanente" Margin="15,5,0,3" Height="23">Permanente</RadioButton>
+      <RadioButton Grid.Column="4" Grid.Row="2" GroupName="Tipo" Name="rdbCorrente" Height="23" Margin="0,5,0,3">Corrente</RadioButton>
+      <TextBlock Grid.Row="3" Text="Note" Height="18" Margin="0,5,0,10"></TextBlock>
+      <TextBox  Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="3" Name="txtDescrizione" Margin="15,3,0,3" Height="40" TextWrapping="Wrap"></TextBox>
+      <!--<Button  Grid.Column="4" Grid.Row="4" Name="btnSalva" HorizontalAlignment="Right" Margin="0,4,2,16" Click="btnSalva_Click" Width="58">Salva</Button>
+            <Button  Grid.Column="1" Grid.Row="4" Name="btnUploadFile" HorizontalAlignment="Right" Margin="0,4,65,16" Click="btnUploadFile_Click" Width="120">Carica Documento</Button>-->
+      <!--<TextBlock Text="Carica File" Grid.Column="0" Grid.Row="5"></TextBlock>
+            <Image Name="btnUploadFile" Grid.Column="1" Grid.Row="5" Height="24" Width="24" HorizontalAlignment="Left" Source="./Images/icone/data_disk.png" MouseLeftButtonDown="btnUploadFile_Click"/>-->
+    </Grid>
+
+
+
+    <Grid Grid.Row="5" Grid.Column="1" Margin="5">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"></RowDefinition>
+      </Grid.RowDefinitions>
+      <TextBlock Text="Cerca:" Grid.Column="0" Grid.Row="0" />
+      <TextBox  Grid.Column="1" x:Name="searchTextBox" Height="25" HorizontalAlignment="Stretch" KeyDown="searchTextBox_KeyDown"  VerticalAlignment="Center"  Margin="15,0,300,2" />
+      <Button Content="Cerca" Height="23" HorizontalAlignment="Right" Margin="0,2,200,0" Name="buttonCerca" VerticalAlignment="Top" Width="75" Click="buttonCerca_Click" Grid.Column="1" />
+      <Button Content="Nuova ricerca" Height="23" HorizontalAlignment="Right" Margin="0,2,90,0" Name="buttonNuovoCerca" VerticalAlignment="Top" Width="90" Click="buttonNuovoCerca_Click" Grid.Column="1" />
+      <Button Content="Chiudi" Height="23" HorizontalAlignment="Right" Margin="0,2,3,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" Grid.Column="1" />
+    </Grid>
+
+    <Border BorderThickness="0,0,1,0" BorderBrush="Black" Grid.Column="0" Width="110"  Grid.Row="0" Grid.RowSpan="6">
+      <StackPanel Name="ButtonBar" Orientation="Vertical" Width="110" Margin="0,0,0,0" HorizontalAlignment="Right" Background="#FF3b9589">
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnView" ToolTip="Visualizza il documento selezionato" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="btnPreviewFile_Click">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/document_view.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Visualizza Documento</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnAdd" ToolTip="Inserisce un nuovo documento" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="AddRow">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/document_add.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Nuovo Documento</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnDelete" ToolTip="Elimina il documento selezionato" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="DeleteRow">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/document_delete.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Elimina Documento</TextBlock>
+          </StackPanel>
+        </Button>
+
+
+
+        <!--<Image Name="btnAdd" Margin="5" Grid.Column="0" Grid.Row="0" Source="./Images/icone/add.png" ToolTip="Aggiungi Documento" Height="24" Width="24" MouseLeftButtonDown="AddRow" />
+                <Image Name="btnView" Margin="5" Grid.Column="0" Grid.Row="1" Source="./Images/icone/apri.png" ToolTip="Visualizza Documento" Height="24" Width="24" MouseLeftButtonDown="btnPreviewFile_Click" />
+                <Image Name="btnDelete" Margin="5" Grid.Column="0" Grid.Row="2" Source="./Images/icone/delete.png" ToolTip="Cancella Documento" Height="24" Width="24" MouseLeftButtonDown="DeleteRow"/>-->
+
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnViewTmp" ToolTip="Visualizza il modello selezionato" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="btnPreviewFileTmp_Click">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/document_view.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Visualizza Modello</TextBlock>
+          </StackPanel>
+        </Button>
+
+
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnCopia" ToolTip="Copia in Documenti Associati" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="CopyToDocumentiAssociati">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/copy.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Copia in Documenti</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Name="btnSave" Style="{StaticResource TransparentStyle}" ToolTip="Salva modello su disco" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="SaveToDisck">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/documents_new.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Salva Modello su disco</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnSalva" ToolTip="Salva informazioni documento" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="btnSalva_Click">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/disk_blue.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Salva</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnUploadFile" ToolTip="Inserisce un nuovo documento" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="btnUploadFile_Click">
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/documents_new.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Sostituisci Documento</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <Button Style="{StaticResource TransparentStyle}" Name="btnPrint" ToolTip="Stampa lista documenti" Width="110" Margin="0,5,0,0" HorizontalContentAlignment="Stretch" Click="buttonCreaPDF_Click" >
+          <StackPanel  Style="{StaticResource StackPanelStyle}" Width="110" Height="80" HorizontalAlignment="Stretch">
+            <Image Source="/RevisoftApplication;component/Images/icone/printer3.png" Stretch="Fill" Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <TextBlock FontSize="11" TextAlignment="Center" TextWrapping="Wrap">Stampa Indice</TextBlock>
+          </StackPanel>
+        </Button>
+
+        <!--<Image Name="btnCopia" Margin="5" Grid.Column="0" Grid.Row="0" Source="./Images/icone/export2.png" ToolTip="Copia in Documenti Associati" Height="24" Width="24" MouseLeftButtonDown="CopyToDocumentiAssociati" />-->
+        <!--<Image Name="btnViewTmp" Margin="5" Grid.Column="0" Grid.Row="1" Source="./Images/icone/apri.png" ToolTip="Visualizza Documento" Height="24" Width="24" MouseLeftButtonDown="btnPreviewFileTmp_Click" />-->
+        <!--<Image Name="btnSave" Margin="5" Grid.Column="0" Grid.Row="2" Source="./Images/icone/import1.png" ToolTip="Salva Modello su disco" Height="24" Width="24" MouseLeftButtonDown="SaveToDisck"/>-->
+      </StackPanel>
+
+    </Border>
+
+  </Grid>
+</Window>

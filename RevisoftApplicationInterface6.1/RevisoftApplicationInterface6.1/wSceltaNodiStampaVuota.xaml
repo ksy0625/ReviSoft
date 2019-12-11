@@ -1,0 +1,32 @@
+﻿<Window x:Class="RevisoftApplication.wSceltaNodiStampaVuota"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Scalta Carte di lavoro da stampare" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight"  Width="467.697" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+        <Label Content="Scelta Carte di lavoro da stampare" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+        <TextBlock Text="Tutte le carte di lavoro con una spunta, verranno stampate" Name="TitoloBilancio" TextWrapping="Wrap" Margin="10,0" FontWeight="Bold" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" MaxHeight="500">
+            <StackPanel Name="stpList" Height="Auto"/>
+        </ScrollViewer>
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Deseleziona tutto" Height="23" HorizontalAlignment="Left" Margin="61,0,0,-0.2" Name="btnDeseleziona" VerticalAlignment="Top" Width="100" Click="btnDeseleziona_Click" />
+            <Button Content="Seleziona tutto" Height="23" HorizontalAlignment="Left" Margin="171,0,0,-0.2" Name="btnSeleziona" VerticalAlignment="Top" Width="85" Click="btnSeleziona_Click" />
+            <Button Content="Annulla" Height="23" HorizontalAlignment="Left" Margin="271,0,0,-0.2" Name="btnAnnulla" VerticalAlignment="Top" Width="75" Click="btnAnnulla_Click" />
+            <Button Content="Stampa" Height="23" HorizontalAlignment="Left" Margin="361,0,0,-0.2" Name="buttonComando" VerticalAlignment="Top" Width="75" Click="buttonApplica_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

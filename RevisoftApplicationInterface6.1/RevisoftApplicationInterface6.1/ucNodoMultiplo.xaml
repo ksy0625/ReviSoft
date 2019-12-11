@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="UserControls.ucNodoMultiplo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConvNS" 
+             xmlns:uc="clr-namespace:UserControls"
+             mc:Ignorable="d" 
+             Height="Auto" Width="640"
+             SizeChanged="UserControl_SizeChanged">
+    <TabControl x:Name="tabControl"/>
+</UserControl>

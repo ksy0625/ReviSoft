@@ -1,0 +1,214 @@
+﻿<UserControl x:Class="UserControls.ucDichiarazioneRedditi_6_1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ConvNS"   >
+    <UserControl.Resources>
+       
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>        
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Integer x:Key="TypeInteger"></local:Integer>
+        <local:Percent x:Key="TypePercent"></local:Percent>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+           
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+
+                <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" BorderThickness="1" BorderBrush="LightGray">
+                        <StackPanel Orientation="Vertical" Margin="0,20,0,20" Width="Auto">
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Periodo d'imposta
+                                </TextBlock>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold"  Margin="5" Width="300" Name="txt_periodo_imposta"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,5,-1" Width="300"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold" Margin="5,0,5,-1" Width="150" Name="txt_H1"></TextBox>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold" Margin="5,0,5,-1" Width="150" Name="txt_H2"></TextBox>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold" Margin="5,0,5,-1" Width="150" Name="txt_H3"></TextBox>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold" Margin="5,0,5,-1" Width="150" Name="txt_H4"></TextBox>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,5,-1" Width="300">Data di presentazione della dichiarazione</TextBlock>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C1R1" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C2R1" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C3R1" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C4R1" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,5,-5" Width="300">In via telematica diretta - n° protocollo</TextBlock>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C1R2" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C2R2" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C3R2" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C4R2" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,5,-1" Width="300">Intermediario</TextBlock>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C1R3" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C2R3" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C3R3" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C4R3" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5,0,5,-1" Width="300">Protocollo intermediario
+                                </TextBlock>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C1R4" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C2R4" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C3R4" ></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5,0,5,-1" Width="150" Name="txt_C4R4" ></TextBox>
+                            </StackPanel>
+                            <StackPanel Height="7" Orientation="Horizontal">
+                                <TextBlock Margin="0" Width="900"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Imposta dovuta per il periodo (credito/debito)
+                                </TextBlock>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C1R5" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C2R5" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C3R5" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C4R5" LostFocus="txt_LostFocus"></TextBox>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5" FontWeight="Bold"  Width="300">Totale debiti d'imposta</TextBlock>
+                           
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold"  Margin="5" Width="300" Name="txtTotale_debitiimposta" IsReadOnly="True"  IsTabStop="False"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Height="7" Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="900"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Primo acconto d'imposta
+                                </TextBlock>
+                                <TextBox  TextAlignment="Right" Margin="5" Width="150" Name="txt_C1ACC1" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Right" Margin="5" Width="150" Name="txt_C2ACC1" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Right" Margin="5" Width="150" Name="txt_C3ACC1" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Right" Margin="5" Width="150" Name="txt_C4ACC1" LostFocus="txt_LostFocus"></TextBox>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5"  FontWeight="Bold"  Width="300">Totale</TextBlock>
+
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold"  Margin="5" Width="300" Name="txtTotale" IsReadOnly="True"  IsTabStop="False"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Compensazioni con altri crediti</TextBlock>
+
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Right" Margin="5" Width="300" Name="txt_compensazione1" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5" FontWeight="Bold"  Width="300">Saldo da pagare</TextBlock>
+
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold"  Margin="5" Width="300" Name="txt_saldo_da_pagare" IsReadOnly="True" IsTabStop="False"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            
+                            <StackPanel Height="7" Orientation="Horizontal">
+                                <TextBlock Margin="0" Width="900"></TextBlock>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+
+                        <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdErroriRilevati" Grid.IsSharedSizeScope="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"  Name="tbrate" Margin="10" HorizontalAlignment="Stretch"></Grid>
+
+                           </Grid>
+                    </Border>
+                    <Border Grid.Row="2" BorderThickness="1" BorderBrush="LightGray">
+                        <StackPanel Orientation="Vertical" Margin="0,20,0,20" Width="Auto">
+
+                           
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Secondo acconto d'imposta
+                                </TextBlock>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C1ACC2" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C2ACC2" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C3ACC2" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBox  TextAlignment="Center" Margin="5" Width="150" Name="txt_C4ACC2" LostFocus="txt_LostFocus"></TextBox>
+                            </StackPanel>
+                            
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Compensazioni con altri crediti</TextBlock>
+
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Right"   Margin="5" Width="300" Name="txt_compensazione2" LostFocus="txt_LostFocus"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5" FontWeight="Bold"  Width="300">Saldo da pagare</TextBlock>
+
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold"  Margin="5" Width="300" Name="txt_saldo_da_pagare2" IsReadOnly="True" IsTabStop="False"></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                            
+                            <StackPanel Height="7" Orientation="Horizontal">
+                                <TextBlock Margin="0" Width="900"></TextBlock>
+                            </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Margin="5" Width="300">Pagamento avvenuto il</TextBlock>
+
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                                <TextBox  TextAlignment="Center" FontWeight="Bold"  Margin="5" Width="300" Name="txt_datapagamento" ></TextBox>
+                                <TextBlock Margin="5" Width="150"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,626 @@
+﻿<UserControl x:Class="UserControls.uc_Excel_CapitaleSociale"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:ConvNS" 
+        SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="DataGridHeaderBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#fff" Offset="0" />
+            <GradientStop Color="#999" Offset="1" />
+        </LinearGradientBrush>
+
+        <local:FontWeightConverter x:Key="TypeFontWeightConverter"></local:FontWeightConverter>
+        <local:IsTabStopConverter x:Key="TypeIsTabStopConverter"></local:IsTabStopConverter>
+        <local:VisibilityConverter x:Key="TypeVisibilityConverter"></local:VisibilityConverter>
+        <local:BackgroundConverter x:Key="TypeBackgroundConverter"></local:BackgroundConverter>
+        <local:Money x:Key="TypeMoney"></local:Money>
+        <local:Integer x:Key="TypeInteger"></local:Integer>
+        <local:Percent x:Key="TypePercent"></local:Percent>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10" Name="stpMain">
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray">
+                <StackPanel>
+                    <TextBlock Text="COMPOSIZIONE CAPITALE SOCIALE" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="0,10,0,10"></TextBlock>
+                </StackPanel>
+            </Border>
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+
+                <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdCapitaleSocialeContainer" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dtgCapitaleSociale" CanUserAddRows="False" GridLinesVisibility="None" Grid.Column="0" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="0" Grid.Row="0" Margin="10" Width="Auto" Height="Auto" RowHeaderWidth="0" AlternatingRowBackground="#FFF1F1F1" AlternationCount="2" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="Cell" Binding.SourceUpdated="DataGrid_SourceUpdated" BeginningEdit="DataGrid_BeginningEdit" Loaded="dtgCapitaleSociale_Loaded" DataGridCell.Selected="DataGrid_GotFocus" CellEditEnding="dtgCapitaleSociale_CellEditEnding" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </DataGrid.CellStyle>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="LightGray" />
+                                <Setter Property="FontSize" Value="13" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="Padding" Value="4" />
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Capitale sociale / tipi e cat. azioni" Width="4*" MinWidth="250" IsReadOnly="False" Binding="{Binding name,Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Deliberato" Width="2*" MinWidth="100" IsReadOnly="False"  Binding="{Binding deliberato,Mode=TwoWay,NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Sottoscritto" Width="2*" MinWidth="100" IsReadOnly="False" Binding="{Binding sottoscritto,Mode=TwoWay,  NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Versato" Width="3*" MinWidth="150" IsReadOnly="False" Binding="{Binding versato,Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Margin="14,5,112,5" Grid.Column="0" Grid.Row="1" Content=" Nuova riga " ToolTip="Aggiungi riga" Click="AddRowCapitaleSociale" MaxWidth="75" />
+                    <Button Margin="100,5,26,5" Grid.Column="0" Grid.Row="1" Content=" Elimina riga " ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate" Click="DeleteRowCapitaleSociale" MaxWidth="75" />
+
+
+                    <!--<Image Margin="10" Grid.Column="0" Grid.Row="1" Source="./Images/icone/add.png" ToolTip="Aggiungi riga" Height="16" Width="16" MouseLeftButtonDown="AddRowCapitaleSociale" />
+                    <Image Margin="10" Grid.Column="1" Grid.Row="1" Source="./Images/icone/delete.png" ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate." Height="16" Width="16" MouseLeftButtonDown="DeleteRowCapitaleSociale" />-->
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdTipiAzioniContainer" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dtgTipiAzioni" CanUserAddRows="False" GridLinesVisibility="None" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" BorderBrush="Black" BorderThickness="0" Margin="10" Width="Auto" Height="Auto" RowHeaderWidth="0" AlternatingRowBackground="#FFF1F1F1" AlternationCount="2" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="Cell" Binding.SourceUpdated="DataGrid_SourceUpdated" BeginningEdit="DataGrid_BeginningEdit" Loaded="dtgTipiAzioni_Loaded" DataGridCell.Selected="DataGrid_GotFocus" CellEditEnding="dtgTipiAzioni_CellEditEnding" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="LightGray" />
+                                <Setter Property="FontSize" Value="13" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="4" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tipi e categorie di azioni" Width="4*" MinWidth="250" IsReadOnly="False" Binding="{Binding name,Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}" >
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Val. Nom." Width="2*" MinWidth="100" IsReadOnly="False"  Binding="{Binding valnom,Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Numero" Width="2*" MinWidth="100" IsReadOnly="False" Binding="{Binding numero,Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource TypeInteger}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Totale" Width="3*" MinWidth="150" IsReadOnly="False" Binding="{Binding totale,Mode=TwoWay,  NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=PropertyChanged}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Margin="14,5,112,5" Grid.Column="0" Grid.Row="1" Content=" Nuova riga " ToolTip="Aggiungi riga" Click="AddRowTipiAzioni" MaxWidth="75" />
+                    <Button Margin="100,5,26,5" Grid.Column="0" Grid.Row="1" Content=" Elimina riga " ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate" Click="DeleteRowTipiAzioni" MaxWidth="75" />
+
+
+                    <!--<Image Margin="10" Grid.Column="0" Grid.Row="1" Source="./Images/icone/add.png" ToolTip="Aggiungi riga" Height="16" Width="16" MouseLeftButtonDown="AddRowTipiAzioni" />
+                    <Image Margin="10" Grid.Column="1" Grid.Row="1" Source="./Images/icone/delete.png" ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate." Height="16" Width="16" MouseLeftButtonDown="DeleteRowTipiAzioni" />-->
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                <StackPanel>
+                    <TextBlock Text="RIPARTIZIONE CAPITALE SOCIALE ( Numero x V.N. o Solo Quota)" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="0,10,0,10"></TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdRipartizioneContainer" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dtgRipartizione" CanUserAddRows="False" GridLinesVisibility="None" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" BorderBrush="Black" BorderThickness="0" Margin="10" Width="Auto" Height="Auto" RowHeaderWidth="0" AlternatingRowBackground="#FFF1F1F1" AlternationCount="2" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="Cell" Binding.SourceUpdated="DataGrid_SourceUpdated" BeginningEdit="DataGrid_BeginningEdit" Loaded="dtgRipartizione_Loaded" DataGridCell.Selected="DataGrid_GotFocus" CellEditEnding="dtgRipartizione_CellEditEnding" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="LightGray" />
+                                <Setter Property="FontSize" Value="13" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="4" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Soci" Width="4*" MinWidth="200" IsReadOnly="False" Binding="{Binding name,Mode=TwoWay, NotifyOnSourceUpdated=True,  UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Numero" Width="2*" MinWidth="100" IsReadOnly="False"  Binding="{Binding numero,Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource TypeInteger}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="V.N." Width="*" MinWidth="60" IsReadOnly="False" Binding="{Binding valnom,Mode=TwoWay,NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Ammontare" Width="2*" MinWidth="100" IsReadOnly="False" Binding="{Binding totale,Mode=TwoWay,  NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsTabStop" Value="True"/>
+                                        <Setter Property="IsEnabled" Value="True"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="%" Width="*" MinWidth="60" IsReadOnly="False" Binding="{Binding percentuale,Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource TypePercent}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Tipo" Width="2*" MinWidth="100" IsReadOnly="False"  >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox x:Name="cmb" SelectedValuePath="Tag" SelectedValue="{Binding tiporipartizione,Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}">
+                                            <ComboBox.Style>
+                                                <Style TargetType="ComboBox">
+                                                    <Setter Property="Visibility" Value="{Binding XPath=@bold, Converter={StaticResource TypeVisibilityConverter}}"/>
+                                                    <Setter Property="IsDropDownOpen" Value="False"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                                            <Setter Property="IsDropDownOpen" Value="True"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ComboBox.Style>
+                                            <ComboBoxItem Tag="Q">Quote s.r.l.</ComboBoxItem>
+                                            <ComboBoxItem Tag="AO">Azioni ordinarie</ComboBoxItem>
+                                            <ComboBoxItem Tag="AP">Azioni privilegiate</ComboBoxItem>
+                                            <ComboBoxItem Tag="Div">Altro</ComboBoxItem>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Margin="14,5,112,5" Grid.Column="0" Grid.Row="1" Content=" Nuova riga " ToolTip="Aggiungi riga" Click="AddRowRipartizione" MaxWidth="75" />
+                    <Button Margin="100,5,26,5" Grid.Column="0" Grid.Row="1" Content=" Elimina riga " ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate" Click="DeleteRowRipartizione" MaxWidth="75" />
+
+
+                    <!--<Image Margin="10" Grid.Column="0" Grid.Row="1" Source="./Images/icone/add.png" ToolTip="Aggiungi riga" Height="16" Width="16" MouseLeftButtonDown="AddRowRipartizione" />
+                    <Image Margin="10" Grid.Column="1" Grid.Row="1" Source="./Images/icone/delete.png" ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate." Height="16" Width="16" MouseLeftButtonDown="DeleteRowRipartizione" />-->
+                </Grid>
+            </Border>
+
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                <StackPanel>
+                    <TextBlock Text="RIPARTIZIONE CAPITALE SOCIALE ( Ammontare / Numero )" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="0,10,0,10"></TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border BorderThickness="0" CornerRadius="10" BorderBrush="LightGray" Margin="0,10,0,0">
+                <Grid HorizontalAlignment="Stretch" Width="Auto" Height="Auto" Name="grdRipartizioneANContainer" Grid.IsSharedSizeScope="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dtgRipartizioneAN" CanUserAddRows="False"  GridLinesVisibility="None" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" BorderBrush="Black" BorderThickness="0" Margin="10" Width="Auto" Height="Auto" RowHeaderWidth="0" AlternatingRowBackground="#FFF1F1F1" AlternationCount="2" AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="Cell" Binding.SourceUpdated="DataGrid_SourceUpdated" BeginningEdit="DataGrid_BeginningEdit" Loaded="dtgRipartizioneAN_Loaded" DataGridCell.Selected="DataGrid_GotFocus" CellEditEnding="dtgRipartizioneAN_CellEditEnding" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                <Setter Property="IsTabStop" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="2" />
+                            </Style>
+                        </DataGrid.Resources>
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="LightGray" />
+                                <Setter Property="FontSize" Value="13" />
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="BorderBrush" Value="LightGray" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="Padding" Value="4" />
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Soci" Width="4*" MinWidth="200" IsReadOnly="False" Binding="{Binding name,Mode=TwoWay, NotifyOnSourceUpdated=True,  UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="{Binding XPath=@bold, Converter={StaticResource TypeFontWeightConverter}}"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="{Binding XPath=@bold, Converter={StaticResource TypeIsTabStopConverter}}"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Numero" Width="2*" MinWidth="100" IsReadOnly="False"  Binding="{Binding numero,Mode=TwoWay, NotifyOnSourceUpdated=True, Converter={StaticResource TypeInteger}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Ammontare" Width="2*" MinWidth="100" IsReadOnly="False" Binding="{Binding totale,Mode=TwoWay,NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="V.N." Width="*" MinWidth="60" IsReadOnly="False" Binding="{Binding valnom,Mode=TwoWay,  NotifyOnSourceUpdated=True, Converter={StaticResource TypeMoney}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="%" Width="*" MinWidth="60" IsReadOnly="False" Binding="{Binding percentuale,Mode=TwoWay,  NotifyOnSourceUpdated=True, Converter={StaticResource TypePercent}, UpdateSourceTrigger=LostFocus}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="IsTabStop" Value="False"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Background" Value="{Binding XPath=@bold, Converter={StaticResource TypeBackgroundConverter}}"/>
+                                        <Setter Property="BorderBrush" Value="LightGray" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="Padding" Value="2" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="BorderBrush" Value="#7EF5A41C" />
+                                                <Setter Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Tipo" Width="2*" MinWidth="100" IsReadOnly="False"  >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox x:Name="cmb" SelectedValuePath="Tag" SelectedValue="{Binding tiporipartizione,Mode=TwoWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=LostFocus}">
+                                            <ComboBox.Style>
+                                                <Style TargetType="ComboBox">
+                                                    <Setter Property="Visibility" Value="{Binding XPath=@bold, Converter={StaticResource TypeVisibilityConverter}}"/>
+                                                    <Setter Property="IsDropDownOpen" Value="False"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                                            <Setter Property="IsDropDownOpen" Value="True"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ComboBox.Style>
+                                            <ComboBoxItem Tag="Q">Quote s.r.l.</ComboBoxItem>
+                                            <ComboBoxItem Tag="AO">Azioni ordinarie</ComboBoxItem>
+                                            <ComboBoxItem Tag="AP">Azioni privilegiate</ComboBoxItem>
+                                            <ComboBoxItem Tag="Div">Altro</ComboBoxItem>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Margin="14,5,112,5" Grid.Column="0" Grid.Row="1" Content=" Nuova riga " ToolTip="Aggiungi riga" Click="AddRowRipartizioneAN" MaxWidth="75" />
+                    <Button Margin="100,5,26,5" Grid.Column="0" Grid.Row="1" Content=" Elimina riga " ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate" Click="DeleteRowRipartizioneAN" MaxWidth="75" />
+
+
+                    <!--<Image Margin="10" Grid.Column="0" Grid.Row="1" Source="./Images/icone/add.png" ToolTip="Aggiungi riga" Height="16" Width="16" MouseLeftButtonDown="AddRowRipartizione" />
+                    <Image Margin="10" Grid.Column="1" Grid.Row="1" Source="./Images/icone/delete.png" ToolTip="Cancella riga selezionata. Solo le righe inserite dall'utente possono essere cancellate." Height="16" Width="16" MouseLeftButtonDown="DeleteRowRipartizione" />-->
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

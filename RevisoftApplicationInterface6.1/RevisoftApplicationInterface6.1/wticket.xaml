@@ -1,0 +1,52 @@
+﻿<Window x:Class="RevisoftApplication.wticket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"         
+        Title="Revisoft - Apertura nuovo ticket" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        mc:Ignorable="d" 
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight" Height="462.345" Width="531" ShowInTaskbar="False">
+    <StackPanel Background="WhiteSmoke" Height="431" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="520" Margin="3,0,0,0">
+        <Label Content="Richiesta di assistenza" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2" />
+        <TextBlock FontSize="13" Margin="4,2,0,0" Name="textBlockDescrizione" Text="Compilare i seguenti campi descrivendo il motivo della richiesta. Dopo l'invio prendere nota del numero della segnalazione." TextWrapping="Wrap" />
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+        </Grid>
+        <Grid Margin="0,10,0,10" Height="Auto">
+            <Label Content="Oggetto *" Height="28" HorizontalAlignment="Left" Margin="25,0,0,0" x:Name="lblSE1" VerticalAlignment="Top" Width="171" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="153,0,0,0" x:Name="oggetto" VerticalAlignment="Top" Width="330" TabIndex="11" />
+        </Grid>
+        <Grid Margin="0,10,0,10" Height="Auto">
+            <Label Content="Email *" Height="28" HorizontalAlignment="Left" Margin="25,0,0,0" x:Name="emaillab" VerticalAlignment="Top" Width="171" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="153,0,0,0" x:Name="email" VerticalAlignment="Top" Width="330"  TabIndex="11" />
+        </Grid>
+      
+        <Grid Margin="0,10,0,10" Height="Auto">
+            <Label Content="Tipologia *" Height="28" HorizontalAlignment="Left" Margin="26,0,0,0"  VerticalAlignment="Top" Width="171" />
+            <ComboBox Height="23" Name="tiporichiesta" VerticalAlignment="Top"  TabIndex="13" Margin="157,0,35,0" />
+        </Grid>
+        <Grid Margin="0,10,0,10" Height="Auto">
+            <Label Content="Messaggio *" Height="28" HorizontalAlignment="Left" Margin="25,0,0,0" x:Name="label5" VerticalAlignment="Top" Width="171" />
+            <TextBox Height="110" HorizontalAlignment="Left" Margin="153,0,0,-0.4" x:Name="txtmessaggio" VerticalAlignment="Top" Width="333" TabIndex="14" TextWrapping="Wrap" />
+        </Grid>
+        <Grid Margin="0,10,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="406,-2,0,0" x:Name="buttonChiudi" VerticalAlignment="Top" Width="75"  TabIndex="14" Click="ButtonChiudi_Click_1" />
+            <Button Content="Comando" Height="23" HorizontalAlignment="Left" Margin="288,-2,0,0" x:Name="buttonComando" VerticalAlignment="Top" Width="75"  TabIndex="15" />
+            <Button Content="Nuovo ticket" Height="23" HorizontalAlignment="Left" Margin="288,-2,0,0" x:Name="buttonApri" VerticalAlignment="Top" Width="75" TabIndex="16" Click="ButtonApri_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>

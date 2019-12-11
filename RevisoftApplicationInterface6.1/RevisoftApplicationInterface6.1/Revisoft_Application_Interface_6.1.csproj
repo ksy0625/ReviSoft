@@ -1,0 +1,1999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5FD301D9-B468-4AD2-8D13-BFCC76E4F088}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RevisoftApplication</RootNamespace>
+    <AssemblyName>RevisoftApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DBG_TEST</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DBG_TEST</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>RevisoftApplication.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DBG_TEST</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;DBG_TEST</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>8FBF548E7DC66714ACC49C9A4DA35F58D64DC345</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>RevisoftApplication_ChiaveTemporanea.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_DLL\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.4.5.11\lib\net40-client\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="SautinSoft.Document">
+      <HintPath>..\_DLL\SautinSoft.Document.dll</HintPath>
+    </Reference>
+    <Reference Include="Smith.WPF.HtmlEditor">
+      <HintPath>..\_DLL\Smith.WPF.HtmlEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BindingRule.cs" />
+    <Compile Include="BRL\cCartelle.cs" />
+    <Compile Include="BRL\cCliente.cs" />
+    <Compile Include="BRL\cNote.cs" />
+    <Compile Include="BRL\cRuoli.cs" />
+    <Compile Include="BRL\cUtenti.cs" />
+    <Compile Include="cBusinessObjects.cs" />
+    <Compile Include="cDBManager.cs" />
+    <Compile Include="cImportExport.cs" />
+    <Compile Include="cMasterFile.cs" />
+    <Compile Include="cBackUpFile.cs" />
+    <Compile Include="Control\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\LoadingAnimation.xaml.cs">
+      <DependentUpon>LoadingAnimation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter.cs" />
+    <Compile Include="cRTF.cs" />
+    <Compile Include="FolderSelectDialog.cs" />
+    <Compile Include="GenericTable.cs" />
+    <Compile Include="PdfViewer.xaml.cs">
+      <DependentUpon>PdfViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCheckListCicli.xaml.cs">
+      <DependentUpon>ucCheckListCicli.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCheckListPlus_6_1.xaml.cs">
+      <DependentUpon>ucCheckListPlus_6_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucRischioIndividuazione.xaml.cs">
+      <DependentUpon>ucRischioIndividuazione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCompensiERisorse_6_1.xaml.cs">
+      <DependentUpon>ucCompensiERisorse_6_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucConfrontoMaterialità.xaml.cs">
+      <DependentUpon>ucConfrontoMaterialità.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucConsolidatoScope.xaml.cs">
+      <DependentUpon>ucConsolidatoScope.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucAccettazionedelrischio_6_1.xaml.cs">
+      <DependentUpon>ucAccettazionedelrischio_6_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucDichiarazioneRedditi_6_1.xaml.cs">
+      <DependentUpon>ucDichiarazioneRedditi_6_1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_Consolidato.xaml.cs">
+      <DependentUpon>ucExcel_Consolidato.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_ISQC_TempiLavoro_Riepilogo.xaml.cs">
+      <DependentUpon>ucExcel_ISQC_TempiLavoro_Riepilogo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_ISQC_TempiLavoro.xaml.cs">
+      <DependentUpon>ucExcel_ISQC_TempiLavoro.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_ISQC_Incaricati.xaml.cs">
+      <DependentUpon>ucExcel_ISQC_Incaricati.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLetteraIncarico_Pagamenti.xaml.cs">
+      <DependentUpon>ucLetteraIncarico_Pagamenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLetteraIncarico_TempiCorrispettivi.xaml.cs">
+      <DependentUpon>ucLetteraIncarico_TempiCorrispettivi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLetteraIncarico_Personale.xaml.cs">
+      <DependentUpon>ucLetteraIncarico_Personale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_RitenuteLavoratoriAutonomi.xaml.cs">
+      <DependentUpon>ucExcel_RitenuteLavoratoriAutonomi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLuogoDataFirma.xaml.cs">
+      <DependentUpon>ucLuogoDataFirma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucErroriRilevatiRiepilogo.xaml.cs">
+      <DependentUpon>ucErroriRilevatiRiepilogo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucErroriRilevatiRiepilogoNN.xaml.cs">
+      <DependentUpon>ucErroriRilevatiRiepilogoNN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucDestinatariEBilancio.xaml.cs">
+      <DependentUpon>ucDestinatariEBilancio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CassaContanteAltreValute.xaml.cs">
+      <DependentUpon>ucExcel_CassaContanteAltreValute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_COGE.xaml.cs">
+      <DependentUpon>ucExcel_COGE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_Rifiuti.xaml.cs">
+      <DependentUpon>ucExcel_Rifiuti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_ScrittureMagazzino.xaml.cs">
+      <DependentUpon>ucExcel_ScrittureMagazzino.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CUD.xaml.cs">
+      <DependentUpon>ucExcel_CUD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_ContributiAgenti.xaml.cs">
+      <DependentUpon>ucExcel_ContributiAgenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CassaContanteNew.xaml.cs">
+      <DependentUpon>ucExcel_CassaContanteNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_Uniemens.xaml.cs">
+      <DependentUpon>ucExcel_Uniemens.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_F24.xaml.cs">
+      <DependentUpon>ucExcel_F24.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucDiscussioniTeam.xaml.cs">
+      <DependentUpon>ucDiscussioniTeam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucPianificazioneNewWithDetails.xaml.cs">
+      <DependentUpon>ucPianificazioneNewWithDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucPianificazioneNewSingolo.xaml.cs">
+      <DependentUpon>ucPianificazioneNewSingolo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucConsolidatoIstruzioni.xaml.cs">
+      <DependentUpon>ucConsolidatoIstruzioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucConsolidatoReportistica.xaml.cs">
+      <DependentUpon>ucConsolidatoReportistica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTabellaFlussi.xaml.cs">
+      <DependentUpon>ucTabellaFlussi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTestoFromNode.xaml.cs">
+      <DependentUpon>ucTestoFromNode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIHelper.cs" />
+    <Compile Include="wAbout.xaml.cs" />
+    <Compile Include="wAssociaRuoliUtenti.xaml.cs">
+      <DependentUpon>wAssociaRuoliUtenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wAssociaTeamAiClienti.xaml.cs">
+      <DependentUpon>wAssociaTeamAiClienti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wConfermaTicket.xaml.cs">
+      <DependentUpon>wConfermaTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wCreaTeam.xaml.cs">
+      <DependentUpon>wCreaTeam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wDocumentViewer.xaml.cs">
+      <DependentUpon>wDocumentViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wLogin.xaml.cs">
+      <DependentUpon>wLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wNoteOperativeTODOLIST.xaml.cs">
+      <DependentUpon>wNoteOperativeTODOLIST.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wCampionamento.xaml.cs">
+      <DependentUpon>wCampionamento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\it.revisoft.ws\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="wFlussi.xaml.cs">
+      <DependentUpon>wFlussi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTempiRevisione.xaml.cs">
+      <DependentUpon>ucTempiRevisione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucRelazioneErroriRilevati.xaml.cs">
+      <DependentUpon>ucRelazioneErroriRilevati.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTestoPropostoMultiploNonEsclusivo.xaml.cs">
+      <DependentUpon>ucTestoPropostoMultiploNonEsclusivo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTestoPropostoMultiplo.xaml.cs">
+      <DependentUpon>ucTestoPropostoMultiplo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wCondividiCliente.xaml.cs">
+      <DependentUpon>wCondividiCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wEffettoFiscaleCalcolo.xaml.cs">
+      <DependentUpon>wEffettoFiscaleCalcolo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wAlertCampionamento.xaml.cs">
+      <DependentUpon>wAlertCampionamento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wInputBox2.xaml.cs">
+      <DependentUpon>wInputBox2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wNoteRevisore.xaml.cs">
+      <DependentUpon>wNoteRevisore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wRiepilogoUtenti.xaml.cs">
+      <DependentUpon>wRiepilogoUtenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaISCQ.xaml.cs">
+      <DependentUpon>wSceltaISCQ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wAddio.xaml.cs">
+      <DependentUpon>wAddio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaStampa.xaml.cs">
+      <DependentUpon>wSceltaStampa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaNodiStampaVuota.xaml.cs">
+      <DependentUpon>wSceltaNodiStampaVuota.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaTipologiaCaricamentoDatiConsolidato.xaml.cs">
+      <DependentUpon>wSceltaTipologiaCaricamentoDatiConsolidato.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaTipologiaCaricamentoDati.xaml.cs">
+      <DependentUpon>wSceltaTipologiaCaricamentoDati.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaTipologiaEsecuzione.xaml.cs">
+      <DependentUpon>wSceltaTipologiaEsecuzione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRelazioneBC.xaml.cs">
+      <DependentUpon>wSchedaRelazioneBC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRelazioneVC.xaml.cs">
+      <DependentUpon>wSchedaRelazioneVC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRotazioneScorte.xaml.cs">
+      <DependentUpon>wSchedaRotazioneScorte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaCampionamento.xaml.cs">
+      <DependentUpon>wSchedaCampionamento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaISQC.xaml.cs">
+      <DependentUpon>wSchedaISQC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaPianificazioneVigilanza.xaml.cs">
+      <DependentUpon>wSchedaPianificazioneVigilanza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaPianificazioneVigilanzaOLD.xaml.cs">
+      <DependentUpon>wSchedaPianificazioneVigilanzaOLD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaCambioEsercizio.xaml.cs">
+      <DependentUpon>wSchedaCambioEsercizio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaBilancioVerifica.xaml.cs">
+      <DependentUpon>wSchedaBilancioVerifica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSceltaWordPDF.xaml.cs">
+      <DependentUpon>wSchedaSceltaWordPDF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSessioniPianificazioniVigilanze.xaml.cs">
+      <DependentUpon>wSchedaSessioniPianificazioniVigilanze.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSessioniPianificazioniVigilanzeOLD.xaml.cs">
+      <DependentUpon>wSchedaSessioniPianificazioniVigilanzeOLD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSelezionaCliente.xaml.cs">
+      <DependentUpon>wSchedaSelezionaCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaTipologiaBilancio.xaml.cs">
+      <DependentUpon>wSceltaTipologiaBilancio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSceltaIncarico.xaml.cs">
+      <DependentUpon>wSceltaIncarico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSuggerimentiUsoCliente.xaml.cs">
+      <DependentUpon>wSuggerimentiUsoCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wStampaVerbali.xaml.cs">
+      <DependentUpon>wStampaVerbali.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaImmissioneFlussi.xaml.cs">
+      <DependentUpon>wSchedaImmissioneFlussi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRelazioneB.xaml.cs">
+      <DependentUpon>wSchedaRelazioneB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRelazioneBV.xaml.cs">
+      <DependentUpon>wSchedaRelazioneBV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRelazioneV.xaml.cs">
+      <DependentUpon>wSchedaRelazioneV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSceltaFlussi.xaml.cs">
+      <DependentUpon>wSchedaSceltaFlussi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSessioniPianificazioniVerifiche.xaml.cs">
+      <DependentUpon>wSchedaSessioniPianificazioniVerifiche.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaSOSPESI.xaml.cs">
+      <DependentUpon>wSchedaSOSPESI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaPianificazioneVerifica.xaml.cs">
+      <DependentUpon>wSchedaPianificazioneVerifica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSospesi.xaml.cs">
+      <DependentUpon>wSospesi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaVigilanza.xaml.cs">
+      <DependentUpon>wSchedaVigilanza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wGestioneLicenzaSigilloUtente.xaml.cs">
+      <DependentUpon>wGestioneLicenzaSigilloUtente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaConclusioni.xaml.cs">
+      <DependentUpon>wSchedaConclusioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wMultiLicenza.xaml.cs">
+      <DependentUpon>wMultiLicenza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSigilloSbloccoBlocco.xaml.cs">
+      <DependentUpon>wSigilloSbloccoBlocco.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSigilloPassword.xaml.cs">
+      <DependentUpon>wSigilloPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSigillo.xaml.cs">
+      <DependentUpon>wSigillo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCompensiERisorse.xaml.cs">
+      <DependentUpon>ucCompensiERisorse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucPianificazioneNew.xaml.cs">
+      <DependentUpon>ucPianificazioneNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaEstrapolazioneAllegatiVerifiche.xaml.cs">
+      <DependentUpon>wSchedaEstrapolazioneAllegatiVerifiche.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaEstrapolazioneAllegatiRevisione.xaml.cs">
+      <DependentUpon>wSchedaEstrapolazioneAllegatiRevisione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaDocumenti.xaml.cs">
+      <DependentUpon>wSchedaDocumenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaPermanent.xaml.cs">
+      <DependentUpon>wSchedaPermanent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wCommentiTODOList.xaml.cs">
+      <DependentUpon>wCommentiTODOList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wTestoDaStampare.xaml.cs">
+      <DependentUpon>wTestoDaStampare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wticket.xaml.cs">
+      <DependentUpon>wticket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wUpsertUtenti.xaml.cs">
+      <DependentUpon>wUpsertUtenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wUtenti.xaml.cs">
+      <DependentUpon>wUtenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_AssegnazioneIncarichi.xaml.cs">
+      <DependentUpon>wWorkAreaTree_AssegnazioneIncarichi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_PianificazioniVigilanze.xaml.cs">
+      <DependentUpon>wWorkAreaTree_PianificazioniVigilanze.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_PianificazioniVigilanzeOLD.xaml.cs">
+      <DependentUpon>wWorkAreaTree_PianificazioniVigilanzeOLD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_SOSPESI.xaml.cs">
+      <DependentUpon>wWorkAreaTree_SOSPESI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_PianificazioniVerifiche.xaml.cs">
+      <DependentUpon>wWorkAreaTree_PianificazioniVerifiche.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_ErroriRilevati.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_ErroriRilevati.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucProspettoIVA.xaml.cs">
+      <DependentUpon>ucProspettoIVA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wXBRLContestiRiferimento.xaml.cs">
+      <DependentUpon>wXBRLContestiRiferimento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucLead.xaml.cs">
+      <DependentUpon>ucLead.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cXBRL.cs" />
+    <Compile Include="ucPianificazione.xaml.cs">
+      <DependentUpon>ucPianificazione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucIndipendenzaFinanziaria.xaml.cs">
+      <DependentUpon>ucIndipendenzaFinanziaria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_Riconciliazioni.xaml.cs">
+      <DependentUpon>ucExcel_Riconciliazioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaTODOList.xaml.cs">
+      <DependentUpon>wSchedaTODOList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_TODOList.xaml.cs">
+      <DependentUpon>wWorkAreaTree_TODOList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTreeLimited.xaml.cs">
+      <DependentUpon>wWorkAreaTreeLimited.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_RiepilogoAffidamenti.xaml.cs">
+      <DependentUpon>ucExcel_RiepilogoAffidamenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_Affidamenti.xaml.cs">
+      <DependentUpon>ucExcel_Affidamenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CassaValoriBollati.xaml.cs">
+      <DependentUpon>ucExcel_CassaValoriBollati.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CassaContante.xaml.cs">
+      <DependentUpon>ucExcel_CassaContante.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CassaAssegni.xaml.cs">
+      <DependentUpon>ucExcel_CassaAssegni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_CassaTitoli.xaml.cs">
+      <DependentUpon>ucExcel_CassaTitoli.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_SospesiDiCassa.xaml.cs">
+      <DependentUpon>ucExcel_SospesiDiCassa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_Compensazioni.xaml.cs">
+      <DependentUpon>ucExcel_Compensazioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_VersamentoImposteContributi.xaml.cs">
+      <DependentUpon>ucExcel_VersamentoImposteContributi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucErroriRilevatiRiepilogoNew.xaml.cs">
+      <DependentUpon>ucErroriRilevatiRiepilogoNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_BilancioAbbreviatoIndici.xaml.cs">
+      <DependentUpon>ucExcel_BilancioAbbreviatoIndici.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_LimiteMaterialitaSPCE.xaml.cs">
+      <DependentUpon>ucExcel_LimiteMaterialitaSPCE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucRischioGlobale.xaml.cs">
+      <DependentUpon>ucRischioGlobale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCicli.xaml.cs">
+      <DependentUpon>ucCicli.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucValutazioneAmbiente.xaml.cs">
+      <DependentUpon>ucValutazioneAmbiente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucAltoMedioBasso.xaml.cs">
+      <DependentUpon>ucAltoMedioBasso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_BilancioIndici.xaml.cs">
+      <DependentUpon>ucExcel_BilancioIndici.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucExcel_BilancioRiclassificato.xaml.cs">
+      <DependentUpon>ucExcel_BilancioRiclassificato.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wNodoFazzoletto.xaml.cs">
+      <DependentUpon>wNodoFazzoletto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaRevisione.xaml.cs">
+      <DependentUpon>wSchedaRevisione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wDocumenti.xaml.cs">
+      <DependentUpon>wDocumenti.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wGestioneBackUp.xaml.cs">
+      <DependentUpon>wGestioneBackUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wGuidaRevisoft.xaml.cs">
+      <DependentUpon>wGuidaRevisoft.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wIndiceSessioni.xaml.cs">
+      <DependentUpon>wIndiceSessioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wOsservazioni.xaml.cs">
+      <DependentUpon>wOsservazioni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wStampaFascicolo.xaml.cs">
+      <DependentUpon>wStampaFascicolo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree_ScambioDati.xaml.cs">
+      <DependentUpon>wWorkAreaTree_ScambioDati.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wFormulario.xaml.cs">
+      <DependentUpon>wFormulario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaBilancio.xaml.cs">
+      <DependentUpon>wSchedaBilancio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionary.cs" />
+    <Compile Include="wBenvenuto.xaml.cs">
+      <DependentUpon>wBenvenuto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wConfigurazione.xaml.cs">
+      <DependentUpon>wConfigurazione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wLavoriInCorso.xaml.cs">
+      <DependentUpon>wLavoriInCorso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wFileImporta.xaml.cs">
+      <DependentUpon>wFileImporta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wGestioneArchivio.xaml.cs">
+      <DependentUpon>wGestioneArchivio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wGestioneLicenzaUtente.xaml.cs">
+      <DependentUpon>wGestioneLicenzaUtente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaAnagrafica.xaml.cs">
+      <DependentUpon>wSchedaAnagrafica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaIncarico.xaml.cs">
+      <DependentUpon>wSchedaIncarico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wSchedaVerifica.xaml.cs">
+      <DependentUpon>wSchedaVerifica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTree.xaml.cs">
+      <DependentUpon>wWorkAreaTree.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_Bilancio.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_Bilancio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_NumeriCasuali.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_NumeriCasuali.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_ErroriRilevatiRiepilogo.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_ErroriRilevatiRiepilogo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_ErroriRilevatiNew.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_ErroriRilevatiNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_CapitaleSociale.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_CapitaleSociale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea_Excel_TariffaProfessionale.xaml.cs">
+      <DependentUpon>wWorkArea_Excel_TariffaProfessionale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucNodoMultiploVerticale.xaml.cs">
+      <DependentUpon>ucNodoMultiploVerticale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaNodoMultiplo.xaml.cs">
+      <DependentUpon>wWorkAreaNodoMultiplo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucNodoMultiplo.xaml.cs">
+      <DependentUpon>ucNodoMultiplo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCheckListPlus.xaml.cs">
+      <DependentUpon>ucCheckListPlus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucCheckList.xaml.cs">
+      <DependentUpon>ucCheckList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTesto.xaml.cs">
+      <DependentUpon>ucTesto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTabellaReplicata.xaml.cs">
+      <DependentUpon>ucTabellaReplicata.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTabellaReplicata.xaml.cs">
+      <DependentUpon>wWorkAreaTabellaReplicata.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTesto.xaml.cs">
+      <DependentUpon>wWorkAreaTesto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wInputBox.xaml.cs">
+      <DependentUpon>wInputBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucTabella.xaml.cs">
+      <DependentUpon>ucTabella.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaCheckListPlus.xaml.cs">
+      <DependentUpon>wWorkAreaCheckListPlus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaCheckList.xaml.cs">
+      <DependentUpon>wWorkAreaCheckList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkAreaTabella.xaml.cs">
+      <DependentUpon>wWorkAreaTabella.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cXmlManager.cs" />
+    <Compile Include="cUtilities.cs" />
+    <Compile Include="wGestioneLicenza.xaml.cs">
+      <DependentUpon>wGestioneLicenza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wGestioneMessaggi.xaml.cs">
+      <DependentUpon>wGestioneMessaggi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="wWorkArea.xaml.cs">
+      <DependentUpon>wWorkArea.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Control\Block.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\LoadingAnimation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PdfViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucCheckListCicli.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucCheckListPlus_6_1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucRischioIndividuazione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucCompensiERisorse_6_1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucConfrontoMaterialità.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucConsolidatoScope.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucAccettazionedelrischio_6_1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucDichiarazioneRedditi_6_1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_Consolidato.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_ISQC_TempiLavoro_Riepilogo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_ISQC_TempiLavoro.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_ISQC_Incaricati.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucLetteraIncarico_Pagamenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucLetteraIncarico_TempiCorrispettivi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucLetteraIncarico_Personale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_RitenuteLavoratoriAutonomi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucLuogoDataFirma.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucErroriRilevatiRiepilogo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucErroriRilevatiRiepilogoNN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucDestinatariEBilancio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CassaContanteAltreValute.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_COGE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_Rifiuti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_ScrittureMagazzino.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CUD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_ContributiAgenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CassaContanteNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_Uniemens.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_F24.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucDiscussioniTeam.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucPianificazioneNewWithDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucPianificazioneNewSingolo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucConsolidatoIstruzioni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucConsolidatoReportistica.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTabellaFlussi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTestoFromNode.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wAbout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wAssociaRuoliUtenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wAssociaTeamAiClienti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wConfermaTicket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wCreaTeam.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wDocumentViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="wLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wNoteOperativeTODOLIST.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wCampionamento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wFlussi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTempiRevisione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucRelazioneErroriRilevati.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTestoPropostoMultiploNonEsclusivo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTestoPropostoMultiplo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wCondividiCliente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wEffettoFiscaleCalcolo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wAlertCampionamento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wInputBox2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wNoteRevisore.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wRiepilogoUtenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaISCQ.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wAddio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaStampa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaNodiStampaVuota.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaTipologiaCaricamentoDatiConsolidato.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaTipologiaCaricamentoDati.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaTipologiaEsecuzione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRelazioneBC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRelazioneVC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRotazioneScorte.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaCampionamento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaISQC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaPianificazioneVigilanza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaPianificazioneVigilanzaOLD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaCambioEsercizio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaBilancioVerifica.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSceltaWordPDF.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSessioniPianificazioniVigilanze.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSessioniPianificazioniVigilanzeOLD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSelezionaCliente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaTipologiaBilancio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSceltaIncarico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSuggerimentiUsoCliente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wStampaVerbali.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaImmissioneFlussi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRelazioneB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRelazioneBV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRelazioneV.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSceltaFlussi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSessioniPianificazioniVerifiche.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaSOSPESI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaPianificazioneVerifica.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSospesi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaVigilanza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wGestioneLicenzaSigilloUtente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaConclusioni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wMultiLicenza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSigilloSbloccoBlocco.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSigilloPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSigillo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucCompensiERisorse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucPianificazioneNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaEstrapolazioneAllegatiVerifiche.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaEstrapolazioneAllegatiRevisione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaDocumenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaPermanent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wCommentiTODOList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wTestoDaStampare.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="wticket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wUpsertUtenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wUtenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_AssegnazioneIncarichi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_PianificazioniVigilanze.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_PianificazioniVigilanzeOLD.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_SOSPESI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_PianificazioniVerifiche.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_ErroriRilevati.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucProspettoIVA.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wXBRLContestiRiferimento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucLead.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucPianificazione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucIndipendenzaFinanziaria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_Riconciliazioni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaTODOList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_TODOList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTreeLimited.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_RiepilogoAffidamenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_Affidamenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CassaValoriBollati.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CassaContante.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CassaAssegni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_CassaTitoli.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_SospesiDiCassa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_Compensazioni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_VersamentoImposteContributi.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucErroriRilevatiRiepilogoNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_BilancioAbbreviatoIndici.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_LimiteMaterialitaSPCE.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucRischioGlobale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucCicli.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucValutazioneAmbiente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucAltoMedioBasso.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_BilancioIndici.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucExcel_BilancioRiclassificato.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wNodoFazzoletto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaRevisione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wDocumenti.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wGestioneBackUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wGuidaRevisoft.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wIndiceSessioni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wOsservazioni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wStampaFascicolo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree_ScambioDati.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wFormulario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaBilancio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wBenvenuto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wConfigurazione.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wLavoriInCorso.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wFileImporta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wGestioneArchivio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wGestioneLicenzaUtente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaAnagrafica.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaIncarico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wSchedaVerifica.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_Bilancio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_NumeriCasuali.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_ErroriRilevatiRiepilogo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_ErroriRilevatiNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_CapitaleSociale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkArea_Excel_TariffaProfessionale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucNodoMultiploVerticale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaNodoMultiplo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucNodoMultiplo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucCheckListPlus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucCheckList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTesto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ucTabellaReplicata.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTabellaReplicata.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTesto.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wInputBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucTabella.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wWorkAreaCheckListPlus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaCheckList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wWorkAreaTabella.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cGestioneLicenza.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="wGestioneLicenza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="wGestioneMessaggi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wWorkArea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <SplashScreen Include="Splash.png" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="app.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Resource Include="Images\icone\Revisoftdatev.ico" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Web References\it.revisoft.ws\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\it.revisoft.ws\revisoft.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Spunta2 - Andrea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 e x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo REVISOFT Medio.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Spunta2 -Andrea.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo REVISOFT Medio VERTICALE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo-trasp-VERTICALE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Revisoft.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\check2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\nothing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\navigate_down.png" />
+    <Resource Include="Images\icone\navigate_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\navigate_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo-trasp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\businessman_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_certificate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\form_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\export2.png" />
+    <Resource Include="Images\icone\import1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\data_disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\delete2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\apri.png" />
+    <Resource Include="Images\icone\apri_readonly.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\table_tree_export.png" />
+    <Resource Include="Images\icone\table_tree_import.png" />
+    <Resource Include="Images\icone\tb_delete.png" />
+    <Resource Include="Images\icone\tb_edit.png" />
+    <Resource Include="Images\icone\tb_new.png" />
+    <Resource Include="Images\icone\tb_tree_delete.png" />
+    <Resource Include="Images\icone\tb_tree_open.png" />
+    <Resource Include="Images\icone\tb_tree_view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\door2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\stato_nonapplicabile.png" />
+    <Resource Include="Images\icone\tb_wa_formulario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_wa_report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_wa_help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_wa_allega.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_wa_modelli.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_wa_importa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_wa_nota.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\wa_tree_collapse.png" />
+    <Resource Include="Images\icone\wa_tree_expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\completo.png" />
+    <Resource Include="Images\icone\Stato\help_icon.png" />
+    <Resource Include="Images\icone\Stato\nonapp.png" />
+    <Resource Include="Images\icone\Stato\parziale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\wa_nav_nodo_dn.png" />
+    <Resource Include="Images\icone\wa_nav_nodo_up.png" />
+    <Resource Include="Images\icone\wa_nav_sess_next.png" />
+    <Resource Include="Images\icone\wa_nav_sess_prev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\ana_stato_nok.png" />
+    <Resource Include="Images\icone\ana_stato_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\ana_stato_nok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\ana_stato_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\tb_view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Documenti\excel.png" />
+    <Resource Include="Images\icone\Documenti\pdf.png" />
+    <Resource Include="Images\icone\Documenti\word.png" />
+    <Resource Include="Images\icone\Documenti\zip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Documenti\nothing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\data_replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\data_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\server_from_client.png" />
+    <Resource Include="Images\icone\server_to_client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\data_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\nonapp_big.png" />
+    <Resource Include="Images\icone\Stato\nonapp_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\preferences.png" />
+    <Resource Include="Images\icone\sblocca_utenti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\wa_nav_nodo_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\fazzoletto_annodato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\fazzoletto_annodato.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\pdfIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\documents_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\disk_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\star_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\note_pinned.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\lock_open_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\VociCompilate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Indipendenza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Dipendente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Indipendente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\check1-24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\check2-24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\documents_gear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\gear_replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\charactergrowfont.png" />
+    <Resource Include="Images\charactershrinkfont.png" />
+    <Resource Include="Images\editcopy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\editcut.png" />
+    <Resource Include="Images\editpaste.png" />
+    <Resource Include="Images\editredo.png" />
+    <Resource Include="Images\editundo.png" />
+    <Resource Include="Images\paragraphcenterjustify.png" />
+    <Resource Include="Images\paragraphdecreaseindentation.png" />
+    <Resource Include="Images\paragraphfulljustify.png" />
+    <Resource Include="Images\paragraphincreaseindentation.png" />
+    <Resource Include="Images\paragraphleftjustify.png" />
+    <Resource Include="Images\paragraphrightjustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\listbullets.png" />
+    <Resource Include="Images\listnumbering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Spunta3 - Andrea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_attachment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\Sigillo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\SigilloRotto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\ceralacca.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\ceralacca.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\estraida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\multilicenza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\ana_stato_ok_blu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Stato\sospesi.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\document_pinned.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\gomma16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\printer3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\mail_add.png" />
+    <Resource Include="Images\icone\mail_delete.png" />
+    <Resource Include="Images\icone\mail_forward.png" />
+    <Resource Include="Images\icone\mail_write.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\user1_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\verbali.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\commenti.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\folder_document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo2016.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo2016.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\Guida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\lightbulb_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\office-building.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\navigate_close.png" />
+    <Resource Include="Images\icone\navigate_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\garbage_empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://ws.revisoft.it/revisoft.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\it.revisoft.ws\</RelPath>
+      <UpdateFromURL>http://ws.revisoft.it/revisoft.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RevisoftApplication_it_revisoft_ws_revisoftWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\it.revisoft.ws\revisoft.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icone\graph.png" />
+    <Resource Include="Images\icone\turtle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BRL\SQL_scripts.sql" />
+    <Content Include="BRL\SQL_scripts_update.sql" />
+    <Resource Include="Images\icone\Stato\DoppiaSpunta.png" />
+    <Resource Include="Images\icone\EliminaUtente.png" />
+    <Resource Include="Images\icone\ModificaUtente.png" />
+    <Resource Include="Images\icone\note.png" />
+    <Resource Include="Images\icone\Utente.png" />
+    <Resource Include="Images\icone\AssociaClienti.png" />
+    <Resource Include="Images\icone\AssociaUtente.png" />
+    <Resource Include="Images\icone\AssociaUtenti.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

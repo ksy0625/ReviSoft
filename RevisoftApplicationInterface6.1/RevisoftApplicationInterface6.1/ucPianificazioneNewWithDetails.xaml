@@ -1,0 +1,377 @@
+﻿<UserControl x:Class="UserControls.ucPianificazioneNewWithDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ConvNS"  
+             xmlns:uc="clr-namespace:UserControls"
+             mc:Ignorable="d"
+             SizeChanged="UserControl_SizeChanged">
+    <UserControl.Resources>
+        <Style TargetType="Image">
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel x:Name="stack" CanVerticallyScroll="True">
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Text="RISCHIO DI INDIVIDUAZIONE" FontWeight="Bold" Margin="0,0,0,10"></TextBlock>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1">
+                        <Grid Margin="0,10,0,0" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="140"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto" MinWidth="140"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto" MinWidth="140"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto" MinWidth="140"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" BorderThickness="2" BorderBrush="Orange" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="RISCHIO DI CONTROLLO" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                    <TextBlock Text="Sistema di Controllo Interno" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="7" BorderThickness="2" Margin="0,0,10,10" BorderBrush="Olive" MouseDown="RischioIntrinseco_MouseLeftButtonUp">
+                                <StackPanel>
+                                    <TextBlock Text="RISCHIO INTRINSECO" FontWeight="Bold" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                    <TextBlock Text="Ambiente di controllo" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Grid.Column="3" Grid.Row="10" Grid.RowSpan="5">
+                                <Border BorderThickness="1" BorderBrush="Olive" Margin="0,0,10,10" Background="Beige" >
+                                    <TextBlock Name="txt1" Height="140" TextAlignment="Center" TextWrapping="Wrap" Padding="0,60,0,0" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                </Border>
+                            </StackPanel>
+
+                            <Border Grid.Column="5" Grid.Row="7" BorderThickness="1" BorderBrush="Black" Margin="0,0,0,10" >
+                                <StackPanel>
+                                    <TextBlock Text="RISCHIO DI" TextAlignment="Center" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold" Background="Beige"></TextBlock>
+                                    <TextBlock Text="INDIVIDUAZIONE" TextAlignment="Center" TextWrapping="Wrap" Foreground="Red" FontWeight="Bold" Background="Beige"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="10" BorderThickness="2" BorderBrush="Orange" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="CICLO VENDITE" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MouseDown="CicloVendite_MouseLeftButtonUp"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Grid.Column="2" Grid.Row="7" Content="ð" FontFamily="Wingdings" FontSize="30" Margin="10,36,0,0" HorizontalAlignment="Center" Foreground="Orange" Grid.RowSpan="4" />
+
+                            <Label Grid.Column="4" Grid.Row="10" Content="=" FontSize="30" Margin="0,-15,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+
+                            <Border Grid.Column="1" Grid.Row="10" Background="Beige" BorderThickness="1" BorderBrush="Black" Margin="10,0,0,10">
+                                <TextBlock Name="txt2" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="5" Grid.Row="10" Margin="0,0,0,10" BorderThickness="1" BorderBrush="Black" >
+                                <TextBlock Name="txt2c" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="Beige"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="11" BorderThickness="2" BorderBrush="Orange" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="CICLO ACQUISTI" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MouseDown="CicloAcquisti_MouseLeftButtonUp"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Grid.Column="2" Grid.Row="11" Content="ð" FontFamily="Wingdings" FontSize="30" Margin="10,-10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Label Grid.Column="4" Grid.Row="10" Content="=" FontSize="30" Margin="0,15.75,0,0" HorizontalAlignment="Center" Foreground="Orange" Grid.RowSpan="3" Height="75" VerticalAlignment="Top" />
+
+
+                            <Border Grid.Column="1" Grid.Row="11" Background="Beige" BorderThickness="1" BorderBrush="Black" Margin="10,0,0,10">
+                                <TextBlock Name="txt3" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="5" Grid.Row="11" BorderThickness="1" BorderBrush="Black" Margin="0,0,0,10">
+                                <TextBlock Name="txt3c" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="Beige"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="12" BorderThickness="2" BorderBrush="Orange" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="CICLO MAGAZZINO" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MouseDown="CicloMagazzino_MouseLeftButtonUp"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Grid.Column="2" Grid.Row="12" Content="ð" FontFamily="Wingdings" FontSize="30" Margin="10,-10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Label Grid.Column="4" Grid.Row="12" Content="=" FontSize="30" Margin="0,-15,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Border Grid.Column="1" Grid.Row="12" Background="Beige" BorderThickness="1" BorderBrush="Black" Margin="10,0,0,0" Height="20" VerticalAlignment="Top">
+                                <TextBlock Name="txt4" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="5" Grid.Row="12" BorderThickness="1" BorderBrush="Black" Margin="0,0,0,10">
+                                <TextBlock Name="txt4c" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="Beige"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="13" BorderThickness="2" BorderBrush="Orange" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <TextBlock Text="CICLO TESORERIA" TextAlignment="Center" TextWrapping="Wrap" MouseDown="CicloTesoreria_MouseLeftButtonUp"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Grid.Column="2" Grid.Row="13" Content="ð" FontFamily="Wingdings" FontSize="30" Margin="10,-10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Label Grid.Column="4" Grid.Row="13" Content="=" FontSize="30" Margin="0,-15,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Border Grid.Column="1" Grid.Row="13" Background="Beige" BorderThickness="1" BorderBrush="Black" Margin="10,0,0,10">
+                                <TextBlock Name="txt5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="5" Grid.Row="13" BorderThickness="1" BorderBrush="Black" Margin="0,0,0,10">
+                                <TextBlock Name="txt5c" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="Beige"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="14" BorderThickness="2" BorderBrush="Orange" Margin="0,0,0,10" >
+                                <StackPanel>
+                                    <TextBlock Text="CICLO PERSONALE DIPENDENTE" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" MouseDown="CicloPersonale_MouseLeftButtonUp"></TextBlock>
+                                </StackPanel>
+                            </Border>
+
+                            <Label Grid.Column="2" Grid.Row="14" Content="ð" FontFamily="Wingdings" FontSize="30" Margin="10,-10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Label Grid.Column="4" Grid.Row="14" Content="=" FontSize="30" Margin="0,-15,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Orange" />
+
+                            <Border Grid.Column="1" Grid.Row="14" Background="Beige" BorderThickness="1" BorderBrush="Black" Margin="10,0,0,10">
+                                <TextBlock Name="txt6" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="5" Grid.Row="14" BorderThickness="1" BorderBrush="Black"  Margin="0,0,0,10">
+                                <TextBlock Name="txt6c" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" Background="Beige"></TextBlock>
+                            </Border>
+                        </Grid>
+                        <StackPanel Margin="0,10,0,0">
+                            <Border Grid.Column="0" Grid.Row="2" BorderThickness="1" BorderBrush="Transparent" Name="brdPrima">
+                                <Grid  Margin="15" HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"  Margin="0,0,0,0" Text="Richiamo Materialità Bilancio"></TextBlock>
+
+                                    <Border Grid.Column="1" Grid.Row="2" BorderBrush="Black" BorderThickness="1,1,1,0">
+                                        <TextBlock  HorizontalAlignment="Center"   Text="S.P. e C.E."></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="0" Grid.Row="3" BorderBrush="Black" BorderThickness="1,1,0,0" Padding="10,0,0,0">
+                                        <TextBlock  Text="Materialità Totale" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="4" BorderBrush="Black" BorderThickness="1,1,0,0" Padding="10,0,0,0">
+                                        <TextBlock  Text="Errore tollerabile" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="5" BorderBrush="Black" BorderThickness="1,1,0,1" Padding="10,0,0,0">
+                                        <TextBlock  Text="Materialità Operativa" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="1" Grid.Row="3" BorderThickness="1,1,1,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt7" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="4" BorderThickness="1,1,1,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt9" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="5" BorderThickness="1,1,1,1" BorderBrush="Black" >
+                                        <TextBlock Name="txt12" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Column="0" Grid.Row="2" BorderThickness="1" BorderBrush="Transparent" Name="brdSeconda">
+                                <Grid  Margin="0,0,0,10"  HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"  Margin="0,0,0,0" Text="Richiamo Materialità Bilancio"></TextBlock>
+
+                                    <Border Grid.Column="1" Grid.Row="2" BorderBrush="Black" BorderThickness="1,1,0,0">
+                                        <TextBlock  HorizontalAlignment="Center"   Text="S.P."></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="2" Grid.Row="2" BorderBrush="Black" BorderThickness="1,1,1,0">
+                                        <TextBlock  HorizontalAlignment="Center"  Text="C.E."></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="3" BorderBrush="Black" BorderThickness="1,1,0,0" Padding="10,0,0,0">
+                                        <TextBlock  Text="Materialità Totale" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="4" BorderBrush="Black" BorderThickness="1,1,0,0" Padding="10,0,0,0">
+                                        <TextBlock  Text="Errore tollerabile" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="5" BorderBrush="Black" BorderThickness="1,1,0,1" Padding="10,0,0,0">
+                                        <TextBlock  Text="Materialità Operativa" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="1" Grid.Row="3" BorderThickness="1,1,0,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt7_2sp" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="4" BorderThickness="1,1,0,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt9_2sp" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="5" BorderThickness="1,1,0,1" BorderBrush="Black" >
+                                        <TextBlock Name="txt12_2sp" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="2" Grid.Row="3" BorderThickness="1,1,1,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt7_2ce" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"     FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="2" Grid.Row="4" BorderThickness="1,1,1,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt9_2ce" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"     FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="2" Grid.Row="5" BorderThickness="1,1,1,1" BorderBrush="Black" >
+                                        <TextBlock Name="txt12_2ce" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"     FontSize="13"></TextBlock>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Border Grid.Column="0" Grid.Row="2" BorderThickness="1" BorderBrush="Transparent" Name="brdTerza">
+                                <Grid  Margin="0,0,0,10"  HorizontalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Column="0"  Grid.Row="2" HorizontalAlignment="Center"  Margin="0,0,0,0" Text="Richiamo Materialità Bilancio"></TextBlock>
+
+                                    <Border Grid.Column="1" Grid.Row="2" BorderBrush="Black" BorderThickness="1,1,0,0">
+                                        <TextBlock  HorizontalAlignment="Center"   Text="S.P."></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="2" Grid.Row="2" BorderBrush="Black" BorderThickness="1,1,1,0">
+                                        <TextBlock  HorizontalAlignment="Center"  Text="C.E."></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="3" BorderBrush="Black" BorderThickness="1,1,0,0" Padding="10,0,0,0">
+                                        <TextBlock  Text="Materialità Totale" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="4" BorderBrush="Black" BorderThickness="1,1,0,0" Padding="10,0,0,0">
+                                        <TextBlock  Text="Errore tollerabile" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="0" Grid.Row="5" BorderBrush="Black" BorderThickness="1,1,0,1" Padding="10,0,0,0">
+                                        <TextBlock  Text="Materialità Operativa" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" ></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="1" Grid.Row="3" BorderThickness="1,1,0,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt7_3sp" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="4" BorderThickness="1,1,0,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt9_3sp" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="1" Grid.Row="5" BorderThickness="1,1,0,1" BorderBrush="Black" >
+                                        <TextBlock Name="txt12_3sp" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"   FontSize="13"></TextBlock>
+                                    </Border>
+
+                                    <Border Grid.Column="2" Grid.Row="3" BorderThickness="1,1,1,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt7_3ce" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"     FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="2" Grid.Row="4" BorderThickness="1,1,1,0" BorderBrush="Black" >
+                                        <TextBlock Name="txt9_3ce" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"     FontSize="13"></TextBlock>
+                                    </Border>
+                                    <Border Grid.Column="2" Grid.Row="5" BorderThickness="1,1,1,1" BorderBrush="Black" >
+                                        <TextBlock Name="txt12_3ce" TextAlignment="Right" Padding="0,0,5,0" TextWrapping="Wrap" VerticalAlignment="Center"     FontSize="13"></TextBlock>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Name="txtDescrizioneIntensita" HorizontalAlignment="Center" FontWeight="Bold" Text="Definizione dell'intensità di revisione per ogni voce di bilancio" Margin="0,0,0,10"></TextBlock>
+                    <StackPanel Grid.Column="1" Grid.Row="1" Name="brdDefinizione" Grid.IsSharedSizeScope="True" Orientation="Vertical"></StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+        <Border CornerRadius="5" BorderBrush="LightGray" BorderThickness="1" Padding="4" Margin="4" Visibility="Collapsed">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Column="0" Grid.Row="0" Source="./Images/icone/navigate_down.png" Height="10" Width="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"></Image>
+                    <TextBlock Grid.Column="1" Grid.Row="0" TextAlignment="Center" Text="Considerazioni che hanno determinato le scelte di pianificazione"></TextBlock>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtConsiderazioni" TextWrapping="Wrap" AcceptsReturn="True" Margin="10"  PreviewMouseLeftButtonDown="obj_PreviewMouseLeftButtonDown" PreviewKeyDown="obj_PreviewKeyDown" TextChanged="TextBox_TextChanged" MinHeight="250" HorizontalAlignment="Stretch"></TextBox>
+                </Grid>
+            </ScrollViewer>
+        </Border>
+    </StackPanel>
+</UserControl>

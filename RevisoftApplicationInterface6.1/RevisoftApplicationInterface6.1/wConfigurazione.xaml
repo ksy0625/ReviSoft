@@ -1,0 +1,95 @@
+﻿<Window x:Class="RevisoftApplication.wConfigurazione"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Revisoft" 
+        ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" 
+        Icon="/RevisoftApplication;component/Images/Revisoft.ico" 
+        WindowStartupLocation="CenterScreen" Left="120" Top="50"
+        Background="WhiteSmoke" 
+        SizeToContent="WidthAndHeight"
+        MouseDoubleClick="MostraInfoSistema" ShowInTaskbar="False"
+        >
+    <StackPanel Background="WhiteSmoke" Height="Auto" HorizontalAlignment="Left" Name="stackPanel1" VerticalAlignment="Top" Width="458" Margin="3,0">
+    <Label Content="Configurazione Revisoft" FontSize="16" FontWeight="Bold" Name="labelTitolo" Foreground="#FFF5A41C" Margin="0,0,0,0" Grid.ColumnSpan="2"  />
+        <TabControl Name="tabControl1" Width="Auto" Height="240" Margin="5,10,5,0">
+            <TabItem Header="Impostazioni" Name="tabItemImpostazioni" FontWeight="Normal">
+                <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="0" Content="Mostra finestra di benvenuto all'avvio" Height="16" HorizontalAlignment="Left" Margin="25,5,0,0" Name="checkBoxMostraAllAvvio" Checked="checkBoxMostraAllAvvio_Check" Unchecked="checkBoxMostraAllAvvio_Check" VerticalAlignment="Top" />
+                    <CheckBox Grid.Row="1" Content="Non visualizzare i Suggerimenti Revisoft all'apertura delle finestre" Height="16" HorizontalAlignment="Left" Margin="25,5,0,0" Name="checkBoxMostraIstruzioniAutomatiche" Checked="checkBoxMostraIstruzioniAutomatiche_Checked"  Unchecked="checkBoxMostraIstruzioniAutomatiche_Checked"  VerticalAlignment="Top" />
+                    <CheckBox Grid.Row="2" Content="Visualizzare Avvertimento se si sblocca un nodo già Completato" Height="16" HorizontalAlignment="Left" Margin="25,5,0,0" Name="checkBoxMostraAlertSuCompletato" Checked="checkBoxMostraAlertSuCompletato_Checked"  Unchecked="checkBoxMostraAlertSuCompletato_Checked"  VerticalAlignment="Top" />
+
+
+                    <CheckBox Grid.Row="3" Content="Percorso personalizzato dei Salvataggi" Height="16" HorizontalAlignment="Left" Margin="25,5,0,0" Name="checkBoxUserBackupPath" Checked="checkBoxUserBackupPath_Checked"  Unchecked="checkBoxUserBackupPath_Checked"  VerticalAlignment="Top" />
+                    
+                    <TextBox Grid.Row="4" Height="23" HorizontalAlignment="Left" Margin="34,5,0,0" Name="textBoxUserBackupPath" VerticalAlignment="Top" Width="344" IsReadOnly="True" IsEnabled="False" />
+                    <Button Grid.Row="4" Content=". . ." Height="23" HorizontalAlignment="Left" Margin="384,5,0,0" Name="buttonSelezionaPathBackupUtente" Click="buttonSelezionaCartellaBackup_Click" VerticalAlignment="Top" Width="41" IsEnabled="False" />
+
+                    <!--<CheckBox Grid.Row="1" Content="Non visualizzare i Suggerimenti Revisoft all'apertura delle finestre" Height="16" HorizontalAlignment="Left" Margin="25,5,0,0" Name="checkBoxMostraIstruzioniAutomatiche" Checked="checkBoxMostraIstruzioniAutomatiche_Checked"  Unchecked="checkBoxMostraIstruzioniAutomatiche_Checked"  VerticalAlignment="Top" />-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="Strumenti" Name="tabItemStrumenti">
+                <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+
+                    <Button Name="buttonSbloccaUtenti" Margin="303,14,55.4,98" Click="buttonSbloccaUtenti_Click" ToolTip="Esegue salvataggio dell'archivio corrente" Visibility="Hidden">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/sblocca_utenti.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center">Sblocca Clienti</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Name="buttonResetMasterFile" Margin="27,14,331.4,98" Click="buttonResetMasterFile_Click" ToolTip="Esegue reset dell'archivio corrente">
+                        <StackPanel>
+                            <Image Source="/RevisoftApplication;component/Images/icone/data_delete.png" Width="48" Height="48" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                            <TextBlock FontSize="11" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center">Resetta Archivio</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    
+                    <!--<Button Content="Sblocca Tutti Gli Utenti" Height="33" HorizontalAlignment="Left" Margin="17,144,0,0" Name="buttonSbloccaUtenti" VerticalAlignment="Top" Width="177" Click="buttonSbloccaUtenti_Click" />-->
+                    <!--<Button Content="Reset Master File" Height="33" HorizontalAlignment="Left" Margin="232,144,0,0" Name="buttonResetMasterFile" VerticalAlignment="Top" Width="177" Click="buttonResetMasterFile_Click" />-->
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Funzionalità" Name="tabItemFunzionalita" FontWeight="Normal">
+                <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+                    <CheckBox Content="ConsentiAccessoArchivioLocale" Height="16" HorizontalAlignment="Left" Margin="25,12,0,0" Name="checkBoxConsentiAccessoArchivioLocale" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiAccessoArchivioRemoto" Height="16" HorizontalAlignment="Left" Margin="25,34,0,0" Name="checkBoxConsentiAccessoArchivioRemoto" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiAccessoArchivioCloud" Height="16" HorizontalAlignment="Left" Margin="25,53,0,0" Name="checkBoxConsentiAccessoArchivioCloud" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiCreazioneAnagrafica" Height="16" HorizontalAlignment="Left" Margin="25,73,0,0" Name="checkBoxConsentiCreazioneAnagrafica" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiImportaEsporta" Height="16" HorizontalAlignment="Left" Margin="25,93,0,0" Name="checkBoxConsentiImportaEsporta" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiImportazioneEsportazioneLan" Height="16" HorizontalAlignment="Left" Margin="25,113,0,0" Name="checkBoxConsentiImportazioneEsportazioneLan" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiGestioneArchivioRemoto" Height="16" HorizontalAlignment="Left" Margin="25,134,0,0" Name="checkBoxConsentiGestioneArchivioRemoto" VerticalAlignment="Top" IsHitTestVisible="False" />
+                    <CheckBox Content="ConsentiBackUp" Height="16" HorizontalAlignment="Left" Margin="25,156,0,0" Name="checkBoxConsentiBackUp" VerticalAlignment="Top" IsHitTestVisible="False" />
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="** Configurazione Licenza**" Name="tabItemConfigurazioneLicenza">
+                <Grid Height="Auto" Margin="0,10,0,0" Width="Auto">
+                    <Button Content="Licenza Prova"  Name="buttonLicenzaProva" Margin="21,37,298,128"  Click="buttonLicenzaProva_Click" />
+                    <Button Content="Licenza Server" Name="buttonLicenzaServer" Height="33" HorizontalAlignment="Left" Margin="154,37,0,0" VerticalAlignment="Top" Width="119" Click="buttonLicenzaServer_Click"/>
+                    <Button Content="Licenza DeskTop" Name="buttonLicenzaDeskTop" Height="33" HorizontalAlignment="Left" Margin="290,37,0,0" VerticalAlignment="Top" Width="119" Click="buttonLicenzaDeskTop_Click"/>
+                    <Button Content="Licenza Client" Name="buttonLicenzaClient" Height="33" HorizontalAlignment="Left" Margin="21,91,0,0" VerticalAlignment="Top" Width="119" Click="buttonLicenzaClient_Click"/>
+                    <Button Content="Licenza Entry Level" Name="buttonLicenzaEntry" Height="33" HorizontalAlignment="Left" Margin="154,91,0,0" VerticalAlignment="Top" Width="119" Click="buttonLicenzaEntry_Click"/>
+                    <Button Content="Licenza Viewer" Name="buttonLicenzaViewer" Height="33" HorizontalAlignment="Left" Margin="290,91,0,0" VerticalAlignment="Top" Width="119" Click="buttonLicenzaViewer_Click"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+
+
+        <Grid Margin="0,20,0,10" Height="Auto">
+            <Button Content="Chiudi" Height="23" HorizontalAlignment="Left" Margin="375,0,0,0" Name="buttonChiudi" VerticalAlignment="Top" Width="75" Click="buttonChiudi_Click" />
+        </Grid>
+
+    </StackPanel>
+</Window>
+
+
